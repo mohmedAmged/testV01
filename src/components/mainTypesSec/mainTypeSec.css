@@ -36,3 +36,11 @@
     text-transform: capitalize;
     font-weight: 700;
 }
+
+/* start responsive */
+
+@media screen and (max-width: 600px) {
+    .used__btn{
+        margin-top: 10px !important;
+    }
+}

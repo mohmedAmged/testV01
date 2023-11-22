@@ -32,7 +32,7 @@ export default function MainTypeSec() {
                                 <p className=''>
                                     Your go-to destination for CPO cars in cyprus, offering detailed insights to help you find vicheles with confidence
                                 </p>
-                                <div className=" d-flex justify-content-start align-items-center w-100">
+                                <div className=" d-flex justify-content-start align-items-center w-100 used__btn">
                                     <NavLink className="nav-link btn__type w-80">
                                         used cars
                                     </NavLink>
