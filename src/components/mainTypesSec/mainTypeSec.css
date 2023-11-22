@@ -1,0 +1,21 @@
+.main__types__sec{
+    position: relative;
+    top: -150px;
+}
+.box__item__type{
+    background: red;
+    color: #ffffff;
+    border-radius: 5px;
+}
+.box__item__type.blue__box{
+    background: #11468F;
+}
+.box__item__type.red__box{
+    background: #F12D2D;
+}
+.btn__type{
+    display: inline-block;
+    background: #494953;
+    padding: 12px 40px;
+    border-radius: 5px;
+}
