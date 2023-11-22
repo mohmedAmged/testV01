@@ -11,7 +11,7 @@
     position: relative;
 }
 .hero__text__box h1{
-    color: #FFEA85;
+    color: #ffffff;
     margin-bottom: 10px;
     font-size: 70px;
     line-height: 50px;
@@ -38,3 +38,21 @@
     stroke-linecap: round;
     stroke-linejoin: round;
 }
+
+
+/* start responsive */
+@media screen and (max-width: 993px) {
+.arrow__box{
+    display: none;
+}
+}
+@media screen and (max-width: 993px) and (min-width: 600px) {
+    .hero__text__box h1{
+        font-size: 50px;
+    }
+    }
+    @media screen and (max-width: 600px) and (min-width: 0px) {
+        .hero__text__box h1{
+            font-size: 40px;
+        }
+    }

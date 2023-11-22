@@ -1,6 +1,5 @@
 import React from 'react'
 import './heroSec.css'
-import hero1 from '../../assets/heroSec/hero1.jpg'
 export default function HeroSec() {
   const svgStyles = {
     strokeDasharray: '241, 243',

@@ -3,9 +3,11 @@
     top: -150px;
 }
 .box__item__type{
+    position: relative;
     background: red;
     color: #ffffff;
     border-radius: 5px;
+    min-height: 300px;
 }
 .box__item__type.blue__box{
     background: #11468F;
@@ -14,8 +16,23 @@
     background: #F12D2D;
 }
 .btn__type{
-    display: inline-block;
+    /* display: inline-block !important; */
     background: #494953;
     padding: 12px 40px;
     border-radius: 5px;
+    color: #ffffff;
+    font-weight: 500;
+    text-transform: capitalize;
+    transition: all ease-in .3s;
+    align-items: center;
+    position: absolute;
+    bottom: 15px;
+}
+.btn__type:hover{
+    background: #ffffff;
+    color: #494953;
+}
+.box__item__type h1{
+    text-transform: capitalize;
+    font-weight: 700;
 }

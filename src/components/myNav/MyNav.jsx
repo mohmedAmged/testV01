@@ -143,6 +143,18 @@ export default function MyNav({ scrollToggle }) {
                                     to="/contact">
                                     Dealers
                                 </NavLink>
+                                <NavLink onClick={() => {
+                                    scrollToTop();
+                                }}
+                                className="nav-link nav__link__style"
+                                to="/">
+                                <div className='btn__Car d-flex justify-content-center align-items-center'>
+                                <i class="bi bi-folder-plus fs-6"></i>
+                                    <span>
+                                    Add your item
+                                    </span>
+                                </div>
+                            </NavLink>
                             </Nav>
 
                         </Offcanvas.Body>
