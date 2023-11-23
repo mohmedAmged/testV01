@@ -10,14 +10,14 @@
     min-height: 300px;
 }
 .box__item__type.blue__box{
-    background: #11468F;
+    background: var(--primary-blue);
 }
 .box__item__type.red__box{
-    background: #F12D2D;
+    background: var(--primary-red);
 }
 .btn__type{
     /* display: inline-block !important; */
-    background: #494953;
+    background: var(--primary-black);
     padding: 12px 40px;
     border-radius: 5px;
     color: #ffffff;
@@ -30,7 +30,7 @@
 }
 .btn__type:hover{
     background: #ffffff;
-    color: #494953;
+    color: var(--primary-black);
 }
 .box__item__type h1{
     text-transform: capitalize;

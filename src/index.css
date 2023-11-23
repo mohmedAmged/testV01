@@ -5,7 +5,7 @@ body, h1, h2, h3, p, ul, li {
 body {
   font-size: 16px;
   font-family: 'Montserrat', sans-serif !important;
-  height: 300vh;
+  /* height: 300vh; */
 }
 *, *:before, *:after {
   box-sizing: border-box;
@@ -15,4 +15,11 @@ a {
 }
 img{
   width: 100%;
+}
+:root {
+  --primary-blue: #2c25eb; 
+  --nav-Bg: #11468F; 
+  --nav-link-color: #3F52E3; 
+  --primary-red: #cd2c37; 
+  --primary-black: #153e4d; 
 }

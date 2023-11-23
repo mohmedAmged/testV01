@@ -6,7 +6,7 @@
 }
 .btn__Car{
     padding: 12px 22px 12px 22px;
-    background: #17139C;
+    background: var(--primary-blue);
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 700;
@@ -22,7 +22,7 @@
 }
 .btn__Car:hover{
     background: #ffffff;
-    color: #17139C;
+    color: var(--primary-blue);
 }
 .offCanvas__head h5 {
     color: rgb(146, 125, 4) !important;
@@ -43,8 +43,8 @@
 
 .nav__fixed {
     position: fixed !important;
-    box-shadow: 0 2px 5px #11468F;
-    background-color: #11468F !important;
+    box-shadow: 0 2px 5px var(--nav-Bg);
+    background-color: var(--nav-Bg) !important;
     opacity: 0.9;
     animation-duration: 0.5s;
     animation-iteration-count: 1;
@@ -92,28 +92,11 @@
 }
 
 .nav__link__style:hover {
-    color: #3F52E3 !important;
+    color: var(--nav-link-color) !important;
 }
 
 .navbar-nav .nav-link.active {
-    color: #3F52E3 !important;
-}
-
-.nav__icon {
-    height: 30px;
-    line-height: 30px;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 10px !important;
-    cursor: pointer;
-    position: relative;
-    color: #2b3a2b !important;
-    transition: all .3s linear;
-}
-
-.nav__icon:hover {
-    color: rgb(146, 125, 4) !important;
+    color: var(--nav-link-color) !important;
 }
 
 .blockOnSmallScreen {
@@ -124,46 +107,10 @@
     box-shadow: none !important;
 }
 
-.nav__logoutPart-responsive {
-    display: none !important;
-}
-
 .logo__Width{
     max-width: 161px;
 }
 
-.nav__logoutPart span {
-    transition: all 0.3s ease-in-out;
-    color: #000 !important;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    padding-bottom: 5px !important;
-}
-
-.nav__logoutPart:hover span {
-    color: #ff2020 !important;
-}
-
-.cartCounter {
-    position: absolute;
-    right: 0;
-    top: -10px;
-    width: 20px;
-    height: 20px;
-    font-size: 14px;
-    color: #fff;
-    background-color: #2b3a2b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-}
 .Navbar__offCanvas__none__on__lg{
     display: none !important;
 }
@@ -172,7 +119,7 @@
 }
 
 .offcanvas{
-    background: #11468F !important;
+    background: var(--nav-Bg) !important;
 }
 .navbar-toggler-icon{
     background-image: url('../../assets/heroSec/download.svg');

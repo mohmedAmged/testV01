@@ -1,0 +1,122 @@
+.recent__Sec{
+    margin-top: 40px;
+    padding: 10px;
+}
+.recent__cart__handler{
+    border-top: 4px solid #153e4d;
+    padding-top: 29px;
+}
+.cart__top{
+    position: relative;
+    overflow: hidden;
+    min-width: 280px;
+    min-height: 190px;
+}
+.img__Cart{
+    position: absolute;
+    top: 0;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+.cart__badge{
+    position: absolute;
+    right: -65px;
+    left: unset;
+    padding: 0 55px;
+    top: 20px;
+    width: 200px;
+    height: 33px;
+    transform: rotate(45deg);
+    background-color: var(--primary-blue);
+    color: #fff !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart__camera{
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    z-index: 20;
+}
+.cart__Camera__content{
+    display: inline-block;
+    margin-right: 9px;
+    padding: 2px 5px 0 6px;
+    border-radius: 2px;
+    background: rgba(0,0,0,.3);
+    color: #fff;
+    font-size: 11px;
+    line-height: 22px;
+    font-weight: 600;
+}
+.cart__Camera__content i{
+    font-size: 16px;
+    margin-right: 6px;
+}
+.cart__Camera__content span{
+    position: relative;
+    top: -1px;
+}
+.cart__main__titels{
+    padding-bottom: 17px;
+    border-bottom: 1px solid #ccc;
+}
+.cart__price{
+    padding: 1px 10px 2px 4px;
+    position: relative;
+    background-color: var(--primary-blue);
+    text-align: right;
+}
+.cart__price::before{
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    left: -12px;
+    height: 100%;
+    width: 32px;
+    background-color: var(--primary-blue);
+    transform: skew(-14deg,0deg);
+    z-index: 5;
+}
+.cart__price .old__price{
+    position: relative;
+    z-index: 6;
+    font-size: 13px;
+    line-height: normal;
+    text-decoration: line-through;
+    color: #fff;
+    margin-bottom: 4px;
+}
+.new__price{
+    line-height: 16px;
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    z-index: 6;
+    font-weight: 700;
+}
+.cart__title{
+    overflow: hidden;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 700;
+}
+.cart__list__meta span{
+    margin-top: 4px;
+    margin-bottom: 0;
+    margin-right: 14px;
+    color: #888;
+    vertical-align: middle;
+}
