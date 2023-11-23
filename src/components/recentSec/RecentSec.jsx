@@ -8,8 +8,8 @@ export default function RecentSec() {
                 <div className="recent__cart__handler">
                     <div className="row">
                         <div className="col-lg-12">
-                            <h1 className='mb-3'>
-                                recent car
+                            <h1 className='mb-3 recent__head'>
+                                recent cars
                             </h1>
                         </div>
                     </div>
@@ -32,13 +32,13 @@ export default function RecentSec() {
                                 </div>
                                 <div className="cart__bottom mt-2">
                                     <div className="cart__main__titels">
-                                        <div className="row">
-                                            <div className="col-lg-8">
+                                        <div className="d-flex align-items-center justify-content-between">
+                                            <>
                                                 <div className="cart__title">
                                                     New BMW 3 series
                                                 </div>
-                                            </div>
-                                            <div className="col-lg-4 d-flex justify-content-end">
+                                            </>
+                                            <>
                                                 <div className="cart__price">
                                                     <div className="old__price">
                                                         $ 25000
@@ -47,7 +47,7 @@ export default function RecentSec() {
                                                         $ 20000
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </>
                                         </div>
                                     </div>
                                     <div className="cart__list__meta">

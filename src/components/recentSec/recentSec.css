@@ -2,6 +2,12 @@
     margin-top: 40px;
     padding: 10px;
 }
+.recent__head{
+    line-height: 1.2;
+    font-size: 26px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
 .recent__cart__handler{
     border-top: 4px solid #153e4d;
     padding-top: 29px;
