@@ -1,0 +1,45 @@
+.briefAboutUs__Sec{
+    margin-top: 60px;
+background: #000;
+padding: 40px 10px;
+}
+.brief__box{
+    color: #ffffff;
+    text-align: center;
+}
+.brief__logo{
+    margin-bottom: 20px;
+}
+.brief__logo img{
+    width: 61px;
+    height: 61px;
+    /* padding: 40px; */
+    background-color: #ffffff;
+    text-align: center;
+    border-radius: 50%;
+    border: 5px solid var(--primary-blue);
+}
+.breif__title h1{
+    line-height: 1.2;
+    font-size: 26px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.brief__text p{
+    text-align: center;
+    margin-top: 5px;
+    font-size: 16px;
+}
+.line{
+    display: inline-block;
+    vertical-align: top;
+    width: 33px;
+    height: 5px;
+    transform: skew(-40deg, 0deg);
+    border-radius: 2px;
+    background: #ffffff;
+    margin-right: 3px;
+}
+.line__two{
+    width: 16px;
+}

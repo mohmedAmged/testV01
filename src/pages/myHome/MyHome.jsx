@@ -6,6 +6,7 @@ import CarInterestSec from '../../components/carInterestSec/CarInterestSec'
 import BrowseMakeSec from '../../components/browseMakeSec/BrowseMakeSec'
 import EcoRideSec from '../../components/ecoRidesSec/EcoRideSec'
 import RecentSec from '../../components/recentSec/RecentSec'
+import BriefAboutUs from '../../components/briefAboutUs/BriefAboutUs'
 export default function MyHome() {
   return (
     <div className='test'>
@@ -15,6 +16,7 @@ export default function MyHome() {
       <BrowseMakeSec />
       <EcoRideSec />
       <RecentSec />
+      <BriefAboutUs />
     </div>
   )
 }
