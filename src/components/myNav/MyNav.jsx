@@ -4,7 +4,8 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { NavLink } from 'react-router-dom';
 import { scrollToTop } from '../../functions/scrollToTop';
-import logo1 from '../../assets/logo/weblogo.png'
+// import logo1 from '../../assets/logo/weblogo.png'
+import logo2 from '../../assets/logo/weblogo copy.png'
 export default function MyNav({ scrollToggle }) {
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     function handleOffcanvasToggle() {
@@ -16,30 +17,39 @@ export default function MyNav({ scrollToggle }) {
                 <Container>
                     <Navbar.Brand className='d-flex align-items-center'>
                         <NavLink to="/">
-                            <img className='logo__Width' src={logo1} alt="main__logo" />
+                            <img className='logo__Width' src={logo2} alt="main__logo" />
                         </NavLink>
                     </Navbar.Brand>
                     <Navbar.Toggle onClick={handleOffcanvasToggle} aria-controls="basic-navbar-nav" />
                     {/* start navbar min-width 992px */}
                     <Navbar.Collapse id="navbar-nav" className='Navbar__Collapse__none__on__med'>
                         <Nav className="mx-auto" >
-                            <NavLink
+                        <NavLink
                                 onClick={() => {
                                     scrollToTop();
                                 }}
-                                className="nav-link px-4 nav__link__style"
+                                aria-label="Close"
+                                className="nav-link  nav__link__style"
                                 to="/">
                                 Home
                             </NavLink>
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
+                                }}
+                                className="nav-link  nav__link__style"
+                                to="/new-cars">
+                                Shop
+                            </NavLink>
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
                                 }
 
                                 }
-                                className="nav-link px-4 nav__link__style"
+                                className="nav-link  nav__link__style"
                                 to="/shop">
-                                Inventory
+                                Disover
                             </NavLink>
                             <NavLink
                                 onClick={() => {
@@ -47,26 +57,26 @@ export default function MyNav({ scrollToggle }) {
                                 }
 
                                 }
-                                className="nav-link px-4 nav__link__style"
+                                className="nav-link  nav__link__style"
                                 to="/about">
-                                Listing
+                                Save
                             </NavLink>
+
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
                                 }}
-                                aria-label="Close"
-                                className="nav-link px-4 nav__link__style"
-                                to="/faq">
-                                Pages
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                }}
-                                className="nav-link px-4 nav__link__style"
+                                className="nav-link  nav__link__style"
                                 to="/contact">
-                                Dealers
+                                Develop
+                            </NavLink>
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                className="nav-link  nav__link__style"
+                                to="/contact">
+                                Engage
                             </NavLink>
                         </Nav>
                         <Nav>
@@ -92,57 +102,66 @@ export default function MyNav({ scrollToggle }) {
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title className='offCanvas__head' id="offcanvasNavbarLabel">
                                 <NavLink to="/" className="px-4">
-                                    <img className='logo__Width' src={logo1} alt="logo__canvas" />
+                                    <img className='logo__Width' src={logo2} alt="logo__canvas" />
                                 </NavLink>
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="mx-auto" >
-                                <NavLink
-                                    onClick={() => {
-                                        scrollToTop();
-                                    }}
-                                    className="nav-link px-4 nav__link__style"
-                                    to="/">
-                                    Home
-                                </NavLink>
-                                <NavLink
-                                    onClick={() => {
-                                        scrollToTop();
-                                    }
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                aria-label="Close"
+                                className="nav-link  nav__link__style"
+                                to="/">
+                                Home
+                            </NavLink>
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                className="nav-link  nav__link__style"
+                                to="/new-cars">
+                                Shop
+                            </NavLink>
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }
 
-                                    }
-                                    className="nav-link px-4 nav__link__style"
-                                    to="/shop">
-                                    Inventory
-                                </NavLink>
-                                <NavLink
-                                    onClick={() => {
-                                        scrollToTop();
-                                    }
+                                }
+                                className="nav-link  nav__link__style"
+                                to="/shop">
+                                Disover
+                            </NavLink>
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }
 
-                                    }
-                                    className="nav-link px-4 nav__link__style"
-                                    to="/about">
-                                    Listing
-                                </NavLink>
-                                <NavLink
-                                    onClick={() => {
-                                        scrollToTop();
-                                    }}
-                                    aria-label="Close"
-                                    className="nav-link px-4 nav__link__style"
-                                    to="/faq">
-                                    Pages
-                                </NavLink>
-                                <NavLink
-                                    onClick={() => {
-                                        scrollToTop();
-                                    }}
-                                    className="nav-link px-4 nav__link__style"
-                                    to="/contact">
-                                    Dealers
-                                </NavLink>
+                                }
+                                className="nav-link  nav__link__style"
+                                to="/about">
+                                Save
+                            </NavLink>
+
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                className="nav-link  nav__link__style"
+                                to="/contact">
+                                Develop
+                            </NavLink>
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                className="nav-link  nav__link__style"
+                                to="/contact">
+                                Engage
+                            </NavLink>
                                 <NavLink onClick={() => {
                                     scrollToTop();
                                 }}

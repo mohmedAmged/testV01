@@ -4,6 +4,7 @@ import MyNav from './components/myNav/MyNav';
 import { Route, Routes } from 'react-router-dom';
 import MyHome from './pages/myHome/MyHome';
 import HeroSec from './components/myHeroSec/HeroSec';
+import NewCar from './pages/newCarPage/NewCar';
 
 function App() {
   const [scrollToggle, setScrollToggle] = useState(false);
@@ -19,6 +20,7 @@ function App() {
     <MyNav scrollToggle={scrollToggle}/>
     <Routes>
       <Route path='/' element={<MyHome/>}/>
+      <Route path='/new-cars' element={<NewCar/>}/>
     </Routes>
     </>
   );

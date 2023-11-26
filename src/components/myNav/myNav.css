@@ -82,10 +82,10 @@
     align-items: center !important;
     margin: 20px 0 !important;
     position: relative !important;
-    font-size: 20px !important;
+    font-size: 16px !important;
     line-height: 19px;
     color: #ffffff !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
     font-style: normal;
     text-transform: capitalize !important;
     transition: all .3s linear;
@@ -93,10 +93,12 @@
 
 .nav__link__style:hover {
     color: var(--nav-link-color) !important;
+    font-weight: 700 !important;
 }
 
 .navbar-nav .nav-link.active {
     color: var(--nav-link-color) !important;
+    font-weight: 700 !important;
 }
 
 .blockOnSmallScreen {

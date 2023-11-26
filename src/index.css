@@ -17,9 +17,13 @@ img{
   width: 100%;
 }
 :root {
-  --primary-blue: #2c25eb; 
-  --nav-Bg: #11468F; 
-  --nav-link-color: #3F52E3; 
+  /* --primary-blue: #2c25eb;  */
+  --primary-blue: #4728a5; 
+  /* --nav-Bg: #11468F;  */
+  --nav-Bg: #7752FE; 
+  /* --nav-link-color: #3F52E3;  */
+  --nav-link-color: #190482; 
   --primary-red: #cd2c37; 
-  --primary-black: #153e4d; 
+  --primary-black: #27d68f; 
+  --primary-gray: #545454;
 }

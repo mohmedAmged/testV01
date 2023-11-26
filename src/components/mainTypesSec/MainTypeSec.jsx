@@ -16,7 +16,7 @@ export default function MainTypeSec() {
                                     Explore brand mew cars provide by official dealers in cyprus, available <span>Today</span>, and make one yours
                                 </p>
                                 <div className="d-flex justify-content-start align-items-center w-100">
-                                    <NavLink className="nav-link btn__type w-80">
+                                    <NavLink to="/new-cars" className="nav-link btn__type w-80">
                                         new cars
                                     </NavLink>
                                 </div>
