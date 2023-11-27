@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import "./shopSec.css";
 import { InputGroup } from "react-bootstrap";
 import ProductCard from "../productCard/ProductCard";
+import ListCardItems from "../listCardItems/ListCardItems";
 export default function ShopSec() {
+    const [activeView, setActiveView] = useState('grid');
+
+    const handleIconClick = (view) => {
+        setActiveView(view);
+    };
     return (
         <div className="shopSec__handler">
             <div className="container">
@@ -92,12 +98,26 @@ export default function ShopSec() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-9 pt-5">
+                    <div className="col-lg-9">
                         <div className="shop__part">
-                            <div className="shop__part__main__tit">
+                            <div className="shop__part__main__tit d-flex justify-content-between">
                                 <h3>
-                                    car for sale
+                                    cars for sale
                                 </h3>
+                                <div className="filter__icons d-flex align-items-center">
+                                    <div className={`icon__box grid__icon fs-5 
+                                    ${activeView === 'grid' ? 'active' : ''}`}
+                                    onClick={() => handleIconClick('grid')}
+                                    >
+                                        <i className="bi bi-grid"></i>
+                                    </div>
+                                    <div className={`icon__box list__icon fs-5 
+                                    ${activeView === 'list' ? 'active' : ''}`}
+                                    onClick={() => handleIconClick('list')}
+                                    >
+                                        <i className="bi bi-list-ul fs-5"></i>
+                                    </div>
+                                </div>
                             </div>
                             <div className="shop__list">
                                 <div className="shop__list__heading">
@@ -105,11 +125,22 @@ export default function ShopSec() {
                                         Featured Classified
                                     </div>
                                 </div>
-                                <div className="shop__list__items">
+                                <div 
+                                className={`shop__grid__items ${activeView === 'grid' ? 'active' : ''}`}
+                                >
                                     <div className="row">
-                                        <ProductCard/>
-                                        <ProductCard/>
-                                        <ProductCard/>
+                                        <ProductCard />
+                                        <ProductCard />
+                                        <ProductCard />
+                                    </div>
+                                </div>
+                                <div 
+                                className={`shop__list__items ${activeView === 'list' ? 'active' : ''}`}
+                                >
+                                    <div className="row">
+                                        <ListCardItems />
+                                        <ListCardItems />
+                                        <ListCardItems />
                                     </div>
                                 </div>
                             </div>

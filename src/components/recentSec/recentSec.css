@@ -15,8 +15,8 @@
 .cart__top{
     position: relative;
     overflow: hidden;
-    min-width: 280px;
-    min-height: 190px;
+    min-width: 246px;
+    min-height: 170px;
 }
 .img__Cart{
     position: absolute;
@@ -89,6 +89,9 @@
     margin-right: 2px;
     cursor: pointer;
 }
+.cart__indicator .indicator:last-child{
+    margin-right: 0;
+}
 .cart__indicator .indicator.active{
     background-color: #6c98e1;
 }
@@ -137,6 +140,7 @@
     font-size: 16px;
     line-height: 18px;
     font-weight: 700;
+    width: 60%;
 }
 .cart__list__meta span{
     margin-top: 4px;
