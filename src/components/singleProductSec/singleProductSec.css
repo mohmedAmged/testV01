@@ -386,7 +386,9 @@
   .form__contact button:hover{
     background: #5237a4;
   }
-
+.img__list{
+    cursor: pointer;
+}
 /* resposive */
 @media screen and (max-width: 600px) {
     .form__dellar__contact{
@@ -407,5 +409,8 @@
     }
     .message__Dellar__Sec{
         margin-top: 20px;
+    }
+    .box__message__info{
+        display: none;
     }
 }

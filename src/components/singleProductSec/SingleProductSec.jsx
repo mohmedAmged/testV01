@@ -17,6 +17,11 @@ import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 export default function SingleProductSec() {
+    const [mainImageSrc, setMainImageSrc] = useState(img1); // Initial main image source
+
+    const handleThumbnailClick = (newSrc) => {
+        setMainImageSrc(newSrc);
+    };
     return (
         <>
             <DynamicHeroSec backgroundImage={heroBg} title="NEW BMW 3 SERIES" content="NEW BMW 3 SERIES" />
@@ -66,37 +71,7 @@ export default function SingleProductSec() {
                                         <SwiperSlide>
                                             <div className="single__box__handler">
                                                 <div className="single__img__handler">
-                                                    <img src={img1} alt="" />
-                                                </div>
-                                                <div className="img__card__badge">
-                                                    special
-                                                </div>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <div className="single__box__handler">
-                                                <div className="single__img__handler">
-                                                    <img src={img2} alt="" />
-                                                </div>
-                                                <div className="img__card__badge">
-                                                    special
-                                                </div>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <div className="single__box__handler">
-                                                <div className="single__img__handler">
-                                                    <img src={img3} alt="" />
-                                                </div>
-                                                <div className="img__card__badge">
-                                                    special
-                                                </div>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <div className="single__box__handler">
-                                                <div className="single__img__handler">
-                                                    <img src={img4} alt="" />
+                                                    <img className='img__view' src={mainImageSrc} alt="" />
                                                 </div>
                                                 <div className="img__card__badge">
                                                     special
@@ -117,18 +92,21 @@ export default function SingleProductSec() {
                                         modules={[FreeMode, Navigation, Thumbs]}
                                         className="mySwiper mt-3"
                                     >
-                                        <SwiperSlide>
-                                            <img src={img1} alt="" />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <img src={img2} alt="" />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <img src={img3} alt="" />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <img src={img4} alt="" />
-                                        </SwiperSlide>
+                                        {[
+                                            { id: 1, src: img1 },
+                                            { id: 2, src: img2 },
+                                            { id: 3, src: img3 },
+                                            { id: 4, src: img4 },
+                                        ].map((thumbnail) => (
+                                            <SwiperSlide key={thumbnail.id}>
+                                                <img
+                                                    className='img__list'
+                                                    src={thumbnail.src}
+                                                    alt=""
+                                                    onClick={() => handleThumbnailClick(thumbnail.src)}
+                                                />
+                                            </SwiperSlide>
+                                        ))}
                                     </Swiper>
                                 </div>
                                 <div className="product__detailes">

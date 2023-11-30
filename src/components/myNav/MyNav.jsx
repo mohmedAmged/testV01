@@ -39,7 +39,7 @@ export default function MyNav({ scrollToggle }) {
                                 }}
                                 className="nav-link  nav__link__style"
                                 to="/new-cars">
-                                Shop
+                                Cars
                             </NavLink>
                             <NavLink
                                 onClick={() => {
@@ -49,7 +49,7 @@ export default function MyNav({ scrollToggle }) {
                                 }
                                 className="nav-link  nav__link__style"
                                 to="/shop">
-                                Disover
+                                Discover
                             </NavLink>
                             <NavLink
                                 onClick={() => {
@@ -123,7 +123,7 @@ export default function MyNav({ scrollToggle }) {
                                 }}
                                 className="nav-link  nav__link__style"
                                 to="/new-cars">
-                                Shop
+                                Cars
                             </NavLink>
                             <NavLink
                                 onClick={() => {
@@ -133,7 +133,7 @@ export default function MyNav({ scrollToggle }) {
                                 }
                                 className="nav-link  nav__link__style"
                                 to="/shop">
-                                Disover
+                                Discover
                             </NavLink>
                             <NavLink
                                 onClick={() => {
