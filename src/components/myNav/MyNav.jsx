@@ -30,16 +30,8 @@ export default function MyNav({ scrollToggle }) {
                                 }}
                                 aria-label="Close"
                                 className="nav-link  nav__link__style"
-                                to="/">
-                                Home
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                }}
-                                className="nav-link  nav__link__style"
-                                to="/new-cars">
-                                Cars
+                                to="/cars">
+                                cars
                             </NavLink>
                             <NavLink
                                 onClick={() => {
@@ -48,8 +40,16 @@ export default function MyNav({ scrollToggle }) {
 
                                 }
                                 className="nav-link  nav__link__style"
-                                to="/shop">
+                                to="/discover">
                                 Discover
+                            </NavLink>
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                className="nav-link  nav__link__style"
+                                to="/realestate">
+                                Raal Estate
                             </NavLink>
                             <NavLink
                                 onClick={() => {
@@ -114,16 +114,8 @@ export default function MyNav({ scrollToggle }) {
                                 }}
                                 aria-label="Close"
                                 className="nav-link  nav__link__style"
-                                to="/">
-                                Home
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                }}
-                                className="nav-link  nav__link__style"
-                                to="/new-cars">
-                                Cars
+                                to="/cars">
+                                cars
                             </NavLink>
                             <NavLink
                                 onClick={() => {
@@ -132,8 +124,16 @@ export default function MyNav({ scrollToggle }) {
 
                                 }
                                 className="nav-link  nav__link__style"
-                                to="/shop">
+                                to="/discover">
                                 Discover
+                            </NavLink>
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                className="nav-link  nav__link__style"
+                                to="/realestate">
+                                Raal Estate
                             </NavLink>
                             <NavLink
                                 onClick={() => {
