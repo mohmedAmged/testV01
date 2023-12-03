@@ -25,6 +25,7 @@
     font-weight: 700;
     line-height: 60px;
     /* color: var(--nav-link-color); */
+    /* color: var(--primary-blue); */
     color: #252525;
 }
 .discover__hero__text p{
@@ -92,5 +93,20 @@
     .discover__hero__text h1{
         font-size: 40px;
     line-height: 40px;
+    }
+    .dicover__form__location, .dicover__form__category,
+    .dicover__form__sub__category{
+        margin-bottom: 10px
+    }
+    .discover__form{
+        padding: 20px;
+    }
+    .dicover__form__location select{
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .discover__form__btn button{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 }
