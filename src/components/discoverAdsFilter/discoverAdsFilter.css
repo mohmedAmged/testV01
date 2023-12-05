@@ -70,3 +70,10 @@ justify-content: start;
     background: var(--primary-blue);
     color: #ffffff;
 }
+
+@media screen and (max-width: 600px) {
+    .ads__filter__tabs ul .ads__tab{
+    margin-right: 10px;
+    padding: 9px 20px;
+    }
+}

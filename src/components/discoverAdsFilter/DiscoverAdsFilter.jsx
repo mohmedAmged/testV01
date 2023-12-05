@@ -72,7 +72,7 @@ export default function DiscoverAdsFilter() {
                 <div className="ads__filter__tabs">
                     <div className="row">
                         <div className="col-lg-8">
-                            <ul>
+                            <ul >
                                 <li id='latest' className={`ads__tab ${activeTab === 'latest' ? 'active' : ''}`}
                                     onClick={() => handleTabClick('latest')}
                                 >
