@@ -39,7 +39,7 @@ export default function AdsCard({ restaurantData }) {
                     <div className="cart__main__titels">
                         <div className="">
                             <div className="cart__title">
-                                <NavLink to="/car-info" className="nav-link">
+                                <NavLink to="" className="nav-link">
                                     {restaurantData.name}
                                 </NavLink>
                             </div>
