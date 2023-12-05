@@ -1,0 +1,88 @@
+.discoverAdsLocation__handler{
+    margin-top: 60px;
+}
+.discover__location__card{
+    border-radius: 10px;
+    overflow: hidden;
+    height: 300px;
+    width: 100%;
+    background: #f6f6f6;
+    position: relative;
+    margin-bottom: 30px !important;
+    transition: all 0.5s ease;
+}
+.discover__location__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.discover__location__image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.discover__location__caption{
+    display: table;
+    width: 100%;
+    height: 70px;
+    overflow: hidden;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    padding: 10px 22px;
+    transition: all 0.5s ease;
+}
+.discover__location__card:hover .discover__location__caption{
+    height: 300px;
+}
+.discover__icon__caption{
+    width: 60px;
+    padding-right: 20px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.discover__text__caption{
+    display: table-cell;
+    vertical-align: middle;
+}
+.discover__icon__caption span{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    background: var(--primary-black);
+}
+.discover__icon__caption span i{
+    font-size: 24px;
+    line-height: 60px;
+    color: #ffffff;
+}
+.discover__text__caption h4{
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #fff;
+    line-height: 18px;
+    font-weight: 700;
+}
+.discover__text__caption p{
+    font-size: 13px;
+    color: #fff;
+    margin-bottom: 0;
+}
+.discover__text__caption .ads__link{
+    font-size: 16px;
+    font-weight: 600;
+    position: absolute;
+    left: 103px;
+    bottom: -30px;
+    color: var(--primary-black);
+    transition: all 0.5s ease;
+}
+.discover__text__caption .ads__link i{
+    margin-left: 10px;
+}
+.discover__location__card:hover .ads__link{
+    bottom: 80px;
+}
