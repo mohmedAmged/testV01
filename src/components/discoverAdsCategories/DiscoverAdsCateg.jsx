@@ -87,7 +87,7 @@ export default function DiscoverAdsCateg() {
             Ads Categories
             </h3>
             <p>
-            Semper ac dolor vitae accumsan. Cras interdum hendrerit lacinia.Phasellusaccumsan urna vitae molestie interdum. Nam sed placerat libero, non eleifend dolor
+            Semper ac dolor vitae accumsan. Cras interdum hendrerit lacinia.
             </p>
           </div>
         </div>
