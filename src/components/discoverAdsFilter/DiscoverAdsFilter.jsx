@@ -69,6 +69,18 @@ export default function DiscoverAdsFilter() {
     return (
         <div className='discoverAdsFilter__handler my-5'>
             <div className="container">
+                <div className="ads__filter__heading">
+                    <div className="row justify-content-center">
+                        <div className="col-lg-8 text-center">
+                            <h3>
+                                Advertisements
+                            </h3>
+                            <p>
+                                An advertisement section where can fin your best destination to what ever you want.
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <div className="ads__filter__tabs">
                     <div className="row">
                         <div className="col-lg-8">

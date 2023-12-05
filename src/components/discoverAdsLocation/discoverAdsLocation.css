@@ -1,6 +1,17 @@
 .discoverAdsLocation__handler{
     margin-top: 60px;
 }
+.discoverAdsLocation__handler h3{
+    line-height: 36px;
+    font-weight: 700;
+    font-size: 36px;
+}
+.discoverAdsLocation__handler p{
+    font-size: 18px;
+    color: #6c6c6c;
+    /* line-height: 1.7; */
+    margin-bottom: 30px;
+}
 .discover__location__card{
     border-radius: 10px;
     overflow: hidden;
