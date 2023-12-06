@@ -123,10 +123,32 @@ export default function DiscoverSlider({ title, subtitle, slides }) {
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="discoverSlider__cards">
-                            <Swiper 
-                            slidesPerView={3.5} 
-                            spaceBetween={30} 
-                            className="mySwiper">
+                            <Swiper
+                                slidesPerView={1}
+                                spaceBetween={10}
+                                breakpoints={{
+                                    320: {
+
+                                        slidesPerView: 1.5,
+                                        spaceBetween: 20
+                                    },
+                                    480: {
+
+                                        slidesPerView: 2,
+                                        spaceBetween: 20
+                                    },
+                                    600: {
+
+                                        slidesPerView: 3.5,
+                                        spaceBetween: 30
+                                    },
+                                    // when window width is >= 640px
+                                    640: {
+                                        slidesPerView: 2.5,
+                                        spaceBetween: 30
+                                    },
+                                }}
+                                className="mySwiper">
                                 {slides.map((slide) => (
                                     <SwiperSlide key={slide.id}>
                                         <div className="discoverSlider__card__item">

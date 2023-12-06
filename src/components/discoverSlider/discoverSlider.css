@@ -58,15 +58,26 @@
     .discoverSlider__card__item{
         height: 300px;
     }
-    .discoverSlider__cards .swiper-slide{
+    /* .discoverSlider__cards .swiper-slide{
         width: 70% !important;
-    }
+    } */
     .discoverSlider__head h3{
         font-size: 24px;
     }
-    /* .discoverSlider__cards .swiper-wrapper{
-        transform: translate3d(0px, 0px, 0px) !important;
-    } */
+    .discoverSlider__text{
+        left: 5px;
+    }
+    .discoverSlider__text h3{
+        line-height: normal;
+        font-weight: 600;
+        font-size: 20px;
+        text-transform: capitalize;
+    }
+}
+@media screen and (max-width: 992px) and (min-width: 600px){
+    .discoverSlider__head h3{
+        font-size: 24px;
+    }
     .discoverSlider__text{
         left: 5px;
     }
