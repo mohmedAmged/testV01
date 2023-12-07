@@ -47,12 +47,13 @@ const slidesFour = [
 export default function DiscoverHome() {
   return (
     <div>
-      <DynamicHero />
-      <DiscoverSlider title="Most recommended food categories" subtitle="Winning flavors for every appetite" slides={slidesOne}/>
+      <DynamicHero title="Discover Everything: Your Ultimate Hub for All Things Extraordinary!"
+        description="Unleash curiosity and explore a world where every discovery is a journey in itself" />
+      <DiscoverSlider title="Most recommended food categories" subtitle="Winning flavors for every appetite" slides={slidesOne} />
       <DiscoverAdsCateg />
-      <DiscoverSlider title=" Most recommend burgers in country" subtitle="Winning flavors for every appetite" slides={slidesTwo}/>
-      <DiscoverSlider title=" Most recommend cafe in country" subtitle="Winning flavors for every appetite" slides={slidesThree}/>
-      <DiscoverSlider title="Most recommended gym fit" subtitle="Winning flavors for every appetite" slides={slidesFour}/>
+      <DiscoverSlider title=" Most recommend burgers in country" subtitle="Winning flavors for every appetite" slides={slidesTwo} />
+      <DiscoverSlider title=" Most recommend cafe in country" subtitle="Winning flavors for every appetite" slides={slidesThree} />
+      <DiscoverSlider title="Most recommended gym fit" subtitle="Winning flavors for every appetite" slides={slidesFour} />
       <DiscoverAdsLocation />
       <DiscoverAdsFilter />
     </div>

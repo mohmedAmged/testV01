@@ -11,7 +11,7 @@ export default function AdsCard({ restaurantData }) {
         return restaurantData.imageSources[activeIndicator];
     };
     return (
-        <div className="col-lg-3 col-md-6 col-sm-12">
+        <div className="col-lg-4 col-md-6 col-sm-12">
             <div className="recent__cart__item">
                 <div className="cart__top">
                     <div className="img__Cart">

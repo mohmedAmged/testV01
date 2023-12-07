@@ -1,6 +1,6 @@
 import React from 'react'
 import './dynamicHero.css'
-export default function DynamicHero() {
+export default function DynamicHero({ title, description}) {
     return (
         <div className='dynamic__hero__handler'>
             <div className="overlay"></div>
@@ -10,11 +10,25 @@ export default function DynamicHero() {
                         <div className="discover__hero__box">
                             <div className="discover__hero__text">
                                 <h1>
-                                    Discover Everything: Your Ultimate Hub for All Things Extraordinary!
+                                    {title}
                                 </h1>
+                                {/* {
+                                    link ? (
+                                        <p>
+                                            <NavLink className="nav-link">
+                                                {description}
+                                            </NavLink>
+                                        </p>
+                                    ) : (
+                                        <p>
+                                            {description}
+                                        </p>
+                                    )
+                                } */}
                                 <p>
-                                    Unleash curiosity and explore a world where every discovery is a journey in itself
+                                    {description}
                                 </p>
+
                             </div>
                             <div className="discover__hero__form position-relative">
                                 <form action="">

@@ -1,0 +1,16 @@
+.discoverCategoryList__subCategories ul{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.discoverCategoryList__subCategories ul li{
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    /* line-height: 36px; */
+}
+.discoverCategoryList__handler .search__part__handler{
+    background-color: var(--primary-black);
+}
+.discoverCategoryList__handler .cart__main__titels{
+    border-bottom: 0;
+}

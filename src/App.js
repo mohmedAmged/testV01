@@ -6,6 +6,7 @@ import MyHome from './pages/myHome/MyHome';
 import NewCar from './pages/newCarPage/NewCar';
 import SingleProductPage from './pages/singleProductPage/SingleProductPage';
 import DiscoverHome from './pages/discoverHome/DiscoverHome';
+import DiscoverCategoryPage from './pages/discoverCategoryPage/DiscoverCategoryPage';
 
 function App() {
   const [scrollToggle, setScrollToggle] = useState(false);
@@ -27,6 +28,7 @@ function App() {
       <Route path='/new-cars' element={<NewCar/>}/>
       <Route path='/car-Info' element={<SingleProductPage />}/>
       <Route path='/discover' element={<DiscoverHome />}/>
+      <Route path='/discover/category/:categoryName' element={<DiscoverCategoryPage />}/>
     </Routes>
     </>
   );
