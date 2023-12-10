@@ -142,7 +142,6 @@ export default function DiscoverSlider({ title, subtitle, slides }) {
                                         slidesPerView: 3.5,
                                         spaceBetween: 30
                                     },
-                                    // when window width is >= 640px
                                     640: {
                                         slidesPerView: 2.5,
                                         spaceBetween: 30
