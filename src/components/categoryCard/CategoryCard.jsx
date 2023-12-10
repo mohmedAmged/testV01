@@ -1,7 +1,7 @@
 import React from 'react'
 import './categoryCard.css'
 import { NavLink } from 'react-router-dom'
-export default function CategoryCard({ category, imgSrc, adsCount, subcategories, iconClass }) {
+export default function CategoryCard({ category, imgSrc, adsCount, subcategories, iconclassName }) {
     return (
         <div className='col-lg-4 col-md-6 col-sm-12'>
             <div className="discover__category__card__box">
@@ -10,7 +10,7 @@ export default function CategoryCard({ category, imgSrc, adsCount, subcategories
                         <img src={imgSrc} alt="" />
                         <div className="overlay"></div>
                         <span>
-                            <i className={iconClass}></i>
+                            <i className={iconclassName}></i>
                         </span>
                     </div>
                     <div className="discover__categ__info">

@@ -54,9 +54,17 @@
     font-size: 10px;
 }
 .middle__desc .name{
+    /* position: relative;
+    overflow: hidden; */
     font-size: 13px;
     font-weight: 700 !important;
     color: #222;
+    cursor: pointer;
+}
+.list__card__adjust__height{
+position: relative;
+height: 60px;
+overflow: hidden;
 }
 .dellar__img{
     margin-right: 17px;

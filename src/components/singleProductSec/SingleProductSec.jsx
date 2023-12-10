@@ -10,36 +10,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import DynamicMapWeb from '../dynamicMapWeb/DynamicMapWeb';
 
 export default function SingleProductSec({carDetails}) {
-    const CarFeaturesComponent = ( { carFeatures } ) => {
-        return (
-          <div>
-            <h2>Comfort Features:</h2>
-
-            <h2>Entertainment Features:</h2>
-            <ul>
-              {carFeatures.entertainment.split('\r\n').map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
-      
-            <h2>Safety Features:</h2>
-            <ul>
-              {carFeatures.safety.split('\r\n').map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
-      
-            <h2>Seats Features:</h2>
-            <ul>
-              {carFeatures.seats.split('\r\n').map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
-          </div>
-        );
-      };
 
     const [mainImageSrc, setMainImageSrc] = useState(carDetails?.main_image); 
 
@@ -47,9 +20,15 @@ export default function SingleProductSec({carDetails}) {
         setMainImageSrc(newSrc);
     };
 
+    const links = [
+        { "label": 'Home', "route": '/' },
+        { "label": 'cars', "route": '/cars' },
+        { "label": `${carDetails?.name}`, "route": `/car-info/${carDetails?.id}` },
+    ];
     return (
         <>
             <DynamicHeroSec backgroundImage={heroBg} title="NEW BMW 3 SERIES" content="NEW BMW 3 SERIES" />
+            <DynamicMapWeb links={links}  />
             <div className='single__product__handler'>
                 <div className="container">
                     <div className="row">

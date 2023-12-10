@@ -16,7 +16,7 @@ export default function MyHome() {
   const [showContent, setShowContent] = useState(true);
 
   const { data, isError, error, isLoading } = useQuery({
-    queryKey: ['countries'],
+    queryKey: ['car-home'],
     queryFn: async () => {
       const fetchData = await fetch(baseURL);
       const response = await fetchData.json();

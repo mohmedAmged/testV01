@@ -2,21 +2,30 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import "./shopSec.css";
 import { InputGroup } from "react-bootstrap";
+import Slider from 'react-slider';
 import ProductCard from "../productCard/ProductCard";
 import ListCardItems from "../listCardItems/ListCardItems";
+import ReactSlider from "react-slider";
 
-export default function ShopSec({cars}) {
+export default function ShopSec({ cars }) {
     const [activeView, setActiveView] = useState('grid');
 
     const handleIconClick = (view) => {
         setActiveView(view);
     };
 
+
+    const [values, setValues] = useState([1000, 30000]);
+
+    const handleSliderChange = (newValues) => {
+        setValues(newValues);
+      };
+
     return (
         <div className="shopSec__handler">
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-lg-3 mb-5">
                         <div className="search__part__handler">
                             <div className="search__title">Advanced search</div>
                             <div className="search__form__handler">
@@ -66,7 +75,17 @@ export default function ShopSec({cars}) {
                             </div>
                             <div className="price__Sec">
                                 <div className="range__item">
-                                    <Form.Range />
+                                    {/* <Form.Range /> */}
+                                    <ReactSlider
+                                        className="range-slider"
+                                        value={values}
+                                        withBars
+                                        min={1000}
+                                        max={30000}
+                                        step={500}
+                                        pearling
+                                        onChange={handleSliderChange}
+                                    />
                                 </div>
                                 <div className="input__price">
                                     <div className="row">
@@ -76,7 +95,7 @@ export default function ShopSec({cars}) {
                                                     <Form.Control
                                                         placeholder="min price"
                                                         aria-label="min price"
-                                                        value="$ 5000"
+                                                        value={`${values[0]}$`}
                                                         aria-describedby="basic-addon1"
                                                     />
                                                 </InputGroup>
@@ -89,7 +108,7 @@ export default function ShopSec({cars}) {
                                                     <Form.Control
                                                         placeholder="max price"
                                                         aria-label="max price"
-                                                        value="$ 20000"
+                                                        value={`${values[1]}$`}
                                                         aria-describedby="basic-addon1"
                                                     />
                                                 </InputGroup>
@@ -109,13 +128,13 @@ export default function ShopSec({cars}) {
                                 <div className="filter__icons d-flex align-items-center">
                                     <div className={`icon__box grid__icon fs-5 
                                     ${activeView === 'grid' ? 'active' : ''}`}
-                                    onClick={() => handleIconClick('grid')}
+                                        onClick={() => handleIconClick('grid')}
                                     >
                                         <i className="bi bi-grid"></i>
                                     </div>
                                     <div className={`icon__box list__icon fs-5 
                                     ${activeView === 'list' ? 'active' : ''}`}
-                                    onClick={() => handleIconClick('list')}
+                                        onClick={() => handleIconClick('list')}
                                     >
                                         <i className="bi bi-list-ul fs-5"></i>
                                     </div>
@@ -127,12 +146,12 @@ export default function ShopSec({cars}) {
                                         Featured Classified
                                     </div>
                                 </div>
-                                <div 
-                                className={`shop__grid__items ${activeView === 'grid' ? 'active' : ''}`}
+                                <div
+                                    className={`shop__grid__items ${activeView === 'grid' ? 'active' : ''}`}
                                 >
                                     <div className="row">
                                         {
-                                            cars?.map(car=>{
+                                            cars?.map(car => {
                                                 return (
                                                     <ProductCard key={car?.id} carInfo={car} />
                                                 )
@@ -140,12 +159,12 @@ export default function ShopSec({cars}) {
                                         }
                                     </div>
                                 </div>
-                                <div 
-                                className={`shop__list__items ${activeView === 'list' ? 'active' : ''}`}
+                                <div
+                                    className={`shop__list__items ${activeView === 'list' ? 'active' : ''}`}
                                 >
                                     <div className="row">
                                         {
-                                            cars?.map(car=>{
+                                            cars?.map(car => {
                                                 return (
                                                     <ListCardItems key={car?.id} carInfo={car} />
                                                 )

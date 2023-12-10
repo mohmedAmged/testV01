@@ -39,47 +39,47 @@ export default function ListCardItems({carInfo}) {
                                 </div>
                             </div>
                             <div className="card__list__middle row justify-content-between">
-                                <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex">
+                                <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex list__card__adjust__height">
                                     <div className="middle__icon">
                                         <i className="bi bi-fuel-pump-fill"></i>
                                     </div>
                                     <div className="middle__desc">
                                         <div className="type">fuel type</div>
-                                        <div className="name">Gasoline</div>
+                                        <div className="name" title={`${carInfo?.fuel_type}`}>{carInfo?.fuel_type}</div>
                                     </div>
                                 </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex">
+                                <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex list__card__adjust__height">
                                     <div className="middle__icon">
                                         <i className="bi bi-fuel-pump-fill"></i>
                                     </div>
                                     <div className="middle__desc">
                                         <div className="type">engine</div>
-                                        <div className="name">6,2L V8</div>
+                                        <div className="name" title={`${carInfo?.engine}`}>{carInfo?.engine}</div>
                                     </div>
                                 </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex">
+                                <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex list__card__adjust__height">
                                     <div className="middle__icon">
                                         <i className="bi bi-fuel-pump-fill"></i>
                                     </div>
                                     <div className="middle__desc">
                                         <div className="type">Mileage</div>
-                                        <div className="name">50000 mi</div>
+                                        <div className="name" title={`${carInfo?.mileage}`}>{carInfo?.mileage}</div>
                                     </div>
                                 </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex">
+                                <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex list__card__adjust__height">
                                     <div className="middle__icon">
                                         <i className="bi bi-geo-alt-fill"></i>
                                     </div>
                                     <div className="middle__desc">
                                         <div className="type">location</div>
-                                        <div className="name">Boston</div>
+                                        <div className="name" title={`${carInfo?.address}`}>{carInfo?.address}</div>
                                     </div>
                                 </div>
                             </div>
                             <div className="card__list__bottom">
                                 <div className="dellar__info d-flex">
                                     <div className="dellar__img">
-                                        <img src={avatar1} alt="" />
+                                        <img src={carInfo?.dealer_image} alt="" />
                                     </div>
                                     <div className="dellar__info">
                                         <div className="dellar__name">
@@ -87,7 +87,7 @@ export default function ListCardItems({carInfo}) {
                                         </div>
                                         <div className="dellar__phone">
                                             <i className="bi bi-telephone-fill"></i>
-                                            <span>01005332208</span>
+                                            <span>{carInfo?.phone}</span>
                                         </div>
                                     </div>
                                 </div>

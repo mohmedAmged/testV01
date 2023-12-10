@@ -7,12 +7,13 @@ import { baseURL } from '../../functions/BaseURL';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../components/loader/Loader';
 import Error from '../../components/error/Error';
+import DynamicMapWeb from '../../components/dynamicMapWeb/DynamicMapWeb';
 
 export default function NewCar() {
   const [showContent, setShowContent] = useState(true);
 
   const { data, isError, error, isLoading } = useQuery({
-    queryKey: ['countries'],
+    queryKey: ['cars'],
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/cars`);
       const response = await fetchData.json();
@@ -28,6 +29,11 @@ export default function NewCar() {
     return () => clearTimeout(timeoutId);
   }, [showContent]);
 
+  const links = [
+    { "label": 'Home', "route": '/' },
+    { "label": 'cars', "route": '/cars' },
+    { "label": 'New Cars', "route": '/new-cars' },
+];
   return (
     <>
     {
@@ -38,6 +44,7 @@ export default function NewCar() {
       : 
       <>
         <DynamicHeroSec backgroundImage={heroBg} title="New Cars" content="New cars"/>
+        <DynamicMapWeb links={links}  />
         <ShopSec cars={data?.cars} />
       </>
     }

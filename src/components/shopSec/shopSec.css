@@ -70,6 +70,30 @@
 .price__Sec{
     padding: 30px 25px;
 }
+.range__item{
+margin-bottom: 30px;
+}
+.range__item .range-slider{
+    width: 100% !important;
+    height: 2px !important;
+    background-color: #cdd9ed !important;
+    /* margin-top: 20px; */
+    /* position: relative; */
+}
+.range__item .range-slider .thumb{
+    /* position: absolute; */
+    width: 23px !important;
+    height: 23px !important;
+    cursor: grab !important;
+    cursor: -webkit-grab;
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid var(--primary-blue);
+    top: -12px !important;
+}
+.range__item .range-slider .track-1{
+    background-color: #275efe;
+}
 .shop__list__heading{
     margin-bottom: 25px;
     position: relative;
