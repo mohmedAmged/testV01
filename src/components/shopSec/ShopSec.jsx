@@ -4,12 +4,14 @@ import "./shopSec.css";
 import { InputGroup } from "react-bootstrap";
 import ProductCard from "../productCard/ProductCard";
 import ListCardItems from "../listCardItems/ListCardItems";
-export default function ShopSec() {
+
+export default function ShopSec({cars}) {
     const [activeView, setActiveView] = useState('grid');
 
     const handleIconClick = (view) => {
         setActiveView(view);
     };
+
     return (
         <div className="shopSec__handler">
             <div className="container">
@@ -129,18 +131,26 @@ export default function ShopSec() {
                                 className={`shop__grid__items ${activeView === 'grid' ? 'active' : ''}`}
                                 >
                                     <div className="row">
-                                        <ProductCard />
-                                        <ProductCard />
-                                        <ProductCard />
+                                        {
+                                            cars?.map(car=>{
+                                                return (
+                                                    <ProductCard key={car?.id} carInfo={car} />
+                                                )
+                                            })
+                                        }
                                     </div>
                                 </div>
                                 <div 
                                 className={`shop__list__items ${activeView === 'list' ? 'active' : ''}`}
                                 >
                                     <div className="row">
-                                        <ListCardItems />
-                                        <ListCardItems />
-                                        <ListCardItems />
+                                        {
+                                            cars?.map(car=>{
+                                                return (
+                                                    <ListCardItems key={car?.id} carInfo={car} />
+                                                )
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>

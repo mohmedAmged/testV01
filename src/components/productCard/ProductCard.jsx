@@ -2,36 +2,36 @@ import React from 'react'
 import './productCard.css'
 import CartTop from '../cartTop_part/CartTop'
 import { NavLink } from 'react-router-dom'
-export default function ProductCard() {
+
+export default function ProductCard({carInfo}) {
     return (
         <div className="col-lg-4 col-md-6 col-sm-12">
             <div className="recent__cart__item">
-                <CartTop />
+                <CartTop carTopInfo={carInfo} />
                 <div className="cart__bottom mt-2">
                     <div className="cart__main__titels">
                         <div className="d-flex align-items-center justify-content-between">
                             <>
                                 <div className="cart__title">
-                                    <NavLink to="/car-info" className="nav-link">
-                                        New BMW 3 series
+                                    <NavLink to={`/car-info/${carInfo?.id}`} className="nav-link">
+                                        {carInfo?.name}
                                     </NavLink>
                                 </div>
                             </>
                             <>
                                 <div className="cart__price">
                                     <div className="old__price">
-                                        $ 25000
+                                        ${carInfo?.price}
                                     </div>
                                     <div className="new__price">
-                                        $ 20000
+                                        ${carInfo?.offer_price}
                                     </div>
                                 </div>
                             </>
                         </div>
                     </div>
                     <div className="cart__list__meta">
-                        <span>5 years</span>
-                        <span>2 years</span>
+                        <span>{carInfo?.year}</span>
                     </div>
                 </div>
             </div>

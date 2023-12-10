@@ -10,6 +10,7 @@ import DiscoverCategoryPage from './pages/discoverCategoryPage/DiscoverCategoryP
 
 function App() {
   const [scrollToggle, setScrollToggle] = useState(false);
+
   window.addEventListener("scroll", () => {
     if (window.scrollY > 200) {
       setScrollToggle(true);
@@ -17,6 +18,7 @@ function App() {
       setScrollToggle(false);
     }
   });
+
   return (
     <>
     <MyNav scrollToggle={scrollToggle}/>
@@ -26,7 +28,7 @@ function App() {
       {/* home for valuereach progres.. */}
       <Route path='/cars' element={<MyHome/>}/>
       <Route path='/new-cars' element={<NewCar/>}/>
-      <Route path='/car-Info' element={<SingleProductPage />}/>
+      <Route path='/car-Info/:carId' element={<SingleProductPage />}/>
       <Route path='/discover' element={<DiscoverHome />}/>
       <Route path='/discover/category/:categoryName' element={<DiscoverCategoryPage />}/>
     </Routes>

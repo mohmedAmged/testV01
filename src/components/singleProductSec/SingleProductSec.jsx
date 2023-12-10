@@ -1,13 +1,8 @@
 import React, { useState } from 'react'
 import './singleProductSec.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { NavLink } from 'react-router-dom'
 import DynamicHeroSec from '../dynamicHeroSec/DynamicHeroSec'
 import heroBg from '../../assets/dynamicHeroImgs/Conv.png'
-import img1 from '../../assets/recentSec/car1.jpg'
-import img2 from '../../assets/recentSec/car2.jpg'
-import img3 from '../../assets/recentSec/car3.jpg'
-import img4 from '../../assets/recentSec/car4.jpg'
 import avatar from '../../assets/cardImgs/ava.jpg'
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -16,12 +11,42 @@ import 'swiper/css/thumbs';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
-export default function SingleProductSec() {
-    const [mainImageSrc, setMainImageSrc] = useState(img1); // Initial main image source
+export default function SingleProductSec({carDetails}) {
+    const CarFeaturesComponent = ( { carFeatures } ) => {
+        return (
+          <div>
+            <h2>Comfort Features:</h2>
+
+            <h2>Entertainment Features:</h2>
+            <ul>
+              {carFeatures.entertainment.split('\r\n').map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
+            </ul>
+      
+            <h2>Safety Features:</h2>
+            <ul>
+              {carFeatures.safety.split('\r\n').map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
+            </ul>
+      
+            <h2>Seats Features:</h2>
+            <ul>
+              {carFeatures.seats.split('\r\n').map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      };
+
+    const [mainImageSrc, setMainImageSrc] = useState(carDetails?.main_image); 
 
     const handleThumbnailClick = (newSrc) => {
         setMainImageSrc(newSrc);
     };
+
     return (
         <>
             <DynamicHeroSec backgroundImage={heroBg} title="NEW BMW 3 SERIES" content="NEW BMW 3 SERIES" />
@@ -36,9 +61,9 @@ export default function SingleProductSec() {
                                             <div className="card__title">
 
                                                 <div className="label">
-                                                    Certified Used 2021
+                                                    {carDetails?.condition}
                                                 </div>
-                                                New BMW 3 series
+                                                {carDetails?.name}
 
                                             </div>
                                         </>
@@ -46,10 +71,10 @@ export default function SingleProductSec() {
                                             <div className="cart__price ">
                                                 <>
                                                     <div className="old__price">
-                                                        $25000
+                                                        ${carDetails?.price}
                                                     </div>
                                                     <div className="new__price">
-                                                        $20000
+                                                        ${carDetails?.offer_price}
                                                     </div>
                                                 </>
                                             </div>
@@ -80,30 +105,21 @@ export default function SingleProductSec() {
                                         </SwiperSlide>
                                     </Swiper>
                                     <Swiper
-                                        //  style={{
-                                        //     '--swiper-navigation-color': '#fff',
-                                        // }}
                                         loop={true}
                                         spaceBetween={10}
                                         slidesPerView={4}
                                         freeMode={true}
-                                        // navigation={true}
                                         watchSlidesProgress={true}
                                         modules={[FreeMode, Navigation, Thumbs]}
                                         className="mySwiper mt-3"
                                     >
-                                        {[
-                                            { id: 1, src: img1 },
-                                            { id: 2, src: img2 },
-                                            { id: 3, src: img3 },
-                                            { id: 4, src: img4 },
-                                        ].map((thumbnail) => (
-                                            <SwiperSlide key={thumbnail.id}>
+                                        {carDetails?.carImages.map((carImage) => (
+                                            <SwiperSlide key={carImage.id}>
                                                 <img
                                                     className='img__list'
-                                                    src={thumbnail.src}
+                                                    src={carImage.image}
                                                     alt=""
-                                                    onClick={() => handleThumbnailClick(thumbnail.src)}
+                                                    onClick={() => handleThumbnailClick(carImage.image)}
                                                 />
                                             </SwiperSlide>
                                         ))}
@@ -114,48 +130,48 @@ export default function SingleProductSec() {
                                         <div className="col-lg-4 col-md-4 col-sm-12">
                                             <div className="box__detail d-flex justify-content-between align-items-center">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Body</span>
                                                 </div>
                                                 <div className="item__title">
-                                                    Hatchback
+                                                    {carDetails?.body}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span title='Transmission'>Transmission</span>
                                                 </div>
                                                 <div title='Manuel' className="item__title">
-                                                    Manuel
+                                                    {carDetails?.transmission}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Year</span>
                                                 </div>
                                                 <div title='2021' className="item__title">
-                                                    2021
+                                                    {carDetails?.year}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Color</span>
                                                 </div>
                                                 <div title='Obsidian Black Metallic' className="item__title">
-                                                    Obsidian Black Metallic
+                                                    {carDetails?.exterior}
                                                 </div>
 
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>History</span>
                                                 </div>
                                                 <div className="item__title">
-                                                    N/A
+                                                    {carDetails?.history}
                                                 </div>
 
                                             </div>
@@ -163,94 +179,94 @@ export default function SingleProductSec() {
                                         <div className="col-lg-4 col-md-4 col-sm-12">
                                             <div className="box__detail d-flex justify-content-between align-items-center">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Make</span>
                                                 </div>
                                                 <div title='BMW' className="item__title">
-                                                    BMW
+                                                    {carDetails?.make}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Fuel</span>
                                                 </div>
                                                 <div title='Gasoline' className="item__title">
-                                                    Gasoline
+                                                    {carDetails?.fuel_type}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Mileage</span>
                                                 </div>
                                                 <div title='50000 mi' className="item__title">
-                                                    50000 mi
+                                                    {carDetails?.mileage} mi
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Interior</span>
                                                 </div>
                                                 <div title='Grey' className="item__title">
-                                                    Grey
+                                                    {carDetails?.interior}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Stock</span>
                                                 </div>
                                                 <div title='153093' className="item__title">
-                                                    153093
+                                                    {carDetails?.stockId}
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="col-lg-4 col-md-4 col-sm-12">
                                             <div className="box__detail d-flex justify-content-between align-items-center">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Body</span>
                                                 </div>
                                                 <div className="item__title">
-                                                    Hatchback
+                                                    {carDetails?.body}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Model</span>
                                                 </div>
                                                 <div title='M5' className="item__title">
-                                                    M5
+                                                    {carDetails?.model}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Engine</span>
                                                 </div>
                                                 <div title='6,2L V8' className="item__title">
-                                                    6,2L V8
+                                                    {carDetails?.engine}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Drive</span>
                                                 </div>
                                                 <div title='RWD' className="item__title">
-                                                    RWD
+                                                    {carDetails?.drive}
                                                 </div>
                                             </div>
                                             <div className="box__detail d-flex justify-content-between">
                                                 <div className="item__label d-flex align-items-center">
-                                                    <i class="bi bi-car-front-fill"></i>
+                                                    <i className="bi bi-car-front-fill"></i>
                                                     <span>Register</span>
                                                 </div>
                                                 <div title='N/A' className="item__title">
-                                                    N/A
+                                                    {carDetails?.register}
                                                 </div>
                                             </div>
                                         </div>
@@ -263,26 +279,12 @@ export default function SingleProductSec() {
                                             <div className="feature__box">
                                                 <h4>Comfort</h4>
                                                 <ul>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>A/C: Front</span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>
-                                                            Backup Camera
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>
-                                                            Cruise Control
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>Navigation</span>
-                                                    </li>
+                                                    {carDetails?.carFeatures?.comfort?.split('\r\n').map((feature, index) => (
+                                                        <li key={index}>
+                                                            <i className="bi bi-check-circle-fill"></i>
+                                                            <span>{feature}</span>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>
@@ -290,26 +292,12 @@ export default function SingleProductSec() {
                                             <div className="feature__box">
                                                 <h4>Entertainment</h4>
                                                 <ul>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>MP3 Player</span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>
-                                                            Premium Audio
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>
-                                                            AM/FM Stereo
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>DVD System</span>
-                                                    </li>
+                                                    {carDetails?.carFeatures?.entertainment?.split('\r\n').map((feature, index) => (
+                                                        <li key={index}>
+                                                            <i className="bi bi-check-circle-fill"></i>
+                                                            <span>{feature}</span>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>
@@ -317,26 +305,12 @@ export default function SingleProductSec() {
                                             <div className="feature__box">
                                                 <h4>Safety</h4>
                                                 <ul>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>Airbag: Driver</span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>
-                                                            Airbag: Passenger
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>
-                                                            Security System
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>Antilock Brakes</span>
-                                                    </li>
+                                                    {carDetails?.carFeatures?.safety?.split('\r\n').map((feature, index) => (
+                                                        <li key={index}>
+                                                            <i className="bi bi-check-circle-fill"></i>
+                                                            <span>{feature}</span>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>
@@ -344,26 +318,12 @@ export default function SingleProductSec() {
                                             <div className="feature__box">
                                                 <h4>Seats</h4>
                                                 <ul>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>Heated Seats</span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>
-                                                            Power Seats
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>
-                                                            Bucket Seats
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <i class="bi bi-check-circle-fill"></i>
-                                                        <span>Memory Seats</span>
-                                                    </li>
+                                                    {carDetails?.carFeatures?.seats?.split('\r\n').map((feature, index) => (
+                                                        <li key={index}>
+                                                            <i className="bi bi-check-circle-fill"></i>
+                                                            <span>{feature}</span>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>
@@ -376,7 +336,7 @@ export default function SingleProductSec() {
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <p>
-                                                Fusce viverra, ligula quis pellentesque interdum, leo felis congue dui, ac accumsan sem nulla id lorem. Praesent ut tristique dui, nec condimentum lacus. Maecenas lobortis ante id egestas placerat. Nullam at ultricies lacus. Nam in nulla consectetur, suscipit mauris eu, fringilla augue. Phasellus gravida, dui quis dignissim tempus, tortor orci tristique leo, ut congue diam ipsum at massa. Pellentesque ut vestibulum erat. Donec a felis eget tellus laoreet ultrices.
+                                                {carDetails?.description}
                                             </p>
                                         </div>
                                     </div>
@@ -397,13 +357,13 @@ export default function SingleProductSec() {
                                     </div>
                                     <div className="dellar__contacts">
                                         <div className="dellar__contact__item phone">
-                                            <i class="bi bi-telephone-fill"></i>
+                                            <i className="bi bi-telephone-fill"></i>
                                             <span>(888) 999-9999</span>
                                         </div>
                                         <div className="dellar__contact__item whatsapp">
                                             <a href="https://wa.me/01005322028" target="_blank">
                                                 <div className="whatsapp__btn">
-                                                    <i class="bi bi-whatsapp"></i>
+                                                    <i className="bi bi-whatsapp"></i>
                                                     <span>CHAT VIA WHATSAPP</span>
                                                 </div>
                                             </a>
@@ -411,7 +371,7 @@ export default function SingleProductSec() {
                                         <div className="dellar__contact__item mail">
                                             <a href="mailto:talalhali86@gmail.com">
                                                 <div className="email__btn">
-                                                    <i class="bi bi-envelope-fill"></i>
+                                                    <i className="bi bi-envelope-fill"></i>
                                                     <span>Message To Dealer</span>
                                                 </div>
                                             </a>
@@ -419,7 +379,7 @@ export default function SingleProductSec() {
                                     </div>
                                     <div className="dellar__location">
                                         <div className="single__location__text">
-                                            <i class="bi bi-geo-alt-fill"></i>
+                                            <i className="bi bi-geo-alt-fill"></i>
                                             <span>Boston, MA, United States</span>
                                         </div>
                                         <div className="map__Sec">
@@ -455,13 +415,13 @@ export default function SingleProductSec() {
                                     </div>
                                     <div className="dellar__contacts">
                                         <div className="dellar__contact__item phone">
-                                            <i class="bi bi-telephone-fill"></i>
+                                            <i className="bi bi-telephone-fill"></i>
                                             <span>(888) 999-9999</span>
                                         </div>
                                         <div className="dellar__contact__item whatsapp">
                                             <a href="https://wa.me/01005322028" target="_blank">
                                                 <div className="whatsapp__btn">
-                                                    <i class="bi bi-whatsapp"></i>
+                                                    <i className="bi bi-whatsapp"></i>
                                                     <span>CHAT VIA WHATSAPP</span>
                                                 </div>
                                             </a>
@@ -476,27 +436,27 @@ export default function SingleProductSec() {
                                     </div>
                                     <div className="form__contact">
                                         <form action="">
-                                            <textarea class="form-control" rows="6" placeholder="your message"></textarea>
+                                            <textarea className="form-control" rows="6" placeholder="your message"></textarea>
                                             <div className="form__inputs row" >
-                                                <div class="my-3 col-lg-4">
-                                                    <label class="">Name</label>
-                                                    <input type="name" class="form-control" placeholder="your name" />
+                                                <div className="my-3 col-lg-4">
+                                                    <label className="">Name</label>
+                                                    <input type="name" className="form-control" placeholder="your name" />
                                                 </div>
-                                                <div class="my-3 col-lg-4">
-                                                    <label class="">Email</label>
-                                                    <input type="email" class="form-control" placeholder="your email" />
+                                                <div className="my-3 col-lg-4">
+                                                    <label className="">Email</label>
+                                                    <input type="email" className="form-control" placeholder="your email" />
                                                 </div>
-                                                <div class="my-3 col-lg-4">
-                                                    <label class="">Number</label>
-                                                    <input type="name" class="form-control" placeholder="your number" />
+                                                <div className="my-3 col-lg-4">
+                                                    <label className="">Number</label>
+                                                    <input type="name" className="form-control" placeholder="your number" />
                                                 </div>
                                             </div>
                                             <div className="form__submit">
-                                                <div class="mb-3 form-check d-flex align-items-center">
-                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                                    <label class="form-check-label" for="exampleCheck1">I accept the privacy policy</label>
+                                                <div className="mb-3 form-check d-flex align-items-center">
+                                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                                    <label className="form-check-label" for="exampleCheck1">I accept the privacy policy</label>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary">Send Message</button>
+                                                <button type="submit" className="btn btn-primary">Send Message</button>
                                             </div>
                                         </form>
                                     </div>

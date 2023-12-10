@@ -22,7 +22,7 @@ export default function CategoryCard({ category, imgSrc, adsCount, subcategories
                             {subcategories.map((subcategory, index) => (
                                 <li key={index}>
                                     <NavLink className="nav-link">
-                                        <i class="bi bi-chevron-right"></i>
+                                        <i className="bi bi-chevron-right"></i>
                                         {subcategory}
                                     </NavLink>
                                 </li>

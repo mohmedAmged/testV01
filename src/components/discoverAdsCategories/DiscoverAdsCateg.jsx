@@ -99,7 +99,7 @@ export default function DiscoverAdsCateg() {
           imgSrc={el.image}
           adsCount={el.subtit}
           subcategories={el.list}
-          iconClass={el.icon}/>
+          iconclassName={el.icon}/>
           )
             })
           }

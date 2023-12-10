@@ -13,7 +13,7 @@ export default function DynamicMapWeb({ title, links }) {
                             <NavLink onClick={() => scrollToTop()} to={link.route} className="nav-link content__link d-inline">
                                 {link.label}
                             </NavLink>
-                            {index < links.length - 1 && <span className="mx-2"><i class="bi bi-arrow-right"></i>
+                            {index < links.length - 1 && <span className="mx-2"><i className="bi bi-arrow-right"></i>
                             </span>}
                         </React.Fragment>
                     ))}

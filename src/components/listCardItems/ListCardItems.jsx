@@ -1,15 +1,16 @@
-import React from 'react'
-import CartTop from '../cartTop_part/CartTop'
-import { NavLink } from 'react-router-dom'
-import avatar1 from '../../assets/cardImgs/ava.jpg'
-import './listCardItems.css'
-export default function ListCardItems() {
+import React from 'react';
+import CartTop from '../cartTop_part/CartTop';
+import { NavLink } from 'react-router-dom';
+import avatar1 from '../../assets/cardImgs/ava.jpg';
+import './listCardItems.css';
+
+export default function ListCardItems({carInfo}) {
     return (
         <div className='col-lg-12'>
             <div className="list__card__items">
                 <div className="row">
                     <div className="col-lg-4">
-                        <CartTop />
+                        <CartTop carTopInfo={carInfo} />
                     </div>
                     <div className="col-lg-8">
                         <div className="card__list__info__box">
@@ -17,21 +18,21 @@ export default function ListCardItems() {
                                 <div className="d-flex align-items-center justify-content-between">
                                     <>
                                         <div className="card__title">
-                                            <NavLink to="/car-info" className="nav-link">
+                                            <NavLink to={`/car-info/${carInfo?.id}`} className="nav-link">
                                                 <div className="label">
                                                 Certified Used 2021 
                                                 </div>
-                                                New BMW 3 series
+                                                {carInfo?.name}
                                             </NavLink>
                                         </div>
                                     </>
                                     <>
                                         <div className="cart__price">
                                             <div className="old__price">
-                                                $ 25000
+                                                ${carInfo?.price}
                                             </div>
                                             <div className="new__price">
-                                                $ 20000
+                                                ${carInfo?.offer_price}
                                             </div>
                                         </div>
                                     </>
@@ -40,7 +41,7 @@ export default function ListCardItems() {
                             <div className="card__list__middle row justify-content-between">
                                 <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex">
                                     <div className="middle__icon">
-                                        <i class="bi bi-fuel-pump-fill"></i>
+                                        <i className="bi bi-fuel-pump-fill"></i>
                                     </div>
                                     <div className="middle__desc">
                                         <div className="type">fuel type</div>
@@ -49,7 +50,7 @@ export default function ListCardItems() {
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex">
                                     <div className="middle__icon">
-                                        <i class="bi bi-fuel-pump-fill"></i>
+                                        <i className="bi bi-fuel-pump-fill"></i>
                                     </div>
                                     <div className="middle__desc">
                                         <div className="type">engine</div>
@@ -58,7 +59,7 @@ export default function ListCardItems() {
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex">
                                     <div className="middle__icon">
-                                        <i class="bi bi-fuel-pump-fill"></i>
+                                        <i className="bi bi-fuel-pump-fill"></i>
                                     </div>
                                     <div className="middle__desc">
                                         <div className="type">Mileage</div>
@@ -67,7 +68,7 @@ export default function ListCardItems() {
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-12 boxList__middle d-flex">
                                     <div className="middle__icon">
-                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <i className="bi bi-geo-alt-fill"></i>
                                     </div>
                                     <div className="middle__desc">
                                         <div className="type">location</div>
@@ -82,10 +83,10 @@ export default function ListCardItems() {
                                     </div>
                                     <div className="dellar__info">
                                         <div className="dellar__name">
-                                        Personal Seller: <span>talal ali</span>
+                                        Personal Seller: <span>{carInfo?.dealer}</span>
                                         </div>
                                         <div className="dellar__phone">
-                                            <i class="bi bi-telephone-fill"></i>
+                                            <i className="bi bi-telephone-fill"></i>
                                             <span>01005332208</span>
                                         </div>
                                     </div>

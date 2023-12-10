@@ -1,23 +1,14 @@
-import React, { useState } from 'react'
-import car1 from '../../assets/recentSec/car1.jpg'
-import car2 from '../../assets/recentSec/car2.jpg'
-import car3 from '../../assets/recentSec/car3.jpg'
-import car4 from '../../assets/recentSec/car4.jpg'
-export default function CartTop() {
+import React, { useState } from 'react';
+
+export default function CartTop({carTopInfo}) {
     const [activeIndicator, setActiveIndicator] = useState(0);
-    const imageSources = [
-        car1,
-        car2,
-        car3,
-        car4
-    ];
 
     const handleIndicatorHover = (index) => {
         setActiveIndicator(index);
     };
 
     const getImageSource = () => {
-        return imageSources[activeIndicator];
+        return carTopInfo?.carImages[activeIndicator].image;
     };
     return (
         <div className="cart__top">
@@ -29,12 +20,12 @@ export default function CartTop() {
             </div>
             <div className="cart__camera">
                 <div className="cart__Camera__content">
-                    <i class="bi bi-camera-fill"></i>
-                    <span>3</span>
+                    <i className="bi bi-camera-fill"></i>
+                    <span>{carTopInfo?.carImagesCount}</span>
                 </div>
             </div>
             <div className="cart__indicator">
-                {imageSources.map((_, index) => (
+                {carTopInfo?.carImages.map((_, index) => (
                     <div
                         key={index}
                         className={`indicator ${index === activeIndicator ? 'active' : ''}`}
@@ -43,5 +34,5 @@ export default function CartTop() {
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};

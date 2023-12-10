@@ -3,47 +3,11 @@ import './carInterestSec.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import int1 from '../../assets/interestSec/int1.png'
 import { Navigation, Keyboard } from 'swiper/modules';
-const interestItems = [
-    {
-        "int-Logo": int1,
-        "int-name": "eco friendly"
-    },
-    {
-        "int-Logo": int1,
-        "int-name": "eco friendly"
-    },
-    {
-        "int-Logo": int1,
-        "int-name": "eco friendly"
-    },
-    {
-        "int-Logo": int1,
-        "int-name": "eco friendly"
-    },
-    {
-        "int-Logo": int1,
-        "int-name": "eco friendly"
-    },
-    {
-        "int-Logo": int1,
-        "int-name": "eco friendly"
-    },
-    {
-        "int-Logo": int1,
-        "int-name": "eco friendly"
-    },
-    {
-        "int-Logo": int1,
-        "int-name": "eco friendly"
-    },
-    {
-        "int-Logo": int1,
-        "int-name": "eco friendly"
-    },
-]
-export default function CarInterestSec() {
+
+
+export default function CarInterestSec({interestItems}) {
+
     return (
         <div className='car__interest__Sec mb-5'>
             <div className="container">
@@ -72,14 +36,14 @@ export default function CarInterestSec() {
                                 {
                                     interestItems.map((el) => {
                                         return (
-                                            <SwiperSlide>
+                                            <SwiperSlide key={el?.id}>
                                                 <div className="box__Item__int__handler d-flex justify-content-center">
                                                     <div className="box__int__item">
                                                         <div className="img__int__item">
-                                                            <img src={el['int-Logo']} alt="logo__car" />
+                                                            <img src={el?.image} alt="logo__car" />
                                                         </div>
                                                         <p className='d-flex justify-content-center'>
-                                                            {el['int-name']}
+                                                            {el?.name}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -93,5 +57,5 @@ export default function CarInterestSec() {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

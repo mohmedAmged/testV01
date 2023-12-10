@@ -62,23 +62,23 @@ export default function DiscovercategoryList() {
                             <div className="discoverCategoryList__subCategories">
                                 <ul>
                                     <li>
-                                        <i class="bi bi-chevron-right"></i>
+                                        <i className="bi bi-chevron-right"></i>
                                         Auto Part (0)
                                     </li>
                                     <li>
-                                        <i class="bi bi-chevron-right"></i>
+                                        <i className="bi bi-chevron-right"></i>
                                         Auto Part (0)
                                     </li>
                                     <li>
-                                        <i class="bi bi-chevron-right"></i>
+                                        <i className="bi bi-chevron-right"></i>
                                         Auto Part (0)
                                     </li>
                                     <li>
-                                        <i class="bi bi-chevron-right"></i>
+                                        <i className="bi bi-chevron-right"></i>
                                         Auto Part (0)
                                     </li>
                                     <li>
-                                        <i class="bi bi-chevron-right"></i>
+                                        <i className="bi bi-chevron-right"></i>
                                         Auto Part (0)
                                     </li>
                                 </ul>

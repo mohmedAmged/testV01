@@ -2,7 +2,8 @@ import React from 'react'
 import './recentSec.css'
 import { NavLink } from 'react-router-dom'
 import ProductCard from '../productCard/ProductCard'
-export default function RecentSec() {
+export default function RecentSec({cars}) {
+    console.log(cars)
     return (
         <div className='recent__Sec'>
             <div className="container">
@@ -15,7 +16,11 @@ export default function RecentSec() {
                         </div>
                     </div>
                     <div className="row">
-                        <ProductCard />
+                        {cars.map(car=>{
+                            return (
+                                <ProductCard carInfo={car} key={car?.id} />
+                            )
+                        })}
                     </div>
                     <div className="btn__show__more mt-5">
                         <div className="row justify-content-center">

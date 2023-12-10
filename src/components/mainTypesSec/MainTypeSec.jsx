@@ -1,7 +1,11 @@
-import React from 'react'
-import './mainTypeSec.css'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import './mainTypeSec.css';
+import { NavLink } from 'react-router-dom';
+
 export default function MainTypeSec() {
+    
+
+
     return (
         <div className='main__types__sec px-5'>
             <div className="container">

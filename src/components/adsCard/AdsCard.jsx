@@ -22,7 +22,7 @@ export default function AdsCard({ restaurantData }) {
                     )}
                     <div className="cart__camera">
                         <div className="cart__Camera__content d-flex justify-content-center">
-                        <i class="bi bi-suit-heart-fill"></i>
+                        <i className="bi bi-suit-heart-fill"></i>
                         </div>
                     </div>
                     <div className="cart__indicator">
