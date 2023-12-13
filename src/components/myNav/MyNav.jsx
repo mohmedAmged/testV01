@@ -9,8 +9,12 @@ import logo2 from '../../assets/logo/weblogo copy.png'
 export default function MyNav({ scrollToggle }) {
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     function handleOffcanvasToggle() {
-        setShowOffcanvas(!showOffcanvas);
+        // setShowOffcanvas(!showOffcanvas);
+        setShowOffcanvas((prevShowOffcanvas) => !prevShowOffcanvas);
     }
+    const closeOffcanvas = () => {
+        setShowOffcanvas(false);
+      };
     return (
         <div>
             <Navbar expand="lg" className={`nav__Bg ${scrollToggle ? "nav__fixed py-3 navTransformationDown" : "nav__absolute pb-3"} align-items-center`}>
@@ -96,9 +100,11 @@ export default function MyNav({ scrollToggle }) {
                     </Navbar.Collapse>
                     {/* end navbar min-width 992px */}
                     {/* start navbar min-width 320px */}
-                    <Navbar.Offcanvas id="offcanvasNavbar" className='Navbar__offCanvas__none__on__lg' aria-labelledby="offcanvasNavbarLabel"
-                        show={showOffcanvas} onHide={handleOffcanvasToggle}
-                        placement="start">
+                    <Navbar.Offcanvas 
+                    id="offcanvasNavbar" className='Navbar__offCanvas__none__on__lg' aria-labelledby="offcanvasNavbarLabel"
+                    show={showOffcanvas}
+                    onHide={handleOffcanvasToggle}
+                    placement="start">
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title className='offCanvas__head' id="offcanvasNavbarLabel">
                                 <NavLink to="/" className="px-4">
@@ -111,6 +117,7 @@ export default function MyNav({ scrollToggle }) {
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
+                                    closeOffcanvas();
                                 }}
                                 aria-label="Close"
                                 className="nav-link  nav__link__style"
@@ -120,16 +127,19 @@ export default function MyNav({ scrollToggle }) {
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
+                                    closeOffcanvas();
                                 }
 
                                 }
                                 className="nav-link  nav__link__style"
-                                to="/discover">
+                                to="/discover"
+                                >
                                 Discover
                             </NavLink>
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
+                                    closeOffcanvas();
                                 }}
                                 className="nav-link  nav__link__style"
                                 to="/realestate">
@@ -138,6 +148,7 @@ export default function MyNav({ scrollToggle }) {
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
+                                    closeOffcanvas();
                                 }
 
                                 }
@@ -149,6 +160,7 @@ export default function MyNav({ scrollToggle }) {
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
+                                    closeOffcanvas();
                                 }}
                                 className="nav-link  nav__link__style"
                                 to="/contact">
@@ -157,6 +169,7 @@ export default function MyNav({ scrollToggle }) {
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
+                                    closeOffcanvas();
                                 }}
                                 className="nav-link  nav__link__style"
                                 to="/contact">
@@ -164,6 +177,7 @@ export default function MyNav({ scrollToggle }) {
                             </NavLink>
                                 <NavLink onClick={() => {
                                     scrollToTop();
+                                    closeOffcanvas();
                                 }}
                                 className="nav-link nav__link__style"
                                 to="/">

@@ -2,7 +2,7 @@ import React from 'react'
 import './productCard.css'
 import CartTop from '../cartTop_part/CartTop'
 import { NavLink } from 'react-router-dom'
-
+import { scrollToTop } from '../../functions/scrollToTop';
 export default function ProductCard({carInfo}) {
     return (
         <div className="col-lg-4 col-md-6 col-sm-12">
@@ -13,7 +13,12 @@ export default function ProductCard({carInfo}) {
                         <div className="d-flex align-items-center justify-content-between">
                             <>
                                 <div className="cart__title">
-                                    <NavLink to={`/car-info/${carInfo?.id}`} className="nav-link">
+                                    <NavLink to={`/car-info/${carInfo?.id}`}
+                                    className="nav-link"
+                                    onClick={() => {
+                                        scrollToTop();
+                                    }}
+                                    >
                                         {carInfo?.name}
                                     </NavLink>
                                 </div>

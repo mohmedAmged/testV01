@@ -1,6 +1,7 @@
 import React from 'react'
 import './categoryCard.css'
 import { NavLink } from 'react-router-dom'
+import { scrollToTop } from '../../functions/scrollToTop';
 export default function CategoryCard({ category, imgSrc, adsCount, subcategories, iconclassName }) {
     return (
         <div className='col-lg-4 col-md-6 col-sm-12'>
@@ -14,7 +15,11 @@ export default function CategoryCard({ category, imgSrc, adsCount, subcategories
                         </span>
                     </div>
                     <div className="discover__categ__info">
-                        <NavLink to={`/discover/category/${category}`} className="nav-link">
+                        <NavLink to={`/discover/category/${category}`} className="nav-link"
+                            onClick={() => {
+                                scrollToTop();
+                            }}
+                        >
                             <h4>{category}</h4>
                         </NavLink>
                         <p>{`${adsCount} Ads posted`}</p>
@@ -29,7 +34,12 @@ export default function CategoryCard({ category, imgSrc, adsCount, subcategories
                             ))}
                         </ul>
                         <div className="discover__view">
-                            <NavLink className="nav-link">
+                            <NavLink
+                                to={`/discover/category/${category}`}
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                className="nav-link">
                                 view all ads
                                 <i className="bi bi-arrow-right"></i>
                             </NavLink>

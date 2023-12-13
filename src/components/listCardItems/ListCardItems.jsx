@@ -3,6 +3,7 @@ import CartTop from '../cartTop_part/CartTop';
 import { NavLink } from 'react-router-dom';
 import avatar1 from '../../assets/cardImgs/ava.jpg';
 import './listCardItems.css';
+import { scrollToTop } from '../../functions/scrollToTop';
 
 export default function ListCardItems({carInfo}) {
     return (
@@ -18,7 +19,11 @@ export default function ListCardItems({carInfo}) {
                                 <div className="d-flex align-items-center justify-content-between">
                                     <>
                                         <div className="card__title">
-                                            <NavLink to={`/car-info/${carInfo?.id}`} className="nav-link">
+                                            <NavLink to={`/car-info/${carInfo?.id}`} className="nav-link"
+                                            onClick={() => {
+                                                scrollToTop();
+                                            }}
+                                            >
                                                 <div className="label">
                                                 Certified Used 2021 
                                                 </div>
