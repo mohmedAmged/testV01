@@ -8,6 +8,7 @@ import SingleProductPage from './pages/singleProductPage/SingleProductPage';
 import DiscoverHome from './pages/discoverHome/DiscoverHome';
 import DiscoverCategoryPage from './pages/discoverCategoryPage/DiscoverCategoryPage';
 import MyFooter from './components/myFooter/MyFooter';
+import ScrollToTopButton from './components/scrollToTopButton/ScrollToTopButton';
 
 function App() {
   const [scrollToggle, setScrollToggle] = useState(false);
@@ -23,6 +24,7 @@ function App() {
   return (
     <>
     <MyNav scrollToggle={scrollToggle}/>
+    <ScrollToTopButton />
     <Routes>
       {/* home for valuereach progres.. */}
       <Route path='/' element={<MyHome/>}/>
