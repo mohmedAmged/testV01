@@ -52,12 +52,41 @@ const restaurantDataArr = [
         "imageSources": [health2, health1],
     }
 ]
+const quickBtn = [
+    {
+        "btnName": "burgers",
+    },
+    {
+        "btnName": "pizza",
+    },
+    {
+        "btnName": "falafel",
+    },
+    {
+        "btnName": "sushi",
+    },
+    {
+        "btnName": "indian",
+    },
+    {
+        "btnName": "chinies",
+    },
+    {
+        "btnName": "itlian",
+    },
+    {
+        "btnName": "sea food",
+    },
+    {
+        "btnName": "nodles",
+    },
+]
 export default function DiscovercategoryList() {
     const [values, setValues] = useState([200, 3000]);
 
     const handleSliderChange = (newValues) => {
         setValues(newValues);
-      };
+    };
     return (
         <div className='discoverCategoryList__handler mb-5'>
             <div className="container">
@@ -69,23 +98,23 @@ export default function DiscovercategoryList() {
                                 <ul>
                                     <li>
                                         <i className="bi bi-chevron-right"></i>
-                                        Auto Part (0)
+                                        sub category (0)
                                     </li>
                                     <li>
                                         <i className="bi bi-chevron-right"></i>
-                                        Auto Part (0)
+                                        sub category (0)
                                     </li>
                                     <li>
                                         <i className="bi bi-chevron-right"></i>
-                                        Auto Part (0)
+                                        sub category (0)
                                     </li>
                                     <li>
                                         <i className="bi bi-chevron-right"></i>
-                                        Auto Part (0)
+                                        sub category (0)
                                     </li>
                                     <li>
                                         <i className="bi bi-chevron-right"></i>
-                                        Auto Part (0)
+                                        sub category (0)
                                     </li>
                                 </ul>
                             </div>
@@ -142,22 +171,37 @@ export default function DiscovercategoryList() {
                         </div>
                     </div>
                     <div className="col-lg-9">
-                        <h3 className='mb-4 discoverCategoryList__tit'>
-                            4 most recomended place in country
-                        </h3>
-                        <div className="ads__filter__cards">
-                            <div className="row">
+                        <div className="discoverCategoryList__box">
+                            <h3 className='mb-4 discoverCategoryList__tit'>
+                                4 most recomended place in country
+                            </h3>
+                            <div className="ads__filter__cards">
+                                <div className="row">
+                                    {
+                                        restaurantDataArr.map((restaurantDataArr) => {
+                                            return (
+                                                <AdsCard restaurantData={restaurantDataArr} />
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div className="discoverCategoryList__quickBtns">
+                            <ul>
                                 {
-                                    restaurantDataArr.map((restaurantDataArr) => {
-                                        return (
-                                            <AdsCard restaurantData={restaurantDataArr} />
+                                    quickBtn.map((el)=>{
+                                        return(
+                                            <li className="quickBtn">
+                                                {el.btnName}
+                                            </li>
                                         )
                                     })
                                 }
-                            </div>
+                            </ul>
                         </div>
-
                     </div>
+
                 </div>
             </div>
         </div>
