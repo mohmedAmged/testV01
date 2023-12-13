@@ -4,13 +4,23 @@
 }
 .discoverCategoryList__subCategories ul li{
     margin-bottom: 10px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
     /* line-height: 36px; */
 }
 .discoverCategoryList__handler .search__part__handler{
-    background-color: var(--primary-black);
+    background-color: var(--primary-blue);
 }
 .discoverCategoryList__handler .cart__main__titels{
     border-bottom: 0;
+}
+.discoverCategoryList__handler .search__title{
+    font-size: 26px;
+    font-weight: 600;
+}
+.discoverCategoryList__tit{
+    line-height: 36px;
+    font-weight: 600;
+    font-size: 26px;
+    text-transform: capitalize;
 }

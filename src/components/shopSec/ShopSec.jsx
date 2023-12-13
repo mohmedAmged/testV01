@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import "./shopSec.css";
 import { InputGroup } from "react-bootstrap";
-import Slider from 'react-slider';
+// import Slider from 'react-slider';
 import ProductCard from "../productCard/ProductCard";
 import ListCardItems from "../listCardItems/ListCardItems";
 import ReactSlider from "react-slider";

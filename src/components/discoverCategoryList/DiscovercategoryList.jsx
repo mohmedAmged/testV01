@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './discoverCategoryList.css'
 import { InputGroup } from "react-bootstrap";
 
@@ -13,6 +13,7 @@ import food5 from '../../assets/discoverHomeImg/food5.jpg'
 import resturant from '../../assets/discoverHomeImg/restaurant.jpg'
 import resturant2 from '../../assets/discoverHomeImg/resturant2.jpg'
 import AdsCard from '../adsCard/AdsCard';
+import ReactSlider from "react-slider";
 const restaurantDataArr = [
     {
         "name": 'Jordan Restaurant',
@@ -52,8 +53,13 @@ const restaurantDataArr = [
     }
 ]
 export default function DiscovercategoryList() {
+    const [values, setValues] = useState([200, 3000]);
+
+    const handleSliderChange = (newValues) => {
+        setValues(newValues);
+      };
     return (
-        <div className='discoverCategoryList__handler'>
+        <div className='discoverCategoryList__handler mb-5'>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3">
@@ -83,58 +89,74 @@ export default function DiscovercategoryList() {
                                     </li>
                                 </ul>
                             </div>
-                            
+
                         </div>
                         <div className="price__search__part">
-                                <div className="price__search__title">
-                                    Select Price
+                            <div className="price__search__title">
+                                Select Votes
+                            </div>
+                            <div className="price__Sec">
+                                <div className="range__item">
+                                    {/* <Form.Range /> */}
+                                    <ReactSlider
+                                        className="range-slider"
+                                        value={values}
+                                        withBars
+                                        min={200}
+                                        max={3000}
+                                        step={100}
+                                        pearling
+                                        onChange={handleSliderChange}
+                                    />
                                 </div>
-                                <div className="price__Sec">
-                                    <div className="range__item">
-                                        <Form.Range />
-                                    </div>
-                                    <div className="input__price">
-                                        <div className="row">
-                                            <div className="col-lg-6">
-                                                <div className="input__item">
-                                                    <InputGroup className="mb-3">
-                                                        <Form.Control
-                                                            placeholder="min price"
-                                                            aria-label="min price"
-                                                            value="$ 5000"
-                                                            aria-describedby="basic-addon1"
-                                                        />
-                                                    </InputGroup>
-                                                </div>
-
+                                <div className="input__price">
+                                    <div className="row">
+                                        <div className="col-lg-6">
+                                            <div className="input__item">
+                                                <InputGroup className="mb-3">
+                                                    <Form.Control
+                                                        placeholder="min price"
+                                                        aria-label="min price"
+                                                        value={`${values[0]}`}
+                                                        aria-describedby="basic-addon1"
+                                                    />
+                                                </InputGroup>
                                             </div>
-                                            <div className="col-lg-6">
-                                                <div className="input__item">
-                                                    <InputGroup className="mb-3">
-                                                        <Form.Control
-                                                            placeholder="max price"
-                                                            aria-label="max price"
-                                                            value="$ 20000"
-                                                            aria-describedby="basic-addon1"
-                                                        />
-                                                    </InputGroup>
-                                                </div>
+
+                                        </div>
+                                        <div className="col-lg-6">
+                                            <div className="input__item">
+                                                <InputGroup className="mb-3">
+                                                    <Form.Control
+                                                        placeholder="max price"
+                                                        aria-label="max price"
+                                                        value={`${values[1]}`}
+                                                        aria-describedby="basic-addon1"
+                                                    />
+                                                </InputGroup>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                     <div className="col-lg-9">
-                        <div className="row">
-                        {
-                            restaurantDataArr.map((restaurantDataArr)=>{
-                                return(
-                                    <AdsCard  restaurantData={restaurantDataArr}/>
-                                )
-                            })
-                        }
+                        <h3 className='mb-4 discoverCategoryList__tit'>
+                            4 most recomended place in country
+                        </h3>
+                        <div className="ads__filter__cards">
+                            <div className="row">
+                                {
+                                    restaurantDataArr.map((restaurantDataArr) => {
+                                        return (
+                                            <AdsCard restaurantData={restaurantDataArr} />
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>

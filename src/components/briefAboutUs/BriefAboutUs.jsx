@@ -1,6 +1,6 @@
 import React from 'react'
 import './briefAboutUs.css'
-import logo1 from '../../assets/breifAbout/logo.png'
+import logo1 from '../../assets/logo/coverLogo.png'
 export default function BriefAboutUs() {
   return (
     <div className='briefAboutUs__Sec'>

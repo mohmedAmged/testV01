@@ -3,7 +3,7 @@ import './dynamicHero.css'
 export default function DynamicHero({ title, description}) {
     return (
         <div className='dynamic__hero__handler'>
-            <div className="overlay"></div>
+            {/* <div className="overlay"></div> */}
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-lg-12 col-sm-12 col-md-12 d-flex justify-content-center align-items-center">

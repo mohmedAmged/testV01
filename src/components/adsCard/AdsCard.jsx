@@ -12,7 +12,7 @@ export default function AdsCard({ restaurantData }) {
     };
     return (
         <div className="col-lg-4 col-md-6 col-sm-12">
-            <div className="recent__cart__item">
+            <div className="recent__cart__item mb-3">
                 <div className="cart__top">
                     <div className="img__Cart">
                         <img id="carImage" src={getImageSource()} alt="car__image" />

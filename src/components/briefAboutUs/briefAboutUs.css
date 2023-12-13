@@ -1,6 +1,9 @@
 .briefAboutUs__Sec{
     margin-top: 60px;
-background: #000;
+background-image: url('../../assets/logo/heroCover.png');
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
 padding: 40px 10px;
 }
 .brief__box{
@@ -17,7 +20,7 @@ padding: 40px 10px;
     background-color: #ffffff;
     text-align: center;
     border-radius: 50%;
-    border: 5px solid var(--primary-blue);
+    /* border: 5px solid var(--primary-blue); */
 }
 .breif__title h1{
     line-height: 1.2;
