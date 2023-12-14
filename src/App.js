@@ -9,6 +9,7 @@ import DiscoverHome from './pages/discoverHome/DiscoverHome';
 import DiscoverCategoryPage from './pages/discoverCategoryPage/DiscoverCategoryPage';
 import MyFooter from './components/myFooter/MyFooter';
 import ScrollToTopButton from './components/scrollToTopButton/ScrollToTopButton';
+import SaveHome from './pages/saveHome/SaveHome';
 
 function App() {
   const [scrollToggle, setScrollToggle] = useState(false);
@@ -34,6 +35,7 @@ function App() {
       <Route path='/car-Info/:carId' element={<SingleProductPage />}/>
       <Route path='/discover' element={<DiscoverHome />}/>
       <Route path='/discover/category/:categoryName' element={<DiscoverCategoryPage />}/>
+      <Route path='/save' element={<SaveHome />}/>
     </Routes>
     <MyFooter />
     </>

@@ -50,22 +50,21 @@ export default function MyNav({ scrollToggle }) {
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
+                                }
+
+                                }
+                                className="nav-link  nav__link__style"
+                                to="/save">
+                                Save
+                            </NavLink>
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
                                 }}
                                 className="nav-link  nav__link__style"
                                 to="/realestate">
                                 Raal Estate
                             </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                }
-
-                                }
-                                className="nav-link  nav__link__style"
-                                to="/about">
-                                Save
-                            </NavLink>
-
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
@@ -140,23 +139,22 @@ export default function MyNav({ scrollToggle }) {
                                 onClick={() => {
                                     scrollToTop();
                                     closeOffcanvas();
-                                }}
+                                }
+
+                                }
                                 className="nav-link  nav__link__style"
-                                to="/realestate">
-                                Raal Estate
+                                to="/save">
+                                Save
                             </NavLink>
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
                                     closeOffcanvas();
-                                }
-
-                                }
+                                }}
                                 className="nav-link  nav__link__style"
-                                to="/about">
-                                Save
+                                to="/realestate">
+                                Raal Estate
                             </NavLink>
-
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
