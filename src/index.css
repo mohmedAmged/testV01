@@ -23,7 +23,8 @@ li{
 :root {
   /* --primary-blue: #2c25eb;  */
   --primary-blue: #4728a5; 
-  --primary-blue-fade: rgba(71, 40, 165, 0.425); 
+  /* --primary-blue-fade: rgba(71, 40, 165, 0.425);  */
+  --primary-blue-fade: rgba(136, 117, 193, 0.425); 
   /* --nav-Bg: #11468F;  */
   --nav-Bg: #7752FE; 
   /* --nav-link-color: #3F52E3;  */

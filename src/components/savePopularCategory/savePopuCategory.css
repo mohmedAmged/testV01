@@ -1,0 +1,45 @@
+.savePopularCategory__handler{
+    background: #F2F2FF;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.couponCategoryCard{
+    width: 100%;
+    border-radius: 12px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    gap: 16px;
+    transition: 0.2s ease-in-out;
+    padding: 24px;
+}
+.couponCategoryCard:hover{
+    transform: translateY(-5px) scale(1.02);
+    transition: 0.3s ease-in-out;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.couponCategoryCard__img{
+    width: 64px;
+    height: 64px;
+    background: rgba(136, 117, 193, 0.425);
+    border-radius: 14px;
+    margin-bottom: 8px;
+}
+.couponCategoryCard__img img{
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+.couponCategoryCard__tit{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 22px;
+}
+.couponCategoryCard__tit:hover{
+    color: var(--primary-blue);
+}
+.couponCategoryCard__subTit{
+    color: var(--primary-blue);
+}
