@@ -1,0 +1,24 @@
+.saveDifferentOffer__handler{
+    padding: 80px 0;
+}
+.saveDifferentOffer__heading h3{
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 60px;
+}
+.saveDifferentOffer__handler .cart__subTit .save__oldPrice{
+    font-size: 21px;
+    font-weight: 400;
+    text-decoration: line-through;
+}
+.saveDifferentOffer__handler .cart__subTit .save__priceDesc{
+    font-size: 13px;
+    font-weight: 400;
+    color: #318200;
+}
+.saveDifferentOffer__handler .cart__subTit .save__newPrice{
+    font-size: 21px;
+    font-weight: 700;
+    color: #318200
+}
