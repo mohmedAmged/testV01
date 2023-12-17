@@ -11,13 +11,14 @@ import health2 from '../../assets/discoverHomeImg/health2.jpg'
 import food5 from '../../assets/discoverHomeImg/food5.jpg'
 import AdsCard from '../adsCard/AdsCard'
 import LatestOfferCard from '../latestOfferCard/LatestOfferCard'
-const restaurantDataArr = [
+const offersDataArr = [
     {
         "name": 'Jordan Restaurant',
         "special": 'Special',
         "category": "latest",
-        "votes": '1,358',
-        "menu": 'open',
+        "old_price": 666,
+        "new_price": 70,
+        "baught": 110,
         "image": resturant,
         "imageSources": [resturant2, resturant],
     },
@@ -25,8 +26,9 @@ const restaurantDataArr = [
         "name": 'goucy Restaurant',
         "special": '',
         "category": "food",
-        "votes": '1,158',
-        "menu": 'Menu',
+        "old_price": 254,
+        "new_price": 90,
+        "baught": 190,
         "image": resturant,
         "imageSources": [food3, food2, food1],
     },
@@ -34,8 +36,9 @@ const restaurantDataArr = [
         "name": 'Food Hub',
         "special": 'sponsered',
         "category": "food",
-        "votes": '1,158',
-        "menu": 'Menu',
+        "old_price": 546,
+        "new_price": 70,
+        "baught": 230,
         "image": resturant,
         "imageSources": [food5, food4],
     },
@@ -43,8 +46,9 @@ const restaurantDataArr = [
         "name": 'Fitness',
         "special": '',
         "category": "health",
-        "votes": '1,158',
-        "menu": 'time',
+        "old_price": 300,
+        "new_price": 110,
+        "baught": 400,
         "image": resturant,
         "imageSources": [health2, health1],
     }
@@ -58,9 +62,9 @@ export default function SaveDifferentOffers() {
 
     const filteredRestaurantData = () => {
         if (activeTab === 'latest') {
-            return restaurantDataArr;
+            return offersDataArr;
         } else {
-            return restaurantDataArr.filter((data) => data.category.toLowerCase() === activeTab.toLowerCase());
+            return offersDataArr.filter((data) => data.category.toLowerCase() === activeTab.toLowerCase());
         }
     };
     return (
@@ -101,9 +105,9 @@ export default function SaveDifferentOffers() {
                 <div className="ads__filter__cards">
                     <div className="row justify-content-start">
                         {
-                            filteredRestaurantData().map((restaurantData, index) => {
+                            filteredRestaurantData().map((offerData, index) => {
                                 return (
-                                    <LatestOfferCard key={index} restaurantData={restaurantData} />
+                                    <LatestOfferCard key={index} offerData={offerData} />
                                 )
                             })
                         }
