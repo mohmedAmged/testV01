@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './saveHome.css'
 import DynamicHero from '../../components/dynamicHeroPart/DynamicHero'
 import CouponSaveSlider from '../../components/couponSaveSlider/CouponSaveSlider'
@@ -35,13 +35,13 @@ const couponCardOne =[
 ]
 export default function SaveHome() {
     return (
-        <div>
+        <>
             <DynamicHero title="Secure Your Future: Discover Smart Savings Solutions!"
                 description="Unlock Thrilling Deals: Your Gateway to Exclusive Offers!" />
             <CouponSaveSlider title="Exclusive Coupons" saveSlides={saveSlideOne} />
             <SavePopuCategory couponCards={couponCardOne}/>
             <SaveDifferentOffers />
             <FaqSave />
-        </div>
+        </>
     )
 }

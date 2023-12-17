@@ -107,7 +107,7 @@
 .couponSlider__info .getCode{
     background: var(--primary-blue);
     color: #ffffff;
-    padding: 10px 24px;
+    padding: 10px 20px;
     border-radius: 12px;
     position: relative;
     z-index: 1;
@@ -119,11 +119,20 @@
     transition: 0.5s;
     overflow: hidden;
     cursor: pointer;
-    width: 100%;
+    /* width: 40%; */
+    margin: 3px 0;
+}
+.couponSlider__info .getCode.viewCoupon{
+    background: var(--primary-black);
+    border: 1px solid var(--primary-black) !important;
 }
 .couponSlider__info .getCode:hover{
     background: #ffffff;
     color: var(--primary-blue);
+}
+.couponSlider__info .getCode.viewCoupon:hover{
+    background: #ffffff;
+    color: var(--primary-black);
 }
 .couponSlider__info .card__expire{
     font-size: 14px;
@@ -176,6 +185,35 @@
     transition: 0.5s;
     overflow: hidden;
     
+}
+.saveModal__code .viewCoupon{
+    background: var(--primary-black);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    border: 1px solid var(--primary-black) !important;
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 17px;
+    transition: 0.5s;
+    overflow: hidden;
+    cursor: pointer;
+}
+.saveModal__code .viewCoupon__download{
+    margin-top: 10px;
+    text-decoration: underline;
+    transition: all ease-in .1s;
+    cursor: pointer;
+}
+.saveModal__code .viewCoupon__download:hover{
+    color: var(--primary-black);
+}
+.saveModal__code .viewCoupon:hover{
+    background: #ffffff;
+    color: var(--primary-black);
 }
 .saveModal__code button:hover{
     background: #ffffff;
