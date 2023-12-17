@@ -15,6 +15,7 @@ import icon5 from '../../assets/saveHomeImg/icon5.gif'
 import icon6 from '../../assets/saveHomeImg/icon6.gif'
 import icon7 from '../../assets/saveHomeImg/icon7.gif'
 import SaveDifferentOffers from '../../components/saveDifferentOffers/SaveDifferentOffers'
+import FaqSave from '../../components/faqSave/FaqSave'
 const saveSlideOne = [
     { "id": 1, "tagName": "Exclusive", "couponImg": coupon1, "couponOffer": "5% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 1254 },
     { "id": 2, "tagName": "Good", "couponImg": coupon2, "couponOffer": "10% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 3254 },
@@ -40,6 +41,7 @@ export default function SaveHome() {
             <CouponSaveSlider title="Exclusive Coupons" saveSlides={saveSlideOne} />
             <SavePopuCategory couponCards={couponCardOne}/>
             <SaveDifferentOffers />
+            <FaqSave />
         </div>
     )
 }
