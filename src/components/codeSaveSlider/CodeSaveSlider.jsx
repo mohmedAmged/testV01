@@ -1,14 +1,20 @@
 import React from 'react'
-import './couponSaveSlider.css'
+import './codeSaveSlider.css'
 import { NavLink } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Swal from 'sweetalert2';
+export default function CodeSaveSlider({ title, saveSlides }) {
+    const copyCodeToClipboard = (code) => {
+        navigator.clipboard.writeText(code);
+        Swal.fire({
+            icon: 'success',
+            title: 'Code Copied!',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    };
 
-import coupon from '../../assets/saveHomeImg/print_coupon.jpg'
-import jsPDF from 'jspdf';
-export default function CouponSaveSlider({ title, saveSlides }) {
-
-    const showCoupon = (slide) => {
+    const showModal = (slide) => {
         Swal.fire({
             html: `
             <div class="saveModalBody__handler">
@@ -18,16 +24,14 @@ export default function CouponSaveSlider({ title, saveSlides }) {
                 <p class='saveModal__title'>
                     ${slide.couponOffer}
                 </p>
-                <div class='saveModal__subTit'>
-                    <img src="${coupon}" alt="" id="couponImage"/>
-                </div>
+                <p class='saveModal__subTit'>
+                    Copy and paste this code
+                </p>
                 <div class="saveModal__code">
-                        <div id="saveButton" class="getCode viewCoupon">
-                            save as PDF
-                        </div>
-                        <p id="downloadButton" class='viewCoupon__download'>
-                            or download as image
-                        </p>
+                    <input type="text" value="${slide.couponNum}" readOnly />
+                    <button id="copyButton">
+                    <i class="bi bi-copy"></i>
+                    </button>
                 </div>
                 <div class="saveModal__info">
                     <p class='desc'>
@@ -39,23 +43,23 @@ export default function CouponSaveSlider({ title, saveSlides }) {
                         Share this coupon now.
                     </p>
                     <div class="copyRights__social">
-                    <ul>
-                        <li>
-                            <NavLink class='nav-link copyRigths__icon__link'>
-                                <i class="bi bi-facebook"></i>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink class='nav-link copyRigths__icon__link'>
-                                <i class="bi bi-twitter"></i>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink class='nav-link copyRigths__icon__link'>
-                                <i class="bi bi-linkedin"></i>
-                            </NavLink>
-                        </li>
-                    </ul>
+                        <ul>
+                            <li>
+                                <NavLink class='nav-link copyRigths__icon__link'>
+                                    <i class="bi bi-facebook"></i>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class='nav-link copyRigths__icon__link'>
+                                    <i class="bi bi-twitter"></i>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class='nav-link copyRigths__icon__link'>
+                                    <i class="bi bi-linkedin"></i>
+                                </NavLink>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -64,28 +68,12 @@ export default function CouponSaveSlider({ title, saveSlides }) {
             showConfirmButton: false,
         });
 
-        const saveButton = document.getElementById('saveButton');
-        const downloadButton = document.getElementById('downloadButton');
-        saveButton.addEventListener('click', () => {
-            // Print as PDF
-            const couponImage = document.getElementById('couponImage');
-            const pdf = new jsPDF();
-            pdf.addImage(couponImage.src, 'PNG', 10, 10, 190, 100);
-            pdf.save('coupon.pdf');
-        });
-
-        downloadButton.addEventListener('click', () => {
-            // Download the image
-            const couponImage = document.getElementById('couponImage');
-            const link = document.createElement('a');
-            link.href = couponImage.src;
-            link.download = 'coupon_image.png';
-            link.click();
-        });
+        const copyButton = document.getElementById('copyButton');
+        copyButton.addEventListener('click', () => copyCodeToClipboard(slide.couponNum));
     }
     return (
 
-        <div className='couponSlider__handler'>
+        <div className='couponSlider__handler codeSlider__handler'>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12">
@@ -146,9 +134,9 @@ export default function CouponSaveSlider({ title, saveSlides }) {
                                                 <div className="couponSlider__info">
                                                     <p className='card__offer'>{slide.couponOffer}
                                                     </p>
-                                                    <div className="couponSlider__info__btns row">
-                                                        <div onClick={() => showCoupon(slide)} className="col-lg-12 getCode viewCoupon">
-                                                            view copoun
+                                                    <div className="couponSlider__info__btns ">
+                                                        <div onClick={() => showModal(slide)} className="getCode">
+                                                            get code
                                                         </div>
                                                     </div>
 
@@ -158,7 +146,6 @@ export default function CouponSaveSlider({ title, saveSlides }) {
                                         </SwiperSlide>
                                     ))
                                 }
-
                             </Swiper>
 
 

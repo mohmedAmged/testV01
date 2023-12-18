@@ -9,7 +9,6 @@ import food4 from '../../assets/discoverHomeImg/food4.jpg'
 import health1 from '../../assets/discoverHomeImg/health1.jpg'
 import health2 from '../../assets/discoverHomeImg/health2.jpg'
 import food5 from '../../assets/discoverHomeImg/food5.jpg'
-import AdsCard from '../adsCard/AdsCard'
 import LatestOfferCard from '../latestOfferCard/LatestOfferCard'
 const offersDataArr = [
     {
