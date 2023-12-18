@@ -25,6 +25,7 @@ export default function SingleProductSec({carDetails}) {
         { "label": 'cars', "route": '/cars' },
         { "label": `${carDetails?.name}`, "route": `/car-info/${carDetails?.id}` },
     ];
+    console.log(carDetails?.carFeatures?.comfort);
     return (
         <>
             <DynamicHeroSec backgroundImage={heroBg} title="NEW BMW 3 SERIES" content="NEW BMW 3 SERIES" />
@@ -258,10 +259,10 @@ export default function SingleProductSec({carDetails}) {
                                             <div className="feature__box">
                                                 <h4>Comfort</h4>
                                                 <ul>
-                                                    {carDetails?.carFeatures?.comfort?.split('\r\n').map((feature, index) => (
-                                                        <li key={index}>
+                                                    {carDetails?.carFeatures?.comfort?.map((feature) => (
+                                                        <li key={feature.id}>
                                                             <i className="bi bi-check-circle-fill"></i>
-                                                            <span>{feature}</span>
+                                                            <span>{feature.name}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -271,10 +272,10 @@ export default function SingleProductSec({carDetails}) {
                                             <div className="feature__box">
                                                 <h4>Entertainment</h4>
                                                 <ul>
-                                                    {carDetails?.carFeatures?.entertainment?.split('\r\n').map((feature, index) => (
-                                                        <li key={index}>
+                                                    {carDetails?.carFeatures?.entertainment?.map((feature) => (
+                                                        <li key={feature.id}>
                                                             <i className="bi bi-check-circle-fill"></i>
-                                                            <span>{feature}</span>
+                                                            <span>{feature.name}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -284,10 +285,10 @@ export default function SingleProductSec({carDetails}) {
                                             <div className="feature__box">
                                                 <h4>Safety</h4>
                                                 <ul>
-                                                    {carDetails?.carFeatures?.safety?.split('\r\n').map((feature, index) => (
-                                                        <li key={index}>
+                                                     {carDetails?.carFeatures?.safety?.map((feature) => (
+                                                        <li key={feature.id}>
                                                             <i className="bi bi-check-circle-fill"></i>
-                                                            <span>{feature}</span>
+                                                            <span>{feature.name}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -297,10 +298,10 @@ export default function SingleProductSec({carDetails}) {
                                             <div className="feature__box">
                                                 <h4>Seats</h4>
                                                 <ul>
-                                                    {carDetails?.carFeatures?.seats?.split('\r\n').map((feature, index) => (
-                                                        <li key={index}>
+                                                    {carDetails?.carFeatures?.seats?.map((feature) => (
+                                                        <li key={feature.id}>
                                                             <i className="bi bi-check-circle-fill"></i>
-                                                            <span>{feature}</span>
+                                                            <span>{feature.name}</span>
                                                         </li>
                                                     ))}
                                                 </ul>

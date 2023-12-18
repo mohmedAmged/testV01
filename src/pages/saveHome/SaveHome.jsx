@@ -40,6 +40,7 @@ export default function SaveHome() {
                 description="Unlock Thrilling Deals: Your Gateway to Exclusive Offers!" />
             <CouponSaveSlider title="Exclusive Coupons" saveSlides={saveSlideOne} />
             <SavePopuCategory couponCards={couponCardOne}/>
+            <CouponSaveSlider title="Get Your Coupon Now." saveSlides={saveSlideOne} />
             <SaveDifferentOffers />
             <FaqSave />
         </>

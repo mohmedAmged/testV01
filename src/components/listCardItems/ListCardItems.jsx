@@ -1,7 +1,6 @@
 import React from 'react';
 import CartTop from '../cartTop_part/CartTop';
 import { NavLink } from 'react-router-dom';
-import avatar1 from '../../assets/cardImgs/ava.jpg';
 import './listCardItems.css';
 import { scrollToTop } from '../../functions/scrollToTop';
 
@@ -77,7 +76,7 @@ export default function ListCardItems({carInfo}) {
                                     </div>
                                     <div className="middle__desc">
                                         <div className="type">location</div>
-                                        <div className="name" title={`${carInfo?.address}`}>{carInfo?.address}</div>
+                                        <div className="name" title={`${carInfo?.dealer_address}`}>{carInfo?.dealer_address}</div>
                                     </div>
                                 </div>
                             </div>
@@ -88,11 +87,11 @@ export default function ListCardItems({carInfo}) {
                                     </div>
                                     <div className="dellar__info">
                                         <div className="dellar__name">
-                                        Personal Seller: <span>{carInfo?.dealer}</span>
+                                        {carInfo?.dealer_type}: <span>{carInfo?.dealer_name}</span>
                                         </div>
                                         <div className="dellar__phone">
                                             <i className="bi bi-telephone-fill"></i>
-                                            <span>{carInfo?.phone}</span>
+                                            <span>{carInfo?.dealer_phone}</span>
                                         </div>
                                     </div>
                                 </div>
