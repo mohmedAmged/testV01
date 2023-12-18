@@ -41,7 +41,7 @@ export default function LatestOfferCard({ offerData }) {
                         ))}
                     </div>
                 </div>
-                <div className="cart__bottom mt-2">
+                <div className="cart__bottom py-1">
                     <div className="cart__main__titels">
                         <div className="">
                             <div className="cart__title">

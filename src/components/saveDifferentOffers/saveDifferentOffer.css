@@ -44,3 +44,6 @@
     white-space: nowrap;
     margin-left: 2px;
 }
+.saveDifferentOffer__handler .cart__main__titels {
+    border-bottom: none;
+}
