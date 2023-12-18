@@ -10,6 +10,7 @@ import health1 from '../../assets/discoverHomeImg/health1.jpg'
 import health2 from '../../assets/discoverHomeImg/health2.jpg'
 import food5 from '../../assets/discoverHomeImg/food5.jpg'
 import LatestOfferCard from '../latestOfferCard/LatestOfferCard'
+import { NavLink } from 'react-router-dom'
 const offersDataArr = [
     {
         "name": 'Jordan Restaurant',
@@ -69,15 +70,28 @@ export default function SaveDifferentOffers() {
     return (
         <div className='saveDifferentOffer__handler'>
             <div className="container">
-                <div className="saveDifferentOffer__heading">
+                <>
                     <div className="row ">
-                        <div className="col-lg-8 ">
+                        {/* <div className="col-lg-8 ">
                             <h3>
                                 Latest Offers
                             </h3>
+                            <NavLink className="nav-link couponSlider__head__link">
+                                view more
+                            </NavLink>
+                        </div> */}
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                            <div className="couponSlider__head">
+                                <h3>
+                                    Latest Offers
+                                </h3>
+                                <NavLink className="nav-link couponSlider__head__link">
+                                    view more
+                                </NavLink>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </>
                 <div className="ads__filter__tabs">
                     <div className="row">
                         <div className="col-lg-8">

@@ -1,0 +1,58 @@
+.saveSubList__handler{
+    padding: 40px 0;
+}
+.saveSubList__left .saveSub__input{
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid hsl(0 0% 0%/0.05);
+}
+.saveSubList__left__sidebar{
+    width: 100%;
+    border: 1px solid hsl(0 0% 0%/0.05);
+    border-radius: 12px;
+}
+.saveSubList__left__sidebar__categories{
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 1px solid hsl(0 0% 0%/0.05);
+}
+.saveSubList__left__sidebar__categories .title{
+    font-weight: 700;
+    position: relative;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+.saveSubList__left__sidebar__categories .title::after{
+    position: absolute;
+    content: "";
+    bottom: -8px;
+    left: 0;
+    width: 42px;
+    height: 1px;
+    background: hsl(300 100% 25%);
+}
+.saveSubList__left__sidebar__categories .category__list{
+    height: 232px;
+    overflow-y: auto;
+}
+.check__item{
+    display: flex;
+    flex-wrap: wrap;
+}
+.check__item input{
+    background-color: transparent;
+    box-shadow: none !important;
+    position: relative;
+    border-radius: 2px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid hsl(300 100% 25%);
+    cursor: pointer;
+}
+.check__item label{
+    width: calc(100% - 16px);
+    padding-left: 8px;
+    cursor: pointer;
+}

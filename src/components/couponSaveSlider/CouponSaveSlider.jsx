@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 
 import coupon from '../../assets/saveHomeImg/print_coupon.jpg'
 import jsPDF from 'jspdf';
+import { scrollToTop } from '../../functions/scrollToTop';
 export default function CouponSaveSlider({ title, saveSlides }) {
 
     const showCoupon = (slide) => {
@@ -93,7 +94,9 @@ export default function CouponSaveSlider({ title, saveSlides }) {
                             <h3>
                                 {title}
                             </h3>
-                            <NavLink className="nav-link couponSlider__head__link">
+                            <NavLink to={`/save/${title}`} className="nav-link couponSlider__head__link" onClick={() => {
+                                scrollToTop();
+                            }}>
                                 view more
                             </NavLink>
                         </div>

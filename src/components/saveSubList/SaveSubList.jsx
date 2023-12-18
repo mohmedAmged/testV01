@@ -1,10 +1,31 @@
 import React from 'react'
-import './codeSaveSlider.css'
-import { NavLink } from 'react-router-dom'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Swal from 'sweetalert2';
-import { scrollToTop } from '../../functions/scrollToTop';
-export default function CodeSaveSlider({ title, saveSlides }) {
+import './saveSubList.css'
+import CodeSaveSlider from '../codeSaveSlider/CodeSaveSlider'
+import coupon1 from '../../assets/saveHomeImg/couponImg.png'
+import coupon2 from '../../assets/saveHomeImg/coupLogo2.png'
+import coupon3 from '../../assets/saveHomeImg/coupLogo3.png'
+import coupon4 from '../../assets/saveHomeImg/coupLogo4.png'
+import Swal from 'sweetalert2'
+const saveSlideOne = [
+    { "id": 1, "tagName": "Exclusive", "couponImg": coupon1, "couponOffer": "5% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 1254 },
+    { "id": 2, "tagName": "Good", "couponImg": coupon2, "couponOffer": "10% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 3254 },
+    { "id": 3, "tagName": "Exclusive", "couponImg": coupon3, "couponOffer": "30% Off Your Entire Cart", "expDate": "06-10-2025", "couponNum": 1264 },
+    { "id": 4, "tagName": "Sponsered", "couponImg": coupon4, "couponOffer": "70% Off Your Entire Cart", "expDate": "07-05-2025", "couponNum": 1854 },
+    { "id": 5, "tagName": "Exclusive", "couponImg": coupon1, "couponOffer": "5% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 9054 },
+]
+const categoryItems = [
+    { "categName": "Tech Treats", "id": 1, "categFor": "categories-1" },
+    { "categName": "Fashion Finds", "id": 2, "categFor": "categories-2" },
+    { "categName": "Fashion Finds", "id": 2, "categFor": "categories-2" },
+    { "categName": "Fashion Finds", "id": 2, "categFor": "categories-2" },
+]
+const storeItems = [
+    { "categName": "Tech Treats", "id": 1, "categFor": "categories-1" },
+    { "categName": "Fashion Finds", "id": 2, "categFor": "categories-2" },
+    { "categName": "Fashion Finds", "id": 2, "categFor": "categories-2" },
+    { "categName": "Fashion Finds", "id": 2, "categFor": "categories-2" },
+]
+export default function SaveSubList() {
     const copyCodeToClipboard = (code) => {
         navigator.clipboard.writeText(code);
         Swal.fire({
@@ -14,7 +35,6 @@ export default function CodeSaveSlider({ title, saveSlides }) {
             timer: 1500,
         });
     };
-
     const showModal = (slide) => {
         Swal.fire({
             html: `
@@ -73,54 +93,56 @@ export default function CodeSaveSlider({ title, saveSlides }) {
         copyButton.addEventListener('click', () => copyCodeToClipboard(slide.couponNum));
     }
     return (
-
-        <div className='couponSlider__handler codeSlider__handler'>
+        <div className='saveSubList__handler'>
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-12 col-md-12 col-sm-12">
-                        <div className="couponSlider__head">
-                            <h3>
-                                {title}
-                            </h3>
-                            <NavLink to={`/save/${title}`} className="nav-link couponSlider__head__link" onClick={() => {
-                                scrollToTop();
-                            }}>
-                                view more
-                            </NavLink>
+                    <div className="col-lg-3">
+                        <div className="saveSubList__left">
+                            <form action="">
+                                <input type="text" className='mb-4 form-control saveSub__input' placeholder='Search..' />
+                            </form>
+                            <div className="saveSubList__left__sidebar">
+                                <div className="saveSubList__left__sidebar__categories">
+                                    <h3 className='title'>
+                                        Categories
+                                    </h3>
+                                    <div className="category__list">
+                                        {
+                                            categoryItems.map((item) => (
+                                                <div key={item.id} className="check__ctegory__item mb-2 check__item">
+                                                    <input className='form-check-input' type="checkbox" />
+                                                    <label className='form-check-label' htmlFor={item.categFor}>{item.categName}
+                                                    </label>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                                <div className="saveSubList__left__sidebar__categories">
+                                    <h3 className='title'>
+                                        stores
+                                    </h3>
+                                    <div className="stores__list">
+                                        {
+                                            storeItems.map((item) => (
+                                                <div key={item.id} className="check__store__item check__item mb-2">
+                                                    <input className='form-check-input' type="checkbox" />
+                                                    <label className='form-check-label' htmlFor={item.categFor}>{item.categName}
+                                                    </label>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-lg-12">
-                        <div className="couponSlider__cards">
-                            <Swiper
-                                slidesPerView={1}
-                                spaceBetween={10}
-                                breakpoints={{
-                                    320: {
-
-                                        slidesPerView: 1.2,
-                                        spaceBetween: 20
-                                    },
-                                    480: {
-
-                                        slidesPerView: 2,
-                                        spaceBetween: 20
-                                    },
-                                    768: {
-
-                                        slidesPerView: 2.2,
-                                        spaceBetween: 30
-                                    },
-                                    992: {
-                                        slidesPerView: 3.5,
-                                        spaceBetween: 30
-                                    },
-                                }}
-                                className="mySwiper">
+                    <div className="col-lg-9">
+                        <div className="row">
+                            <>
                                 {
-                                    saveSlides.map((slide) => (
-                                        <SwiperSlide key={slide.id}>
+                                    saveSlideOne.map((slide) => (
+                                        <div className="col-lg-6 my-3">
                                             <div className="couponSlider__card__item">
                                                 <div className="couponSlider__cardHead">
                                                     <button>
@@ -146,12 +168,11 @@ export default function CodeSaveSlider({ title, saveSlides }) {
                                                     <p className='card__expire'>Expire at: {slide.expDate}</p>
                                                 </div>
                                             </div>
-                                        </SwiperSlide>
+                                        </div>
                                     ))
                                 }
-                            </Swiper>
 
-
+                            </>
                         </div>
                     </div>
                 </div>
