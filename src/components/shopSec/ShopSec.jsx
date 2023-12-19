@@ -107,7 +107,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                             }
                                         </Form.Select>
                                     </div>
-                                    <div className="select__item">
+                                    {/* <div className="select__item">
                                         <Form.Select defaultValue="model" onChange={(e) => handleFilterChange('model', e.target.value.toLowerCase())}>
                                             <option value="model" disabled>Model</option>
                                             {uniqueModels.map(model => (
@@ -116,7 +116,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                                 </option>
                                             ))}
                                         </Form.Select>
-                                    </div>
+                                    </div> */}
                                     <div className="select__item">
                                         <Form.Select defaultValue="transmission" onChange={(e) => handleFilterChange('transmission', e.target.value.toLowerCase())}>
                                             <option value="transmission">transmission</option>
