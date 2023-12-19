@@ -91,7 +91,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                             <option value="make" disabled>Make</option>
                                             {
                                                 makes.map((make) => (
-                                                    <option key={make.id} value={make?.name}>{make.name}</option>
+                                                    <option key={make.id} value={make?.id}>{make.name}</option>
                                                 ))
                                             }
                                         </Form.Select>
@@ -101,7 +101,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                             <option value="body" disabled>body</option>
                                             {
                                                 bodies.map((body) => (
-                                                    <option key={body.id} value={body?.name}>
+                                                    <option key={body.id} value={body?.id}>
                                                         {body.name}</option>
                                                 ))
                                             }
