@@ -1,25 +1,66 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import "./shopSec.css";
 import { InputGroup } from "react-bootstrap";
-// import Slider from 'react-slider';
 import ProductCard from "../productCard/ProductCard";
 import ListCardItems from "../listCardItems/ListCardItems";
 import ReactSlider from "react-slider";
+import { useQuery } from "@tanstack/react-query";
+import { baseURL } from '../../functions/BaseURL';
 
-export default function ShopSec({ cars }) {
+export default function ShopSec({ cars, makes, bodies, priceQuery }) {
     const [activeView, setActiveView] = useState('grid');
+    const [currentCars, setCurrentCars]= useState(cars);
+    const [filters, setFilters] = useState({});
+
+    const uniqueModels = [...new Set(cars?.map(car => car.model))];
+    const uniqueTransmissons = [...new Set(cars?.map(car => car.transmission))];
+    const uniqueConditions = [...new Set(cars?.map(car => car.condition))];
+
+    const minPrice = Number(priceQuery.data?.min);
+    const maxPrice = Number(priceQuery.data?.max);
+    const [values, setValues] = useState([minPrice, maxPrice]);
+
+    const handleSliderChange = (newValues) => {
+        setValues(newValues);
+    };
 
     const handleIconClick = (view) => {
         setActiveView(view);
     };
 
+    // condition: '',
+    // make: '',
+    // body: '',
+    // model: '',
+    // transmission: '',
+    // price_from: 0,
+    // price_to: 0,
 
-    const [values, setValues] = useState([1000, 30000]);
+    const handleFilterChange = (filterName, value) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            [filterName]: value,
+        }));
+    };
 
-    const handleSliderChange = (newValues) => {
-        setValues(newValues);
-      };
+    const {data, isLoading} = useQuery({
+        queryKey: ['cars', filters],
+        queryFn: async () => {
+            const filterParams = new URLSearchParams(filters);
+            const filterURL = `${baseURL}/cars-search?${filterParams.toString()}`;
+            const fetchData = await fetch(filterURL);
+            const response = await fetchData.json();
+            return response.data;
+        },
+    });
+
+    useEffect(()=>{
+        console.log(data)
+        if(data){
+            setCurrentCars(data.cars);
+        }
+    },[data]);
 
     return (
         <div className="shopSec__handler">
@@ -31,33 +72,59 @@ export default function ShopSec({ cars }) {
                             <div className="search__form__handler">
                                 <form action="">
                                     <div className="select__item">
-                                        <Form.Select>
-                                            <option selected>Condition</option>
-                                            <option>new</option>
+                                        <Form.Select
+                                        defaultValue="condition"
+                                        onChange={(e) => {
+                                            handleFilterChange('condition', e.target.value.toLowerCase());
+                                        }}
+                                        >
+                                            <option value="condition" disabled>Condition</option>
+                                            {uniqueConditions.map(condition => (
+                                                <option key={condition} value={condition}>
+                                                    {condition}
+                                                </option>
+                                            ))}
                                         </Form.Select>
                                     </div>
                                     <div className="select__item">
-                                        <Form.Select>
-                                            <option selected>Make</option>
-                                            <option>BMW</option>
+                                        <Form.Select defaultValue="make" onChange={(e) => handleFilterChange('make', e.target.value.toLowerCase())}>
+                                            <option value="make" disabled>Make</option>
+                                            {
+                                                makes.map((make) => (
+                                                    <option key={make.id} value={make?.name}>{make.name}</option>
+                                                ))
+                                            }
                                         </Form.Select>
                                     </div>
                                     <div className="select__item">
-                                        <Form.Select>
-                                            <option selected>Model</option>
-                                            <option>3 series</option>
+                                        <Form.Select defaultValue="body" onChange={(e) => handleFilterChange('body', e.target.value.toLowerCase())}>
+                                            <option value="body" disabled>body</option>
+                                            {
+                                                bodies.map((body) => (
+                                                    <option key={body.id} value={body?.name}>
+                                                        {body.name}</option>
+                                                ))
+                                            }
                                         </Form.Select>
                                     </div>
                                     <div className="select__item">
-                                        <Form.Select>
-                                            <option selected>Interest</option>
-                                            <option>compact</option>
+                                        <Form.Select defaultValue="model" onChange={(e) => handleFilterChange('model', e.target.value.toLowerCase())}>
+                                            <option value="model" disabled>Model</option>
+                                            {uniqueModels.map(model => (
+                                                <option key={model} value={model}>
+                                                    {model}
+                                                </option>
+                                            ))}
                                         </Form.Select>
                                     </div>
                                     <div className="select__item">
-                                        <Form.Select>
-                                            <option selected>transmission</option>
-                                            <option>compact</option>
+                                        <Form.Select defaultValue="transmission" onChange={(e) => handleFilterChange('transmission', e.target.value.toLowerCase())}>
+                                            <option value="transmission">transmission</option>
+                                            {uniqueTransmissons.map(transmission => (
+                                                <option key={transmission} value={transmission}>
+                                                    {transmission}
+                                                </option>
+                                            ))}
                                         </Form.Select>
                                     </div>
                                     <div className="form__actions d-flex justify-content-end align-items-center">
@@ -75,20 +142,20 @@ export default function ShopSec({ cars }) {
                             </div>
                             <div className="price__Sec">
                                 <div className="range__item">
-                                    {/* <Form.Range /> */}
                                     <ReactSlider
                                         className="range-slider"
                                         value={values}
                                         withBars
-                                        min={1000}
-                                        max={30000}
-                                        step={500}
+                                        min={minPrice}
+                                        max={maxPrice}
+                                        step={10}
                                         pearling
                                         onChange={handleSliderChange}
                                     />
                                 </div>
                                 <div className="input__price">
                                     <div className="row">
+
                                         <div className="col-lg-6">
                                             <div className="input__item">
                                                 <InputGroup className="mb-3">
@@ -97,6 +164,9 @@ export default function ShopSec({ cars }) {
                                                         aria-label="min price"
                                                         value={`${values[0]}$`}
                                                         aria-describedby="basic-addon1"
+                                                        onChange={(e)=>{
+                                                            handleFilterChange("price_from" , e.target.value)
+                                                        }}
                                                     />
                                                 </InputGroup>
                                             </div>
@@ -110,6 +180,9 @@ export default function ShopSec({ cars }) {
                                                         aria-label="max price"
                                                         value={`${values[1]}$`}
                                                         aria-describedby="basic-addon1"
+                                                        onChange={(e)=>{
+                                                            handleFilterChange("price_to" , e.target.value)
+                                                        }}
                                                     />
                                                 </InputGroup>
                                             </div>
@@ -151,7 +224,7 @@ export default function ShopSec({ cars }) {
                                 >
                                     <div className="row">
                                         {
-                                            cars?.map(car => {
+                                            currentCars?.map(car => {
                                                 return (
                                                     <ProductCard key={car?.id} carInfo={car} />
                                                 )
@@ -164,7 +237,7 @@ export default function ShopSec({ cars }) {
                                 >
                                     <div className="row">
                                         {
-                                            cars?.map(car => {
+                                            currentCars?.map(car => {
                                                 return (
                                                     <ListCardItems key={car?.id} carInfo={car} />
                                                 )

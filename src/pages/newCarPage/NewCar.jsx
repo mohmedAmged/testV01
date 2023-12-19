@@ -15,12 +15,21 @@ export default function NewCar() {
   const { data, isError, error, isLoading } = useQuery({
     queryKey: ['cars'],
     queryFn: async () => {
-      const fetchData = await fetch(`${baseURL}/cars`);
+      const fetchData = await fetch(`${baseURL}`);
       const response = await fetchData.json();
       return response.data;
     },
   });
+  const priceQuery = useQuery({
+    queryKey: ['price'],
+    queryFn: async () => {
+        const fetchData = await fetch(`${baseURL}/car-price`);
+        const response = await fetchData.json();
+        return response.data;
+    },
+});
 
+console.log(data);
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowContent(false);
@@ -45,8 +54,9 @@ export default function NewCar() {
       <>
         <DynamicHeroSec backgroundImage={heroBg} title="New Cars" content="New cars"/>
         <DynamicMapWeb links={links}  />
-        <ShopSec cars={data?.cars} />
+        <ShopSec cars={data?.cars} makes={data?.makes} bodies={data?.bodies} priceQuery={priceQuery}/>
       </>
+      
     }
     </>
   );
