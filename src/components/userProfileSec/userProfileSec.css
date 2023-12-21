@@ -166,17 +166,18 @@
 }
 .coin__icon i{
     color: var(--primary-blue); 
-    font-size: 20px;
+    font-size: 17px;
 }
 .howGain__coin{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     line-height: 38px;
     position: relative;
     cursor: pointer;
+    text-transform: capitalize;
 }
 .howGain__coin i{
-    padding-left: 9px;
+    padding-left: 4px;
     font-size: 14px;
 }
 .ticketsSec__handler .dash__title{
