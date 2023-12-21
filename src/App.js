@@ -11,6 +11,7 @@ import MyFooter from './components/myFooter/MyFooter';
 import ScrollToTopButton from './components/scrollToTopButton/ScrollToTopButton';
 import SaveHome from './pages/saveHome/SaveHome';
 import SaveSubPage from './pages/saveSubPage/SaveSubPage';
+import UserDashBoard from './pages/userDashboard/UserDashBoard';
 
 function App() {
   const [scrollToggle, setScrollToggle] = useState(false);
@@ -33,11 +34,13 @@ function App() {
       {/* home for valuereach progres.. */}
       <Route path='/cars' element={<MyHome/>}/>
       <Route path='/new-cars' element={<NewCar/>}/>
+      {/* <Route path='/new-cars/:slug' element={<NewCar/>}/> */}
       <Route path='/car-Info/:carId' element={<SingleProductPage />}/>
       <Route path='/discover' element={<DiscoverHome />}/>
       <Route path='/discover/category/:categoryName' element={<DiscoverCategoryPage />}/>
       <Route path='/save' element={<SaveHome />}/>
       <Route path='/save/:pageName' element={<SaveSubPage />}/>
+      <Route path='/user/dashboard' element={<UserDashBoard />}/>
     </Routes>
     <MyFooter />
     </>

@@ -28,7 +28,16 @@ export default function MyNav({ scrollToggle }) {
                     {/* start navbar min-width 992px */}
                     <Navbar.Collapse id="navbar-nav" className='Navbar__Collapse__none__on__med'>
                         <Nav className="mx-auto" >
-                        <NavLink
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                aria-label="Close"
+                                className="nav-link  nav__link__style"
+                                to="/user/dashboard">
+                                Dashboard
+                            </NavLink>
+                            <NavLink
                                 onClick={() => {
                                     scrollToTop();
                                 }}
@@ -113,6 +122,15 @@ export default function MyNav({ scrollToggle }) {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="mx-auto" >
+                            <NavLink
+                                onClick={() => {
+                                    scrollToTop();
+                                }}
+                                aria-label="Close"
+                                className="nav-link  nav__link__style"
+                                to="/user/dashboard">
+                                Dashboard
+                            </NavLink>
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();

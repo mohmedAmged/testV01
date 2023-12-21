@@ -7,8 +7,11 @@ import ListCardItems from "../listCardItems/ListCardItems";
 import ReactSlider from "react-slider";
 import { useQuery } from "@tanstack/react-query";
 import { baseURL } from '../../functions/BaseURL';
+// import { useHistory, useNavigate } from "react-router-dom";
 
 export default function ShopSec({ cars, makes, bodies, priceQuery }) {
+    // const navigate = useNavigate();
+    // console.log(navigate);
     const [activeView, setActiveView] = useState('grid');
     const [currentCars, setCurrentCars]= useState(cars);
     const [filters, setFilters] = useState({});
@@ -23,31 +26,33 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
 
     const handleSliderChange = (newValues) => {
         setValues(newValues);
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            price_from: newValues[0],
+            price_to: newValues[1],
+        }));
     };
 
     const handleIconClick = (view) => {
         setActiveView(view);
     };
 
-    // condition: '',
-    // make: '',
-    // body: '',
-    // model: '',
-    // transmission: '',
-    // price_from: 0,
-    // price_to: 0,
-
     const handleFilterChange = (filterName, value) => {
         setFilters((prevFilters) => ({
             ...prevFilters,
             [filterName]: value,
+            
         }));
+        // const filterParams = new URLSearchParams(filters);
+        // navigate(`/new-cars/cars-search?${filterParams.toString()}`);
+        // console.log(filterParams.toString());
     };
 
-    const {data, isLoading} = useQuery({
+    const {data} = useQuery({
         queryKey: ['cars', filters],
         queryFn: async () => {
             const filterParams = new URLSearchParams(filters);
+            // navigate.push(`/cars-search?${filterParams.toString()}`);
             const filterURL = `${baseURL}/cars-search?${filterParams.toString()}`;
             const fetchData = await fetch(filterURL);
             const response = await fetchData.json();
@@ -148,7 +153,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                         withBars
                                         min={minPrice}
                                         max={maxPrice}
-                                        step={10}
+                                        step={500}
                                         pearling
                                         onChange={handleSliderChange}
                                     />
