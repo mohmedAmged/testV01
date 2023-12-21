@@ -125,6 +125,7 @@ export default function MyNav({ scrollToggle }) {
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
+                                    closeOffcanvas();
                                 }}
                                 aria-label="Close"
                                 className="nav-link  nav__link__style"

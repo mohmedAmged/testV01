@@ -4,6 +4,9 @@
     background: hsl(300 100% 25%/0.04);
     border-radius: 12px;
 }
+.userProfileSec__handler .ads__filter__tabs ul{
+    flex-wrap: wrap;
+}
 .dashboardSec__left{
     border-right: 1px solid #dee2e6!important;
 }

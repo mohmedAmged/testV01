@@ -83,17 +83,17 @@ export default function UserProfileSec() {
                     <div className="row">
                         <div className="col-lg-8">
                             <ul>
-                                <li id='dashboard' className={`ads__tab ${activeTab === 'dashboard' ? 'active' : ''}`}
+                                <li id='dashboard' className={`mb-2 ads__tab ${activeTab === 'dashboard' ? 'active' : ''}`}
                                     onClick={() => handleTabClick('dashboard')}
                                 >
                                     Dashboard
                                 </li>
-                                <li id='coins' className={`ads__tab ${activeTab === 'coins' ? 'active' : ''}`}
+                                <li id='coins' className={`mb-2 ads__tab ${activeTab === 'coins' ? 'active' : ''}`}
                                     onClick={() => handleTabClick('coins')}
                                 >
                                     Coins
                                 </li>
-                                <li id='wishlist' className={`ads__tab ${activeTab === 'wishlist' ? 'active' : ''}`}
+                                <li id='wishlist' className={`mb-2 ads__tab ${activeTab === 'wishlist' ? 'active' : ''}`}
                                     onClick={() => handleTabClick('wishlist')}
                                 >
                                     Wishlist
