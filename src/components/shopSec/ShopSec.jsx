@@ -253,7 +253,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                 <div
                                     className={`shop__grid__items ${activeView === 'grid' ? 'active' : ''}`}
                                 >
-                                    <div className="row">
+                                    <div className="row mb-4">
                                         {
                                             currentCars?.map(car => {
                                                 return (
@@ -266,7 +266,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                 <div
                                     className={`shop__list__items ${activeView === 'list' ? 'active' : ''}`}
                                 >
-                                    <div className="row">
+                                    <div className="row mb-4">
                                         {
                                             currentCars?.map(car => {
                                                 return (

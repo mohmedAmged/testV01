@@ -100,7 +100,7 @@ export default function MyNav({ scrollToggle }) {
                                 <div className='btn__Car d-flex justify-content-center align-items-center'>
                                 <i className="bi bi-folder-plus fs-6"></i>
                                     <span>
-                                    Add your item
+                                    Sign Up
                                     </span>
                                 </div>
                             </NavLink>
@@ -201,7 +201,7 @@ export default function MyNav({ scrollToggle }) {
                                 <div className='btn__Car d-flex justify-content-center align-items-center'>
                                 <i className="bi bi-folder-plus fs-6"></i>
                                     <span>
-                                    Add your item
+                                    Sign Up
                                     </span>
                                 </div>
                             </NavLink>

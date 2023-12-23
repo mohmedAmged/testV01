@@ -77,8 +77,9 @@ export default function SingleProductSec({carDetails}) {
                                                 <div className="single__img__handler">
                                                     <img className='img__view' src={mainImageSrc} alt="" />
                                                 </div>
-                                                <div className="img__card__badge">
-                                                    special
+                                                img__card__badge
+                                                <div className={`img__card__badge ${carDetails.ad_state === 'sold' ? 'soldBadge' : (carDetails.ad_state === 'sponsered' ? 'sponsoredBadge' : '')}`}>
+                                                {carDetails?.ad_state}
                                                 </div>
                                             </div>
                                         </SwiperSlide>

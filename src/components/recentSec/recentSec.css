@@ -48,6 +48,12 @@
     justify-content: center;
     align-items: center;
 }
+.soldBadge{
+    background-color: #fc4e4e !important;
+}
+.sponsoredBadge{
+    background-color: #FFD700 !important;
+}
 .cart__camera{
     position: absolute;
     top: 7px;
