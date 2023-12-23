@@ -11,7 +11,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 export default function ShopSec({ cars, makes, bodies, priceQuery }) {
     const navigate = useNavigate();
     const {search} = useLocation();
-
+// console.log(cars);
     const getCurrentLocationData = (arr) => {
         let myObj = {}
         const searchArr = [...arr];
@@ -35,7 +35,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
     const uniqueConditions = [...new Set(cars?.map(car => car.condition))];
 
     const minPrice = Number(priceQuery.data?.min);
-    const maxPrice = Number(priceQuery.data?.max);
+    const maxPrice = Number(priceQuery.data?.max) +1000;
     const [values, setValues] = useState([minPrice, maxPrice]);
 
     const handleSliderChange = (newValues) => {
@@ -84,6 +84,13 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
             navigate(`/new-cars?${filterParams.toString()}`);
         }
     },[search,filters]);
+
+    const handleResetButtonClick = () => {
+        setFilters({});
+        setValues([minPrice, maxPrice]);
+        navigate("/new-cars");
+        window.location.reload();
+    };
 
     return (
         <div className="shopSec__handler">
@@ -141,10 +148,13 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                         </Form.Select>
                                     </div>
                                     <div className="form__actions d-flex justify-content-end align-items-center">
-                                        <button type="reset" className="form__reset__btn" onClick={()=>{
-                                            setCurrentCars(cars);
-                                            navigate("/new-cars")
-                                        }}>
+                                        <button type="reset" className="form__reset__btn" 
+                                        // onClick={()=>{
+                                        //     setCurrentCars(cars);
+                                        //     navigate("/new-cars")
+                                        // }}
+                                        onClick={handleResetButtonClick}
+                                        >
                                             <i className="bi bi-arrow-counterclockwise fs-5"></i>
                                             reset
                                         </button>
