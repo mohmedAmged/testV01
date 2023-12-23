@@ -7,35 +7,36 @@ import ListCardItems from "../listCardItems/ListCardItems";
 import ReactSlider from "react-slider";
 import { baseURL } from '../../functions/BaseURL';
 import { useNavigate, useLocation } from "react-router-dom";
+import { scrollToTop } from '../../functions/scrollToTop';
 
 export default function ShopSec({ cars, makes, bodies, priceQuery }) {
     const navigate = useNavigate();
-    const {search} = useLocation();
-// console.log(cars);
+    const { search } = useLocation();
+    // console.log(cars);
     const getCurrentLocationData = (arr) => {
         let myObj = {}
         const searchArr = [...arr];
-        const withoutQuestionMark = searchArr.slice(1,(searchArr.length));
+        const withoutQuestionMark = searchArr.slice(1, (searchArr.length));
         const searchArrWithoutAnyThing = withoutQuestionMark.join("").split("&")
         searchArrWithoutAnyThing.forEach((e) => {
             const elementArray = e.split("=");
             myObj = ({
-                ...myObj ,
-                [elementArray[0]] : elementArray[1]
+                ...myObj,
+                [elementArray[0]]: elementArray[1]
             });
         })
         return myObj;
     }
 
     const [activeView, setActiveView] = useState('grid');
-    const [currentCars, setCurrentCars]= useState(cars);
+    const [currentCars, setCurrentCars] = useState(cars);
     const [filters, setFilters] = useState({});
 
     const uniqueTransmissons = [...new Set(cars?.map(car => car.transmission))];
     const uniqueConditions = [...new Set(cars?.map(car => car.condition))];
 
     const minPrice = Number(priceQuery.data?.min);
-    const maxPrice = Number(priceQuery.data?.max) +1000;
+    const maxPrice = Number(priceQuery.data?.max) + 1000;
     const [values, setValues] = useState([minPrice, maxPrice]);
 
     const handleSliderChange = (newValues) => {
@@ -62,10 +63,10 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
         navigate(`/new-cars?${filterParams.toString()}`);
     };
 
-    useEffect(()=>{
-        if(search){
+    useEffect(() => {
+        if (search) {
             const ourDaraSearchObj = getCurrentLocationData(search);
-            (async()=>{
+            (async () => {
                 const searchParams = new URLSearchParams(ourDaraSearchObj);
                 const fetchSearchedDataUrl = `${baseURL}/cars-search?${searchParams.toString()}`;
                 const fetchData = await fetch(fetchSearchedDataUrl);
@@ -74,16 +75,16 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
             })();
         }
 
-        if(filters.condition 
-            || filters.make 
-            || filters.body 
-            || filters.transmission 
-            || filters.price_from 
-            || filters.price_to){
+        if (filters.condition
+            || filters.make
+            || filters.body
+            || filters.transmission
+            || filters.price_from
+            || filters.price_to) {
             const filterParams = new URLSearchParams(filters);
             navigate(`/new-cars?${filterParams.toString()}`);
         }
-    },[search,filters]);
+    }, [search, filters]);
 
     const handleResetButtonClick = () => {
         setFilters({});
@@ -103,10 +104,10 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                 <form action="">
                                     <div className="select__item">
                                         <Form.Select
-                                        defaultValue="condition"
-                                        onChange={(e) => {
-                                            handleFilterChange('condition', e.target.value.toLowerCase());
-                                        }}
+                                            defaultValue="condition"
+                                            onChange={(e) => {
+                                                handleFilterChange('condition', e.target.value.toLowerCase());
+                                            }}
                                         >
                                             <option value="condition" disabled>Condition</option>
                                             {uniqueConditions.map(condition => (
@@ -148,12 +149,16 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                         </Form.Select>
                                     </div>
                                     <div className="form__actions d-flex justify-content-end align-items-center">
-                                        <button type="reset" className="form__reset__btn" 
-                                        // onClick={()=>{
-                                        //     setCurrentCars(cars);
-                                        //     navigate("/new-cars")
-                                        // }}
-                                        onClick={handleResetButtonClick}
+                                        <button type="reset" className="form__reset__btn"
+                                            // onClick={()=>{
+                                            //     setCurrentCars(cars);
+                                            //     navigate("/new-cars")
+                                            // }}
+                                            // onClick={handleResetButtonClick}
+                                            onClick={() => {
+                                                scrollToTop();
+                                                handleResetButtonClick()
+                                            }}
                                         >
                                             <i className="bi bi-arrow-counterclockwise fs-5"></i>
                                             reset
@@ -190,8 +195,8 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                                         aria-label="min price"
                                                         value={`${values[0]}$`}
                                                         aria-describedby="basic-addon1"
-                                                        onChange={(e)=>{
-                                                            handleFilterChange("price_from" , e.target.value)
+                                                        onChange={(e) => {
+                                                            handleFilterChange("price_from", e.target.value)
                                                         }}
                                                     />
                                                 </InputGroup>
@@ -206,8 +211,8 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                                         aria-label="max price"
                                                         value={`${values[1]}$`}
                                                         aria-describedby="basic-addon1"
-                                                        onChange={(e)=>{
-                                                            handleFilterChange("price_to" , e.target.value)
+                                                        onChange={(e) => {
+                                                            handleFilterChange("price_to", e.target.value)
                                                         }}
                                                     />
                                                 </InputGroup>

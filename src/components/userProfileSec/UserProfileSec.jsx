@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './userProfileSec.css';
 import profile from '../../assets/dashboardImgs/profile.jpeg'
+import AccordionFaqSave from '../accordionFaqSave/AccordionFaqSave';
 export default function UserProfileSec() {
-    const [activeTab, setActiveTab] = useState('dashboard');
+    const [activeTab, setActiveTab] = useState('coins');
 
     const handleTabClick = (tabId) => {
         setActiveTab(tabId);
@@ -83,15 +84,15 @@ export default function UserProfileSec() {
                     <div className="row">
                         <div className="col-lg-8">
                             <ul>
-                                <li id='dashboard' className={`mb-2 ads__tab ${activeTab === 'dashboard' ? 'active' : ''}`}
-                                    onClick={() => handleTabClick('dashboard')}
-                                >
-                                    Dashboard
-                                </li>
                                 <li id='coins' className={`mb-2 ads__tab ${activeTab === 'coins' ? 'active' : ''}`}
                                     onClick={() => handleTabClick('coins')}
                                 >
                                     Coins
+                                </li>
+                                <li id='dashboard' className={`mb-2 ads__tab ${activeTab === 'dashboard' ? 'active' : ''}`}
+                                    onClick={() => handleTabClick('dashboard')}
+                                >
+                                    Dashboard
                                 </li>
                                 <li id='wishlist' className={`mb-2 ads__tab ${activeTab === 'wishlist' ? 'active' : ''}`}
                                     onClick={() => handleTabClick('wishlist')}
@@ -109,6 +110,47 @@ export default function UserProfileSec() {
 
     function renderSection(tabId) {
         switch (tabId) {
+            case 'coins':
+                return (
+                    <div className="coin__handler" key={tabId}>
+                        <h3 className='dash__title'>
+                                my coins
+                        </h3>
+                        <div className="Coin__Sec" >
+                            
+                            <div className="row">
+                                <div className="col-lg-8">
+                                    <div className="coin__score__card">
+                                        <div className="score__number">
+                                            1,286
+                                            <span>coins</span>
+                                        </div>
+                                        <div className="gain__coins">
+                                            <div className="coin__icon">
+                                                <i class="bi bi-coin fs-4"></i>
+                                            </div>
+                                            <div className="howGain__coin">
+                                                get more coins
+                                                <i className="bi bi-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 className='dash__title'>
+                                how to gain coins
+                        </h3>
+                        <div className="coin__faq">
+                            <div className="row">
+                                <div className="col-lg-10">
+                                    <AccordionFaqSave />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                );
             case 'dashboard':
                 return (
                     <div className="dashboardSec__handler" key={tabId}>
@@ -196,37 +238,10 @@ export default function UserProfileSec() {
                         </div>
                     </div>
                 );
-            case 'coins':
-                return (
-                    <div className="ticketsSec__handler" key={tabId}>
-                        <h3 className='dash__title'>
-                            my coins
-                        </h3>
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <div className="coin__score__card">
-                                    <div className="score__number">
-                                        1,286
-                                        <span>coins</span>
-                                    </div>
-                                    <div className="gain__coins">
-                                        <div className="coin__icon">
-                                        <i class="bi bi-coin"></i>
-                                        </div>
-                                        <div className="howGain__coin">
-                                            how to gain coins!
-                                            <i class="bi bi-chevron-right"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
             case 'wishlist':
                 return (
                     <div className="wishlistSec__handler" key={tabId}>
-                        
+
                     </div>
                 );
             default:
