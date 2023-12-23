@@ -5,18 +5,32 @@ import { InputGroup } from "react-bootstrap";
 import ProductCard from "../productCard/ProductCard";
 import ListCardItems from "../listCardItems/ListCardItems";
 import ReactSlider from "react-slider";
-import { useQuery } from "@tanstack/react-query";
 import { baseURL } from '../../functions/BaseURL';
-// import { useHistory, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function ShopSec({ cars, makes, bodies, priceQuery }) {
-    // const navigate = useNavigate();
-    // console.log(navigate);
+    const navigate = useNavigate();
+    const {search} = useLocation();
+
+    const getCurrentLocationData = (arr) => {
+        let myObj = {}
+        const searchArr = [...arr];
+        const withoutQuestionMark = searchArr.slice(1,(searchArr.length));
+        const searchArrWithoutAnyThing = withoutQuestionMark.join("").split("&")
+        searchArrWithoutAnyThing.forEach((e) => {
+            const elementArray = e.split("=");
+            myObj = ({
+                ...myObj ,
+                [elementArray[0]] : elementArray[1]
+            });
+        })
+        return myObj;
+    }
+
     const [activeView, setActiveView] = useState('grid');
     const [currentCars, setCurrentCars]= useState(cars);
     const [filters, setFilters] = useState({});
 
-    const uniqueModels = [...new Set(cars?.map(car => car.model))];
     const uniqueTransmissons = [...new Set(cars?.map(car => car.transmission))];
     const uniqueConditions = [...new Set(cars?.map(car => car.condition))];
 
@@ -31,6 +45,8 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
             price_from: newValues[0],
             price_to: newValues[1],
         }));
+        const filterParams = new URLSearchParams(filters);
+        navigate(`/new-cars?${filterParams.toString()}`);
     };
 
     const handleIconClick = (view) => {
@@ -41,31 +57,33 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
         setFilters((prevFilters) => ({
             ...prevFilters,
             [filterName]: value,
-            
         }));
-        // const filterParams = new URLSearchParams(filters);
-        // navigate(`/new-cars/cars-search?${filterParams.toString()}`);
-        // console.log(filterParams.toString());
+        const filterParams = new URLSearchParams(filters);
+        navigate(`/new-cars?${filterParams.toString()}`);
     };
 
-    const {data} = useQuery({
-        queryKey: ['cars', filters],
-        queryFn: async () => {
-            const filterParams = new URLSearchParams(filters);
-            // navigate.push(`/cars-search?${filterParams.toString()}`);
-            const filterURL = `${baseURL}/cars-search?${filterParams.toString()}`;
-            const fetchData = await fetch(filterURL);
-            const response = await fetchData.json();
-            return response.data;
-        },
-    });
-
     useEffect(()=>{
-        console.log(data)
-        if(data){
-            setCurrentCars(data.cars);
+        if(search){
+            const ourDaraSearchObj = getCurrentLocationData(search);
+            (async()=>{
+                const searchParams = new URLSearchParams(ourDaraSearchObj);
+                const fetchSearchedDataUrl = `${baseURL}/cars-search?${searchParams.toString()}`;
+                const fetchData = await fetch(fetchSearchedDataUrl);
+                const response = await fetchData.json();
+                setCurrentCars(response.data.cars);
+            })();
         }
-    },[data]);
+
+        if(filters.condition 
+            || filters.make 
+            || filters.body 
+            || filters.transmission 
+            || filters.price_from 
+            || filters.price_to){
+            const filterParams = new URLSearchParams(filters);
+            navigate(`/new-cars?${filterParams.toString()}`);
+        }
+    },[search,filters]);
 
     return (
         <div className="shopSec__handler">
@@ -112,19 +130,9 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                             }
                                         </Form.Select>
                                     </div>
-                                    {/* <div className="select__item">
-                                        <Form.Select defaultValue="model" onChange={(e) => handleFilterChange('model', e.target.value.toLowerCase())}>
-                                            <option value="model" disabled>Model</option>
-                                            {uniqueModels.map(model => (
-                                                <option key={model} value={model}>
-                                                    {model}
-                                                </option>
-                                            ))}
-                                        </Form.Select>
-                                    </div> */}
                                     <div className="select__item">
                                         <Form.Select defaultValue="transmission" onChange={(e) => handleFilterChange('transmission', e.target.value.toLowerCase())}>
-                                            <option value="transmission">transmission</option>
+                                            <option disabled value="transmission">transmission</option>
                                             {uniqueTransmissons.map(transmission => (
                                                 <option key={transmission} value={transmission}>
                                                     {transmission}
@@ -133,7 +141,10 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                         </Form.Select>
                                     </div>
                                     <div className="form__actions d-flex justify-content-end align-items-center">
-                                        <button type="submit" className="form__reset__btn">
+                                        <button type="reset" className="form__reset__btn" onClick={()=>{
+                                            setCurrentCars(cars);
+                                            navigate("/new-cars")
+                                        }}>
                                             <i className="bi bi-arrow-counterclockwise fs-5"></i>
                                             reset
                                         </button>

@@ -10,6 +10,7 @@ import Error from '../../components/error/Error';
 import DynamicMapWeb from '../../components/dynamicMapWeb/DynamicMapWeb';
 
 export default function NewCar() {
+
   const [showContent, setShowContent] = useState(true);
 
   const { data, isError, error, isLoading } = useQuery({
@@ -29,7 +30,6 @@ export default function NewCar() {
     },
 });
 
-console.log(data);
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowContent(false);

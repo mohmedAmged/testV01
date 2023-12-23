@@ -25,7 +25,6 @@ export default function SingleProductSec({carDetails}) {
         { "label": 'cars', "route": '/cars' },
         { "label": `${carDetails?.name}`, "route": `/car-info/${carDetails?.id}` },
     ];
-    console.log(carDetails?.carFeatures?.comfort);
     return (
         <>
             <DynamicHeroSec backgroundImage={heroBg} title="NEW BMW 3 SERIES" content="NEW BMW 3 SERIES" />
@@ -434,7 +433,7 @@ export default function SingleProductSec({carDetails}) {
                                             <div className="form__submit">
                                                 <div className="mb-3 form-check d-flex align-items-center">
                                                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                                    <label className="form-check-label" for="exampleCheck1">I accept the privacy policy</label>
+                                                    <label className="form-check-label" htmlFor="exampleCheck1">I accept the privacy policy</label>
                                                 </div>
                                                 <button type="submit" className="btn btn-primary">Send Message</button>
                                             </div>

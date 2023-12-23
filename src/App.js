@@ -33,8 +33,7 @@ function App() {
       <Route path='/' element={<MyHome/>}/>
       {/* home for valuereach progres.. */}
       <Route path='/cars' element={<MyHome/>}/>
-      <Route path='/new-cars' element={<NewCar/>}/>
-      {/* <Route path='/new-cars/:slug' element={<NewCar/>}/> */}
+      <Route path={`/new-cars` || `/new-cars?:slug`} element={<NewCar/>}/>
       <Route path='/car-Info/:carId' element={<SingleProductPage />}/>
       <Route path='/discover' element={<DiscoverHome />}/>
       <Route path='/discover/category/:categoryName' element={<DiscoverCategoryPage />}/>

@@ -3,7 +3,6 @@ import './recentSec.css'
 import { NavLink } from 'react-router-dom'
 import ProductCard from '../productCard/ProductCard'
 export default function RecentSec({cars}) {
-    console.log(cars)
     return (
         <div className='recent__Sec'>
             <div className="container">

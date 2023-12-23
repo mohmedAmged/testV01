@@ -46,7 +46,7 @@ export default function MyFooter() {
                 <div className="myFooter__bottom">
                     <div className="row">
                         <div className="col-lg-8 col-sm-8">
-                            <div class="copyright__text"> Copyright © 2023. ValuReach – by ValuReach Team
+                            <div className="copyright__text"> Copyright © 2023. ValuReach – by ValuReach Team
                             </div>
                         </div>
                         <div className="col-lg-4 col-sm-4 myFooter__menu__flex">
