@@ -119,7 +119,7 @@ export default function UserProfileSec() {
                         <div className="Coin__Sec" >
                             
                             <div className="row">
-                                <div className="col-lg-8">
+                                <div className="col-lg-6">
                                     <div className="coin__score__card">
                                         <div className="score__number">
                                             1,286
