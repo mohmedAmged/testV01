@@ -331,14 +331,14 @@ export default function SingleProductSec({carDetails}) {
                                             <img src={avatar} alt="" />
                                         </div>
                                         <div className="user__name">
-                                            <h3>talal ali</h3>
-                                            <p>private seller</p>
+                                            <h3>{carDetails?.carFeatures?.dealer.name}</h3>
+                                            <p>{carDetails?.carFeatures?.dealer.type} seller</p>
                                         </div>
                                     </div>
                                     <div className="dellar__contacts">
                                         <div className="dellar__contact__item phone">
                                             <i className="bi bi-telephone-fill"></i>
-                                            <span>(888) 999-9999</span>
+                                            <span>{carDetails?.carFeatures?.dealer.phone}</span>
                                         </div>
                                         <div className="dellar__contact__item whatsapp">
                                             <a href="https://wa.me/01005322028" target="_blank">
@@ -349,7 +349,7 @@ export default function SingleProductSec({carDetails}) {
                                             </a>
                                         </div>
                                         <div className="dellar__contact__item mail">
-                                            <a href="mailto:talalhali86@gmail.com">
+                                            <a href={`mailto:${carDetails?.carFeatures?.dealer.email}`}>
                                                 <div className="email__btn">
                                                     <i className="bi bi-envelope-fill"></i>
                                                     <span>Message To Dealer</span>
@@ -360,7 +360,7 @@ export default function SingleProductSec({carDetails}) {
                                     <div className="dellar__location">
                                         <div className="single__location__text">
                                             <i className="bi bi-geo-alt-fill"></i>
-                                            <span>Boston, MA, United States</span>
+                                            <span>{carDetails?.carFeatures?.dealer.address}</span>
                                         </div>
                                         <div className="map__Sec">
                                             <iframe
@@ -389,17 +389,17 @@ export default function SingleProductSec({carDetails}) {
                                             <img src={avatar} alt="" />
                                         </div>
                                         <div className="user__name">
-                                            <h3>talal ali</h3>
-                                            <p>private seller</p>
+                                            <h3>{carDetails?.carFeatures?.dealer.name}</h3>
+                                            <p>{carDetails?.carFeatures?.dealer.type} seller</p>
                                         </div>
                                     </div>
                                     <div className="dellar__contacts">
                                         <div className="dellar__contact__item phone">
                                             <i className="bi bi-telephone-fill"></i>
-                                            <span>(888) 999-9999</span>
+                                            <span>{carDetails?.carFeatures?.dealer.phone}</span>
                                         </div>
                                         <div className="dellar__contact__item whatsapp">
-                                            <a href="https://wa.me/01005322028" target="_blank">
+                                            <a href={`https://wa.me/${carDetails?.carFeatures?.dealer.phone}`} target="_blank">
                                                 <div className="whatsapp__btn">
                                                     <i className="bi bi-whatsapp"></i>
                                                     <span>CHAT VIA WHATSAPP</span>

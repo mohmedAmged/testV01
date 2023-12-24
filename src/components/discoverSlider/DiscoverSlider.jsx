@@ -1,7 +1,9 @@
 import React from 'react'
 import './discoverSlider.css'
+import Autoplay from "../../../node_modules/swiper/modules/autoplay.mjs";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import "swiper/css/autoplay";
 export default function DiscoverSlider({ title, subtitle, slides }) {
     return (
         // <div className='discoverSlider__handler'>
@@ -124,8 +126,15 @@ export default function DiscoverSlider({ title, subtitle, slides }) {
                     <div className="col-lg-12">
                         <div className="discoverSlider__cards">
                             <Swiper
+                                modules={[Autoplay]}
                                 slidesPerView={1}
                                 spaceBetween={10}
+                                autoplay={{
+                                    delay: 2500,
+                                    pauseOnMouseEnter: true,
+                                    disableOnInteraction: false
+                                }}
+                                loop
                                 breakpoints={{
                                     320: {
 

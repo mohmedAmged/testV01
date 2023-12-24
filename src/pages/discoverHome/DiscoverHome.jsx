@@ -17,32 +17,36 @@ import gym2 from '../../assets/discoverHomeImg/health.jpg'
 const slidesOne = [
   { "id": 1, "category": 'Fine Dining', "image": foodImg },
   { "id": 2, "category": 'Italian Cuisine', "image": foodImg },
-  { "id": 3, "category": 'Seafood Delights', "image": foodImg },
-  { "id": 3, "category": 'Seafood Delights', "image": foodImg },
-  { "id": 3, "category": 'Seafood Delights', "image": foodImg },
-  { "id": 3, "category": 'Seafood Delights', "image": foodImg },
-  { "id": 3, "category": 'Seafood Delights', "image": foodImg }
+  { "id": 3, "category": 'Seafood Delights1', "image": foodImg },
+  { "id": 4, "category": 'Seafood Delights2', "image": foodImg },
+  { "id": 5, "category": 'Seafood Delights3', "image": foodImg },
+  { "id": 6, "category": 'Seafood Delights4', "image": foodImg },
+  { "id": 7, "category": 'Seafood Delights5', "image": foodImg }
 ];
 const slidesTwo = [
   { "id": 1, "category": 'Fine Dining', "image": burger },
   { "id": 2, "category": 'Italian Cuisine', "image": burger },
-  { "id": 3, "category": 'Seafood Delights', "image": burger },
-  { "id": 3, "category": 'Seafood Delights', "image": burger },
-  { "id": 3, "category": 'Seafood Delights', "image": burger },
-  { "id": 3, "category": 'Seafood Delights', "image": burger },
-  { "id": 3, "category": 'Seafood Delights', "image": burger }
+  { "id": 3, "category": 'Seafood Delights1', "image": burger },
+  { "id": 4, "category": 'Seafood Delights2', "image": burger },
+  { "id": 5, "category": 'Seafood Delights3', "image": burger },
+  { "id": 6, "category": 'Seafood Delights4', "image": burger },
+  { "id": 7, "category": 'Seafood Delights5', "image": burger }
 ];
 const slidesThree = [
   { "id": 1, "category": 'cafe one', "image": cafe1 },
   { "id": 2, "category": 'cafe two', "image": cafe2 },
   { "id": 3, "category": 'cafe three', "image": cafe3 },
-  { "id": 3, "category": 'cafe four', "image": cafe4 },
+  { "id": 5, "category": 'cafe four', "image": cafe1 },
+  { "id": 6, "category": 'cafe five', "image": cafe2 },
+  { "id": 7, "category": 'cafe six', "image": cafe4 },
 ];
 const slidesFour = [
   { "id": 1, "category": 'gym one', "image": gym },
   { "id": 2, "category": 'gym two', "image": gym1 },
   { "id": 3, "category": 'gym three', "image": gym2 },
-  { "id": 1, "category": 'gym one', "image": gym },
+  { "id": 4, "category": 'gym four', "image": gym },
+  { "id": 5, "category": 'gym five', "image": gym1 },
+  { "id": 6, "category": 'gym six', "image": gym2 },
 ];
 export default function DiscoverHome() {
   return (

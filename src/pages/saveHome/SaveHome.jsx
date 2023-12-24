@@ -23,6 +23,8 @@ const saveSlideOne = [
     { "id": 3, "tagName": "Exclusive", "couponImg": coupon3, "couponOffer": "30% Off Your Entire Cart", "expDate": "06-10-2025", "couponNum": 1264 },
     { "id": 4, "tagName": "Sponsered", "couponImg": coupon4, "couponOffer": "70% Off Your Entire Cart", "expDate": "07-05-2025", "couponNum": 1854 },
     { "id": 5, "tagName": "Exclusive", "couponImg": coupon1, "couponOffer": "5% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 9054 },
+    { "id": 6, "tagName": "Sponsered", "couponImg": coupon4, "couponOffer": "70% Off Your Entire Cart", "expDate": "07-05-2025", "couponNum": 1854 },
+    { "id": 7, "tagName": "Exclusive", "couponImg": coupon3, "couponOffer": "30% Off Your Entire Cart", "expDate": "06-10-2025", "couponNum": 1264 },
 ]
 const couponCardOne = [
     { "icon": icon1, "Title": "Tech Treats", "couponNum": 1, "id": 1 },

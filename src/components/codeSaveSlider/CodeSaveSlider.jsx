@@ -1,7 +1,10 @@
 import React from 'react'
 import './codeSaveSlider.css'
 import { NavLink } from 'react-router-dom'
+import Autoplay from "../../../node_modules/swiper/modules/autoplay.mjs";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import "swiper/css/autoplay";
 import Swal from 'sweetalert2';
 import { scrollToTop } from '../../functions/scrollToTop';
 export default function CodeSaveSlider({ title, saveSlides }) {
@@ -94,8 +97,15 @@ export default function CodeSaveSlider({ title, saveSlides }) {
                     <div className="col-lg-12">
                         <div className="couponSlider__cards">
                             <Swiper
+                                modules={[Autoplay]}
                                 slidesPerView={1}
                                 spaceBetween={10}
+                                autoplay={{
+                                    delay: 2500,
+                                    pauseOnMouseEnter: true,
+                                    disableOnInteraction: false
+                                }}
+                                loop
                                 breakpoints={{
                                     320: {
 
