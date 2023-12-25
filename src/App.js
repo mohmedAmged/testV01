@@ -2,8 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import MyNav from './components/myNav/MyNav';
 import { Route, Routes } from 'react-router-dom';
-import MyHome from './pages/myHome/CarHome';
-import CarHome from './pages/myHome/CarHome';
+import CarHome from './pages/carHome/CarHome';
 import NewCar from './pages/newCarPage/NewCar';
 import SingleProductPage from './pages/singleProductPage/SingleProductPage';
 import DiscoverHome from './pages/discoverHome/DiscoverHome';
@@ -13,6 +12,7 @@ import ScrollToTopButton from './components/scrollToTopButton/ScrollToTopButton'
 import SaveHome from './pages/saveHome/SaveHome';
 import SaveSubPage from './pages/saveSubPage/SaveSubPage';
 import UserDashBoard from './pages/userDashboard/UserDashBoard';
+import MyMainHome from './pages/myMainHome/MyMainHome';
 
 function App() {
   const [scrollToggle, setScrollToggle] = useState(false);
@@ -31,7 +31,7 @@ function App() {
     <ScrollToTopButton />
     <Routes>
       {/* home for valuereach progres.. */}
-      <Route path='/' element={<MyHome/>}/>
+      <Route path='/' element={<MyMainHome/>}/>
       {/* home for valuereach progres.. */}
       <Route path='/cars' element={<CarHome/>}/>
       <Route path={`/new-cars` || `/new-cars?:slug`} element={<NewCar/>}/>

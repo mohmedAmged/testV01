@@ -1,0 +1,65 @@
+.mainHomeSlider__card__item{
+    padding: 15px 18px;
+    border-radius: 1rem;
+    position: relative;
+    height: 450px;
+}
+.mainHomeSlider__card__item.first__Bg{
+    background-color: #3837e4;
+    color: #fff;
+}
+.mainHomeSlider__card__item.second__Bg{
+    background-color: #d2ffd5;
+    color: #00493e;
+}
+.mainHomeSlider__card__item.third__Bg{
+    background-color: #7f5ffa;
+    color: #d6ffea;
+}
+.mainHomeSlider__card__item.forth__Bg{
+    background-color: #001942;
+    color: #fff;
+}
+.mainHomeSlider__card__title h2{
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.mainHomeSlider__card__links{
+    margin-bottom: 60px;
+}
+.mainHomeSlider__card__links ul{
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+}
+.mainHomeSlider__card__links ul li{
+    margin-bottom: 7px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.mainHomeSlider__card__links ul li span{
+    font-weight: 600;
+    line-height: 1;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+.mainHomeSlider__card__links ul li i{
+    margin-right: 8px;
+    font-size: 23px;
+}
+.mainHomeSlider__card__icon{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+@media screen and (max-width: 992px) {
+    .mainHomeSlider__card__title h2{
+        font-size: 40px;
+        line-height: 40px;
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+}

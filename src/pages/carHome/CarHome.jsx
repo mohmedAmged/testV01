@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import HeroSec from '../../components/myHeroSec/HeroSec';
-import './myHome.css';
 import MainTypeSec from '../../components/mainTypesSec/MainTypeSec';
 import CarInterestSec from '../../components/carInterestSec/CarInterestSec';
 import BrowseMakeSec from '../../components/browseMakeSec/BrowseMakeSec';
