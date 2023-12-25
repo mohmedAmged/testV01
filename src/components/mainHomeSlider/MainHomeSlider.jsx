@@ -7,12 +7,12 @@ import "swiper/css/autoplay";
 import { NavLink } from 'react-router-dom';
 import { scrollToTop } from '../../functions/scrollToTop';
 export default function MainHomeSlider({ homeSliderItems }) {
-    console.log(homeSliderItems);
+    // console.log(homeSliderItems);
     return (
         <div className='mainHomeSlider__handler my-5'>
             <div className="container">
                 <div className="mainHomeSlider__cards">
-                    <Swiper
+                    {/* <Swiper
                         modules={[Autoplay]}
                         slidesPerView={1}
                         spaceBetween={10}
@@ -46,6 +46,15 @@ export default function MainHomeSlider({ homeSliderItems }) {
                         {
                             homeSliderItems.map((item) => (
                                 <SwiperSlide key={item.title}>
+                                   
+                                </SwiperSlide>
+                            ))
+                        }
+                    </Swiper> */}
+                    <div className="row">
+                        {
+                            homeSliderItems.map((item) => (
+                                <div className="col-lg-6 col-md-6 col-sm-12 mb-5" key={item.title}>
                                     <div className={`mainHomeSlider__card__item ${item.cardBg}`}>
                                         <div className="mainHomeSlider__card__title mb-4">
                                             <h2>
@@ -79,10 +88,12 @@ export default function MainHomeSlider({ homeSliderItems }) {
                                             </NavLink>
                                         </div>
                                     </div>
-                                </SwiperSlide>
+                                </div>
                             ))
                         }
-                    </Swiper>
+
+
+                    </div>
                 </div>
             </div>
         </div>

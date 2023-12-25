@@ -1,8 +1,7 @@
 import React from 'react'
 import './myMainHome.css'
-import DynamicHero from '../../components/dynamicHeroPart/DynamicHero'
-
 import MainHomeSlider from '../../components/mainHomeSlider/MainHomeSlider'
+import HomeMainHero from '../../components/homeMainHero/HomeMainHero'
 const homeSliderItems =[
     {
         "title" : "Warranty cars",
@@ -97,7 +96,7 @@ const homeSliderItems =[
 export default function MyMainHome() {
     return (
         <div className='mainHome__handler'>
-            <DynamicHero 
+            <HomeMainHero
             title="Infinite Horizons: Your Gateway to Limitless Discoveries and Opportunities!"
             description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" />
             <MainHomeSlider homeSliderItems={homeSliderItems}/>

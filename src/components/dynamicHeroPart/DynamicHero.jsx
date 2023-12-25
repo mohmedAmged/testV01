@@ -12,19 +12,6 @@ export default function DynamicHero({ title, description}) {
                                 <h1>
                                     {title}
                                 </h1>
-                                {/* {
-                                    link ? (
-                                        <p>
-                                            <NavLink className="nav-link">
-                                                {description}
-                                            </NavLink>
-                                        </p>
-                                    ) : (
-                                        <p>
-                                            {description}
-                                        </p>
-                                    )
-                                } */}
                                 <p>
                                     {description}
                                 </p>
