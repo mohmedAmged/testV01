@@ -2,9 +2,18 @@ import React from 'react'
 import './myMainHome.css'
 import MainHomeSlider from '../../components/mainHomeSlider/MainHomeSlider'
 import HomeMainHero from '../../components/homeMainHero/HomeMainHero'
-const homeSliderItems =[
+import DiscoverSlider from '../../components/discoverSlider/DiscoverSlider'
+import cafe1 from '../../assets/discoverHomeImg/cafe1.jpg'
+import cafe2 from '../../assets/discoverHomeImg/cafe2.jpg'
+import cafe3 from '../../assets/discoverHomeImg/cafe3.jpg'
+import cafe4 from '../../assets/discoverHomeImg/cafe4.jpg'
+import burger from '../../assets/discoverHomeImg/food3.jpg'
+import gym from '../../assets/discoverHomeImg/health2.jpg'
+import gym1 from '../../assets/discoverHomeImg/health1.jpg'
+import gym2 from '../../assets/discoverHomeImg/health.jpg'
+const homeSliderItems = [
     {
-        "title" : "Warranty cars",
+        "title": "Warranty cars",
         "cardBg": "first__Bg",
         "mainLink": "/cars",
         "subCategory": [
@@ -17,10 +26,10 @@ const homeSliderItems =[
                 "subLink": "/new-cars"
             },
         ],
-        
+
     },
     {
-        "title" : "Discover everything",
+        "title": "Discover everything",
         "mainLink": "/discover",
         "cardBg": "second__Bg",
         "subCategory": [
@@ -47,7 +56,7 @@ const homeSliderItems =[
         ],
     },
     {
-        "title" : "save anything",
+        "title": "save anything",
         "mainLink": "/save",
         "cardBg": "third__Bg",
         "subCategory": [
@@ -78,7 +87,7 @@ const homeSliderItems =[
         ],
     },
     {
-        "title" : "gain points",
+        "title": "gain points",
         "mainLink": "/user/dashboard",
         "cardBg": "forth__Bg",
         "subCategory": [
@@ -93,13 +102,41 @@ const homeSliderItems =[
         ],
     },
 ]
+const slidesThree = [
+    { "id": 1, "category": 'cafe one', "image": cafe1 },
+    { "id": 2, "category": 'cafe two', "image": cafe2 },
+    { "id": 3, "category": 'cafe three', "image": cafe3 },
+    { "id": 5, "category": 'cafe four', "image": cafe1 },
+    { "id": 6, "category": 'cafe five', "image": cafe2 },
+    { "id": 7, "category": 'cafe six', "image": cafe4 },
+];
+const slidesTwo = [
+    { "id": 1, "category": 'Fine Dining', "image": burger },
+    { "id": 2, "category": 'Italian Cuisine', "image": burger },
+    { "id": 3, "category": 'Seafood Delights1', "image": burger },
+    { "id": 4, "category": 'Seafood Delights2', "image": burger },
+    { "id": 5, "category": 'Seafood Delights3', "image": burger },
+    { "id": 6, "category": 'Seafood Delights4', "image": burger },
+    { "id": 7, "category": 'Seafood Delights5', "image": burger }
+];
+const slidesFour = [
+    { "id": 1, "category": 'gym one', "image": gym },
+    { "id": 2, "category": 'gym two', "image": gym1 },
+    { "id": 3, "category": 'gym three', "image": gym2 },
+    { "id": 4, "category": 'gym four', "image": gym },
+    { "id": 5, "category": 'gym five', "image": gym1 },
+    { "id": 6, "category": 'gym six', "image": gym2 },
+];
 export default function MyMainHome() {
     return (
-        <div className='mainHome__handler'>
+        <div className='mainHome__handler mb-4'>
             <HomeMainHero
-            title="Infinite Horizons: Your Gateway to Limitless Discoveries and Opportunities!"
-            description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" />
-            <MainHomeSlider homeSliderItems={homeSliderItems}/>
+                title="Infinite Horizons: Your Gateway to Limitless Discoveries and Opportunities!"
+                description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" />
+            <MainHomeSlider homeSliderItems={homeSliderItems} />
+            <DiscoverSlider title=" Most recommend cafe in country" subtitle="Winning flavors for every appetite" slides={slidesThree} />
+            <DiscoverSlider title=" Most recommend burgers in country" subtitle="Winning flavors for every appetite" slides={slidesTwo} />
+            <DiscoverSlider title="Most recommended gym fit" subtitle="Winning flavors for every appetite" slides={slidesFour} />
         </div>
     )
 }
