@@ -134,7 +134,7 @@ export default function DiscoverSlider({ title, subtitle, slides }) {
                                     pauseOnMouseEnter: true,
                                     disableOnInteraction: false
                                 }}
-                                loop
+                                // loop
                                 breakpoints={{
                                     320: {
 
