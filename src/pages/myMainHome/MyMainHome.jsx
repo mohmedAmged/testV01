@@ -11,6 +11,9 @@ import burger from '../../assets/discoverHomeImg/food3.jpg'
 import gym from '../../assets/discoverHomeImg/health2.jpg'
 import gym1 from '../../assets/discoverHomeImg/health1.jpg'
 import gym2 from '../../assets/discoverHomeImg/health.jpg'
+import { useQuery } from '@tanstack/react-query'
+import { baseURL } from '../../functions/BaseURL'
+import RecentSec from '../../components/recentSec/RecentSec'
 const homeSliderItems = [
     {
         "title": "Warranty cars",
@@ -128,12 +131,29 @@ const slidesFour = [
     { "id": 6, "category": 'gym six', "image": gym2 },
 ];
 export default function MyMainHome() {
+    const { data } = useQuery({
+        queryKey: ['car-home'],
+        queryFn: async () => {
+          const fetchData = await fetch(baseURL);
+          const response = await fetchData.json();
+          return response.data;
+        },
+      });
+      const updatedCarSlide = data?.cars?.map(car => ({
+        id: car.id,
+        category: car.name,
+        image: car.main_image
+      })) || [];
+      const carSlide = [];
+    const mergedCarSlide = [...carSlide, ...updatedCarSlide];
+    // console.log(data.cars[0]);
     return (
         <div className='mainHome__handler mb-4'>
             <HomeMainHero
                 title="Infinite Horizons: Your Gateway to Limitless Discoveries and Opportunities!"
                 description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" />
             <MainHomeSlider homeSliderItems={homeSliderItems} />
+            <DiscoverSlider title="Most recent cars" subtitle="warranty-valid cars" slides={mergedCarSlide} />
             <DiscoverSlider title=" Most recommend cafe in country" subtitle="Winning flavors for every appetite" slides={slidesThree} />
             <DiscoverSlider title=" Most recommend burgers in country" subtitle="Winning flavors for every appetite" slides={slidesTwo} />
             <DiscoverSlider title="Most recommended gym fit" subtitle="Winning flavors for every appetite" slides={slidesFour} />
