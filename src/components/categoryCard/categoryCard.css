@@ -1,5 +1,7 @@
 .discover__category__card__box{
     margin-bottom: 30px;
+    /* height: 300px; */
+    position: relative;
 }
 .discover__category__card__box figure{
     border: 1px solid #e0e0e0;
@@ -26,16 +28,23 @@
     height: 50px;
     border-radius: 5px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--primary-black);
 }
-.discover__category__card__box span i{
-    font-size: 24px;
-    line-height: 50px;
-    color: #ffffff;
+
+.discover__category__card__box span .ads__icon{
+    width: 30px;
+    height: 30px;
+
 }
 .discover__categ__info{
     background: #fafafa;
     padding: 25px 30px;
+    position: relative;
+    overflow: hidden;
+    height: 200px;
 }
 .discover__categ__info h4{
     line-height: 18px;
@@ -75,6 +84,8 @@
     color: #143139;
     text-transform: capitalize;
     transition: all ease-in .1s;
+    position: absolute;
+    bottom: 15px;
 }
 .discover__view i{
     margin-left: 10px;

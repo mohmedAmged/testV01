@@ -11,7 +11,8 @@ export default function CategoryCard({ category, imgSrc, adsCount, subcategories
                         <img src={imgSrc} alt="" />
                         <div className="overlay"></div>
                         <span>
-                            <i className={iconclassName}></i>
+                            {/* <i className={iconclassName}></i> */}
+                            <img className='ads__icon' src={iconclassName} alt="" />
                         </span>
                     </div>
                     <div className="discover__categ__info">
@@ -28,7 +29,7 @@ export default function CategoryCard({ category, imgSrc, adsCount, subcategories
                                 <li key={index}>
                                     <NavLink className="nav-link">
                                         <i className="bi bi-chevron-right"></i>
-                                        {subcategory}
+                                        {subcategory.sub_name}
                                     </NavLink>
                                 </li>
                             ))}

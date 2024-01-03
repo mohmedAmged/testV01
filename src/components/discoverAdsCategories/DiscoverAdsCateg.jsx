@@ -77,7 +77,8 @@ const cardsItems = [
   
   
 ]
-export default function DiscoverAdsCateg() {
+export default function DiscoverAdsCateg({adsFetched}) {
+  console.log(adsFetched);
   return (
     <div className='discover__Ads__categories__handler mt-5'>
       <div className="container">
@@ -92,13 +93,24 @@ export default function DiscoverAdsCateg() {
           </div>
         </div>
         <div className="row">
-          {
+          {/* {
             cardsItems.map((el)=>{
           return(
           <CategoryCard  category={el.title}
           imgSrc={el.image}
           adsCount={el.subtit}
           subcategories={el.list}
+          iconclassName={el.icon}/>
+          )
+            })
+          } */}
+          {
+          adsFetched?.map((el)=>{
+          return(
+          <CategoryCard  category={el.name}
+          imgSrc={el.image}
+          adsCount={el.discoversCount}
+          subcategories={el.subCategories}
           iconclassName={el.icon}/>
           )
             })

@@ -12,7 +12,7 @@ export default function MainHomeSlider({ homeSliderItems }) {
                         {
                             homeSliderItems.map((item) => (
                                 <div className="col-lg-6 col-md-6 col-sm-12 mb-5" key={item.title}>
-                                    <div className={`mainHomeSlider__card__item ${item.cardBg}`}>
+                                    <div className={`mainHomeSlider__card__item ${item.cardBg} `}>
                                         <div className="mainHomeSlider__card__title mb-4">
                                             <h2>
                                                 {item.title}

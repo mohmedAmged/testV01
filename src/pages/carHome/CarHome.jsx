@@ -46,7 +46,7 @@ export default function MyHome() {
           <BrowseMakeSec browserItems={data.makes}  />
           <EcoRideSec />
           <RecentSec cars={data.cars}  />
-          <BriefAboutUs />
+          {/* <BriefAboutUs /> */}
         </>
       }
     </>
