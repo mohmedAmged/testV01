@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function AdsCard({ discoverData }) {
@@ -7,6 +7,15 @@ export default function AdsCard({ discoverData }) {
     const handleIndicatorHover = (index) => {
         setActiveIndicator(index);
     };
+
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          setActiveIndicator((prev) => (prev + 1) % discoverData?.discover_images.length);
+        }, 4000); // Change image every 3 seconds (adjust as needed)
+    
+        return () => clearInterval(interval); // Cleanup on component unmount
+      }, [discoverData]);
 
     const getImageSource = () => {
         return discoverData?.discover_images[activeIndicator]?.image;
