@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { scrollToTop } from '../../functions/scrollToTop';
 // import logo1 from '../../assets/logo/weblogo.png'
 import logo2 from '../../assets/logo/weblogo copy.png'
-export default function MyNav({ scrollToggle }) {
+export default function MyNav({ scrollToggle, countriesData }) {
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     function handleOffcanvasToggle() {
         // setShowOffcanvas(!showOffcanvas);
@@ -14,7 +14,7 @@ export default function MyNav({ scrollToggle }) {
     }
     const closeOffcanvas = () => {
         setShowOffcanvas(false);
-      };
+    };
     return (
         <div>
             <Navbar expand="lg" className={`nav__Bg ${scrollToggle ? "nav__fixed py-3 navTransformationDown" : "nav__absolute pb-3"} align-items-center`}>
@@ -91,28 +91,42 @@ export default function MyNav({ scrollToggle }) {
                                 Engage
                             </NavLink>
                         </Nav>
-                        <Nav>
+                        <Nav>  
                             <NavLink onClick={() => {
-                                    scrollToTop();
-                                }}
+                                scrollToTop();
+                            }}
                                 className="nav-link nav__link__style"
                                 to="/">
                                 <div className='btn__Car d-flex justify-content-center align-items-center'>
-                                <i className="bi bi-folder-plus fs-6"></i>
+                                    <i className="bi bi-folder-plus fs-6"></i>
                                     <span>
-                                    Sign Up
+                                        Sign Up
                                     </span>
                                 </div>
+                            </NavLink>
+                            <NavLink
+                                className="nav-link nav__link__style"
+                                to="">
+                                <select className='select__country__style'>
+                                <option disabled>Select Country</option>
+                                    {
+                                        countriesData?.map((country)=>(
+                                            <option className='select__country__option__style' key={country?.id} value={country?.name} title={country?.name}>
+                                                {country?.code}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
                             </NavLink>
                         </Nav>
                     </Navbar.Collapse>
                     {/* end navbar min-width 992px */}
                     {/* start navbar min-width 320px */}
-                    <Navbar.Offcanvas 
-                    id="offcanvasNavbar" className='Navbar__offCanvas__none__on__lg' aria-labelledby="offcanvasNavbarLabel"
-                    show={showOffcanvas}
-                    onHide={handleOffcanvasToggle}
-                    placement="start">
+                    <Navbar.Offcanvas
+                        id="offcanvasNavbar" className='Navbar__offCanvas__none__on__lg' aria-labelledby="offcanvasNavbarLabel"
+                        show={showOffcanvas}
+                        onHide={handleOffcanvasToggle}
+                        placement="start">
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title className='offCanvas__head' id="offcanvasNavbarLabel">
                                 <NavLink to="/" className="px-4">
@@ -122,88 +136,105 @@ export default function MyNav({ scrollToggle }) {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="mx-auto" >
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                    closeOffcanvas();
-                                }}
-                                aria-label="Close"
-                                className="nav-link  nav__link__style"
-                                to="/user/dashboard">
-                                Dashboard
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                    closeOffcanvas();
-                                }}
-                                aria-label="Close"
-                                className="nav-link  nav__link__style"
-                                to="/cars">
-                                cars
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                    closeOffcanvas();
-                                }
+                                <NavLink
+                                    onClick={() => {
+                                        scrollToTop();
+                                        closeOffcanvas();
+                                    }}
+                                    aria-label="Close"
+                                    className="nav-link  nav__link__style"
+                                    to="/user/dashboard">
+                                    Dashboard
+                                </NavLink>
+                                <NavLink
+                                    onClick={() => {
+                                        scrollToTop();
+                                        closeOffcanvas();
+                                    }}
+                                    aria-label="Close"
+                                    className="nav-link  nav__link__style"
+                                    to="/cars">
+                                    cars
+                                </NavLink>
+                                <NavLink
+                                    onClick={() => {
+                                        scrollToTop();
+                                        closeOffcanvas();
+                                    }
 
-                                }
-                                className="nav-link  nav__link__style"
-                                to="/discover"
+                                    }
+                                    className="nav-link  nav__link__style"
+                                    to="/discover"
                                 >
-                                Discover
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                    closeOffcanvas();
-                                }
+                                    Discover
+                                </NavLink>
+                                <NavLink
+                                    onClick={() => {
+                                        scrollToTop();
+                                        closeOffcanvas();
+                                    }
 
-                                }
-                                className="nav-link  nav__link__style"
-                                to="/save">
-                                Save
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
+                                    }
+                                    className="nav-link  nav__link__style"
+                                    to="/save">
+                                    Save
+                                </NavLink>
+                                <NavLink
+                                    onClick={() => {
+                                        scrollToTop();
+                                        closeOffcanvas();
+                                    }}
+                                    className="nav-link  nav__link__style"
+                                    to="/realestate">
+                                    Raal Estate
+                                </NavLink>
+                                <NavLink
+                                    onClick={() => {
+                                        scrollToTop();
+                                        closeOffcanvas();
+                                    }}
+                                    className="nav-link  nav__link__style"
+                                    to="/contact">
+                                    Develop
+                                </NavLink>
+                                <NavLink
+                                    onClick={() => {
+                                        scrollToTop();
+                                        closeOffcanvas();
+                                    }}
+                                    className="nav-link  nav__link__style"
+                                    to="/contact">
+                                    Engage
+                                </NavLink>
+                                <NavLink onClick={() => {
                                     scrollToTop();
                                     closeOffcanvas();
                                 }}
-                                className="nav-link  nav__link__style"
-                                to="/realestate">
-                                Raal Estate
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                    closeOffcanvas();
-                                }}
-                                className="nav-link  nav__link__style"
-                                to="/contact">
-                                Develop
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                    closeOffcanvas();
-                                }}
-                                className="nav-link  nav__link__style"
-                                to="/contact">
-                                Engage
-                            </NavLink>
+                                    className="nav-link nav__link__style"
+                                    to="/">
+                                    <div className='btn__Car d-flex justify-content-center align-items-center'>
+                                        <i className="bi bi-folder-plus fs-6"></i>
+                                        <span>
+                                            Sign Up
+                                        </span>
+                                    </div>
+                                </NavLink>
                                 <NavLink onClick={() => {
                                     scrollToTop();
                                     closeOffcanvas();
                                 }}
                                 className="nav-link nav__link__style"
-                                to="/">
-                                <div className='btn__Car d-flex justify-content-center align-items-center'>
-                                <i className="bi bi-folder-plus fs-6"></i>
-                                    <span>
-                                    Sign Up
-                                    </span>
-                                </div>
+                                to="">
+                                <select className='select__country__style'>
+                                <option disabled>Select Country</option>
+                                    {
+                                        countriesData?.map((country)=>(
+                                            <option className='select__country__option__style' key={country?.id} value={country?.name} title={country?.name}>
+                                                {country?.code}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
                             </NavLink>
                             </Nav>
 

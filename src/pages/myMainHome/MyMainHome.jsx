@@ -3,17 +3,8 @@ import './myMainHome.css'
 import MainHomeSlider from '../../components/mainHomeSlider/MainHomeSlider'
 import HomeMainHero from '../../components/homeMainHero/HomeMainHero'
 import DiscoverSlider from '../../components/discoverSlider/DiscoverSlider'
-import cafe1 from '../../assets/discoverHomeImg/cafe1.jpg'
-import cafe2 from '../../assets/discoverHomeImg/cafe2.jpg'
-import cafe3 from '../../assets/discoverHomeImg/cafe3.jpg'
-import cafe4 from '../../assets/discoverHomeImg/cafe4.jpg'
-import burger from '../../assets/discoverHomeImg/food3.jpg'
-import gym from '../../assets/discoverHomeImg/health2.jpg'
-import gym1 from '../../assets/discoverHomeImg/health1.jpg'
-import gym2 from '../../assets/discoverHomeImg/health.jpg'
 import { useQuery } from '@tanstack/react-query'
 import { baseURL } from '../../functions/BaseURL'
-import RecentSec from '../../components/recentSec/RecentSec'
 const homeSliderItems = [
     {
         "title": "Warranty cars",
@@ -105,48 +96,31 @@ const homeSliderItems = [
         ],
     },
 ]
-const slidesThree = [
-    { "id": 1, "category": 'cafe one', "image": cafe1 },
-    { "id": 2, "category": 'cafe two', "image": cafe2 },
-    { "id": 3, "category": 'cafe three', "image": cafe3 },
-    { "id": 5, "category": 'cafe four', "image": cafe1 },
-    { "id": 6, "category": 'cafe five', "image": cafe2 },
-    { "id": 7, "category": 'cafe six', "image": cafe4 },
-];
-const slidesTwo = [
-    { "id": 1, "category": 'Fine Dining', "image": burger },
-    { "id": 2, "category": 'Italian Cuisine', "image": burger },
-    { "id": 3, "category": 'Seafood Delights1', "image": burger },
-    { "id": 4, "category": 'Seafood Delights2', "image": burger },
-    { "id": 5, "category": 'Seafood Delights3', "image": burger },
-    { "id": 6, "category": 'Seafood Delights4', "image": burger },
-    { "id": 7, "category": 'Seafood Delights5', "image": burger }
-];
-const slidesFour = [
-    { "id": 1, "category": 'gym one', "image": gym },
-    { "id": 2, "category": 'gym two', "image": gym1 },
-    { "id": 3, "category": 'gym three', "image": gym2 },
-    { "id": 4, "category": 'gym four', "image": gym },
-    { "id": 5, "category": 'gym five', "image": gym1 },
-    { "id": 6, "category": 'gym six', "image": gym2 },
-];
 export default function MyMainHome() {
     const { data } = useQuery({
         queryKey: ['car-home'],
         queryFn: async () => {
-          const fetchData = await fetch(baseURL);
-          const response = await fetchData.json();
-          return response.data;
+            const fetchData = await fetch(baseURL);
+            const response = await fetchData.json();
+            return response.data;
         },
-      });
-      const updatedCarSlide = data?.cars?.map(car => ({
+    });
+    const updatedCarSlide = data?.cars?.map(car => ({
         id: car.id,
         category: car.name,
         image: car.main_image
-      })) || [];
-      const carSlide = [];
+    })) || [];
+    const carSlide = [];
     const mergedCarSlide = [...carSlide, ...updatedCarSlide];
-    // console.log(data.cars[0]);
+
+    const discoverData = useQuery({
+        queryKey: ['discover-home-recomended-sub-categories'],
+        queryFn: async () => {
+            const fetchData = await fetch(`${baseURL}/recommend-sub-categories`);
+            const response = await fetchData.json();
+            return response.data;
+        },
+    });
     return (
         <div className='mainHome__handler mb-4'>
             <HomeMainHero
@@ -154,9 +128,18 @@ export default function MyMainHome() {
                 description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" />
             <MainHomeSlider homeSliderItems={homeSliderItems} />
             <DiscoverSlider title="Most recent cars" subtitle="warranty-valid cars" slides={mergedCarSlide} />
-            <DiscoverSlider title=" Most recommend cafe in country" subtitle="Winning flavors for every appetite" slides={slidesThree} />
-            <DiscoverSlider title=" Most recommend burgers in country" subtitle="Winning flavors for every appetite" slides={slidesTwo} />
-            <DiscoverSlider title="Most recommended gym fit" subtitle="Winning flavors for every appetite" slides={slidesFour} />
+            {discoverData?.data?.recommendedSubCategories?.map((subCategory, index) => (
+                <DiscoverSlider
+                    key={index}
+                    title={`Most recommended ${subCategory.name} in country`}
+                    subtitle="Discover the best places"
+                    slides={subCategory?.discovers?.map(discover => ({
+                        id: discover.discover_id,
+                        category: discover.discover_name,
+                        image: discover.discover_image,
+                    }))}
+                />
+            ))}
         </div>
     )
 }

@@ -64,7 +64,7 @@ console.log(carQuery.data);
       <>
         <DynamicHeroSec backgroundImage={heroBg} title="New Cars" content="New cars"/>
         <DynamicMapWeb links={links}  />
-        <ShopSec cars={carQuery.data.cars} makes={data?.makes} bodies={data?.bodies} priceQuery={priceQuery}/>
+        <ShopSec cars={carQuery?.data?.cars} makes={data?.makes} bodies={data?.bodies} priceQuery={priceQuery}/>
       </>
       
     }

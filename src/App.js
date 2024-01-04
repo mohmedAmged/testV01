@@ -13,6 +13,8 @@ import SaveHome from './pages/saveHome/SaveHome';
 import SaveSubPage from './pages/saveSubPage/SaveSubPage';
 import UserDashBoard from './pages/userDashboard/UserDashBoard';
 import MyMainHome from './pages/myMainHome/MyMainHome';
+import { useQuery } from '@tanstack/react-query';
+import { baseURL } from './functions/BaseURL';
 
 function App() {
   const [scrollToggle, setScrollToggle] = useState(false);
@@ -25,9 +27,17 @@ function App() {
     }
   });
 
+  const {data} = useQuery({
+    queryKey: ['countries'],
+    queryFn: async () => {
+      const fetchData = await fetch(`${baseURL}/countries`);
+      const response = await fetchData.json();
+      return response.data;
+    },
+  });
   return (
     <>
-    <MyNav scrollToggle={scrollToggle}/>
+    <MyNav countriesData={data?.countries} scrollToggle={scrollToggle}/>
     <ScrollToTopButton />
     <Routes>
       {/* home for valuereach progres.. */}
