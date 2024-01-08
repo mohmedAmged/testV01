@@ -5,7 +5,6 @@ import CarInterestSec from '../../components/carInterestSec/CarInterestSec';
 import BrowseMakeSec from '../../components/browseMakeSec/BrowseMakeSec';
 import EcoRideSec from '../../components/ecoRidesSec/EcoRideSec';
 import RecentSec from '../../components/recentSec/RecentSec';
-import BriefAboutUs from '../../components/briefAboutUs/BriefAboutUs';
 import { useQuery } from '@tanstack/react-query';
 import { baseURL } from '../../functions/BaseURL';
 import Loader from '../../components/loader/Loader';
@@ -13,12 +12,14 @@ import Error from '../../components/error/Error';
 
 export default function MyHome() {
   const [showContent, setShowContent] = useState(true);
+  const [currentData , setCurrentData] = useState(null)
 
-  const { data, isError, error, isLoading } = useQuery({
+  const { data , isError, error, isLoading } = useQuery({
     queryKey: ['car-home'],
     queryFn: async () => {
       const fetchData = await fetch(baseURL);
       const response = await fetchData.json();
+      setCurrentData(response.data)
       return response.data;
     },
   });
@@ -42,10 +43,10 @@ export default function MyHome() {
         <>
           <HeroSec />
           <MainTypeSec />
-          <CarInterestSec interestItems={data.bodies} />
-          <BrowseMakeSec browserItems={data.makes}  />
+          <CarInterestSec interestItems={currentData?.bodies} />
+          <BrowseMakeSec browserItems={currentData?.makes}  />
           <EcoRideSec />
-          <RecentSec cars={data.cars}  />
+          <RecentSec cars={currentData?.cars}  />
           {/* <BriefAboutUs /> */}
         </>
       }

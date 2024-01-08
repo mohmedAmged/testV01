@@ -1,0 +1,30 @@
+import React, { useEffect, useState } from 'react'
+import Loader from '../../components/loader/Loader';
+import FixedPopUp from '../../components/fixedPopUp/FixedPopUp';
+import HomeMainHero from '../../components/homeMainHero/HomeMainHero';
+
+export default function DefaultPage({countriesData ,setFirstRender}) {
+    const [showContent, setShowContent] = useState(true);
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setShowContent(false);
+        }, 800);
+        return () => clearTimeout(timeoutId);
+    });
+  return (
+    <>
+    {
+        (showContent) ?
+            <Loader />
+            : 
+                <div className='mainHome__handler position-relative'>
+                    <FixedPopUp setFirstRender={setFirstRender} countriesData={countriesData}/>
+                    <HomeMainHero
+                        title="Infinite Horizons: Your Gateway to Limitless Discoveries and Opportunities!"
+                        description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" 
+                    />
+                </div>
+    }
+</>
+  )
+}

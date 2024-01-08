@@ -1,10 +1,12 @@
-import React from 'react'
-import './myMainHome.css'
-import MainHomeSlider from '../../components/mainHomeSlider/MainHomeSlider'
-import HomeMainHero from '../../components/homeMainHero/HomeMainHero'
-import DiscoverSlider from '../../components/discoverSlider/DiscoverSlider'
-import { useQuery } from '@tanstack/react-query'
-import { baseURL } from '../../functions/BaseURL'
+import React, { useEffect, useState } from 'react';
+import './myMainHome.css';
+import MainHomeSlider from '../../components/mainHomeSlider/MainHomeSlider';
+import HomeMainHero from '../../components/homeMainHero/HomeMainHero';
+import DiscoverSlider from '../../components/discoverSlider/DiscoverSlider';
+import { useQuery } from '@tanstack/react-query';
+import { baseURL } from '../../functions/BaseURL';
+import Loader from "../../components/loader/Loader";
+import Error from '../../components/error/Error';
 const homeSliderItems = [
     {
         "title": "Warranty cars",
@@ -97,7 +99,7 @@ const homeSliderItems = [
     },
 ]
 export default function MyMainHome() {
-    const { data } = useQuery({
+    const { data, isLoading, isError } = useQuery({
         queryKey: ['car-home'],
         queryFn: async () => {
             const fetchData = await fetch(baseURL);
@@ -113,6 +115,14 @@ export default function MyMainHome() {
     const carSlide = [];
     const mergedCarSlide = [...carSlide, ...updatedCarSlide];
 
+    const [showContent, setShowContent] = useState(true);
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setShowContent(false);
+        }, 800);
+        return () => clearTimeout(timeoutId);
+    });
+
     const discoverData = useQuery({
         queryKey: ['discover-home-recomended-sub-categories'],
         queryFn: async () => {
@@ -121,25 +131,36 @@ export default function MyMainHome() {
             return response.data;
         },
     });
+
     return (
-        <div className='mainHome__handler mb-4'>
-            <HomeMainHero
-                title="Infinite Horizons: Your Gateway to Limitless Discoveries and Opportunities!"
-                description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" />
-            <MainHomeSlider homeSliderItems={homeSliderItems} />
-            <DiscoverSlider title="Most recent cars" subtitle="warranty-valid cars" slides={mergedCarSlide} />
-            {discoverData?.data?.recommendedSubCategories?.map((subCategory, index) => (
-                <DiscoverSlider
-                    key={index}
-                    title={`Most recommended ${subCategory.name} in country`}
-                    subtitle="Discover the best places"
-                    slides={subCategory?.discovers?.map(discover => ({
-                        id: discover.discover_id,
-                        category: discover.discover_name,
-                        image: discover.discover_image,
-                    }))}
-                />
-            ))}
-        </div>
+        <>
+            {
+                (isLoading || discoverData.isLoading || showContent) ?
+                    <Loader />
+                    : (discoverData.isError || isError) ?
+                        <Error /> :
+                        <div className='mainHome__handler position-relative'>
+                            <HomeMainHero
+                                title="Infinite Horizons: Your Gateway to Limitless Discoveries and Opportunities!"
+                                description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" />
+                                <>
+                                    <MainHomeSlider homeSliderItems={homeSliderItems} />
+                                    <DiscoverSlider title="Most recent cars" subtitle="warranty-valid cars" slides={mergedCarSlide} />
+                                    {discoverData?.data?.recommendedSubCategories?.map((subCategory, index) => (
+                                        <DiscoverSlider
+                                            key={index}
+                                            title={`Most recommended ${subCategory.name} in country`}
+                                            subtitle="Discover the best places"
+                                            slides={subCategory?.discovers?.map(discover => ({
+                                                id: discover.discover_id,
+                                                category: discover.discover_name,
+                                                image: discover.discover_image,
+                                            }))}
+                                        />
+                                    ))}
+                                </>
+                        </div>
+            }
+        </>
     )
 }

@@ -37,7 +37,7 @@ const carQuery = useQuery({
       return response.data;
   },
 });
-console.log(carQuery.data);
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowContent(false);

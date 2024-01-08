@@ -156,8 +156,8 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                             // }}
                                             // onClick={handleResetButtonClick}
                                             onClick={() => {
+                                                handleResetButtonClick();
                                                 scrollToTop();
-                                                handleResetButtonClick()
                                             }}
                                         >
                                             <i className="bi bi-arrow-counterclockwise fs-5"></i>

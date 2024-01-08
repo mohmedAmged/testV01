@@ -15,6 +15,8 @@ import UserDashBoard from './pages/userDashboard/UserDashBoard';
 import MyMainHome from './pages/myMainHome/MyMainHome';
 import { useQuery } from '@tanstack/react-query';
 import { baseURL } from './functions/BaseURL';
+import DefaultPage from './pages/defaultPage/DefaultPage';
+import PageNotFound from './pages/pageNotFound/PageNotFound';
 
 function App() {
   const [scrollToggle, setScrollToggle] = useState(false);
@@ -27,7 +29,7 @@ function App() {
     }
   });
 
-  const {data} = useQuery({
+  const { data } = useQuery({
     queryKey: ['countries'],
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/countries`);
@@ -35,24 +37,28 @@ function App() {
       return response.data;
     },
   });
+  const [firstRender, setFirstRender] = useState(true)
+  const currCountryCode = localStorage.getItem('curr-country')
   return (
     <>
-    <MyNav countriesData={data?.countries} scrollToggle={scrollToggle}/>
-    <ScrollToTopButton />
-    <Routes>
-      {/* home for valuereach progres.. */}
-      <Route path='/' element={<MyMainHome/>}/>
-      {/* home for valuereach progres.. */}
-      <Route path='/cars' element={<CarHome/>}/>
-      <Route path={`/new-cars` || `/new-cars?:slug`} element={<NewCar/>}/>
-      <Route path='/car-Info/:carId' element={<SingleProductPage />}/>
-      <Route path='/discover' element={<DiscoverHome />}/>
-      <Route path='/discover/category/:categoryName' element={<DiscoverCategoryPage />}/>
-      <Route path='/save' element={<SaveHome />}/>
-      <Route path='/save/:pageName' element={<SaveSubPage />}/>
-      <Route path='/user/dashboard' element={<UserDashBoard />}/>
-    </Routes>
-    <MyFooter />
+      <MyNav countriesData={data?.countries} scrollToggle={scrollToggle} />
+      <ScrollToTopButton />
+      <Routes>
+        {/* home for valuereach progres.. */}
+        <Route path='/' element={<DefaultPage countriesData={data?.countries} setFirstRender={setFirstRender} />} />
+        <Route path={`/${currCountryCode}`} element={<MyMainHome />} />
+        {/* home for valuereach progres.. */}
+        <Route path={`/${currCountryCode}/cars`} element={<CarHome />} />
+        <Route path={`/${currCountryCode}/new-cars` || `/${currCountryCode}/new-cars?:slug`} element={<NewCar />} />
+        <Route path={`/${currCountryCode}/car-Info/:carId`} element={<SingleProductPage />} />
+        <Route path={`/${currCountryCode}/discover`} element={<DiscoverHome />} />
+        <Route path={`/${currCountryCode}/discover/category/:categoryName`} element={<DiscoverCategoryPage />} />
+        <Route path={`/${currCountryCode}/save`} element={<SaveHome />} />
+        <Route path={`/${currCountryCode}/save/:pageName`} element={<SaveSubPage />} />
+        <Route path={`/${currCountryCode}/user/dashboard`} element={<UserDashBoard />} />
+        <Route path='*' element={<PageNotFound />} />
+      </Routes>
+      <MyFooter />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './discoverHome.css'
 import DynamicHero from '../../components/dynamicHeroPart/DynamicHero'
 import DiscoverAdsCateg from '../../components/discoverAdsCategories/DiscoverAdsCateg'
@@ -16,6 +16,8 @@ import DiscoverSlider from '../../components/discoverSlider/DiscoverSlider'
 // import gym2 from '../../assets/discoverHomeImg/health.jpg'
 import { useQuery } from '@tanstack/react-query'
 import { baseURL } from '../../functions/BaseURL'
+import Loader from '../../components/loader/Loader'
+import Error from '../../components/error/Error'
 // const slidesOne = [
 //   { "id": 1, "category": 'Fine Dining', "image": foodImg },
 //   { "id": 2, "category": 'Italian Cuisine', "image": foodImg },
@@ -52,7 +54,7 @@ import { baseURL } from '../../functions/BaseURL'
 //   { "id": 6, "category": 'gym six', "image": gym2 },
 // ];
 export default function DiscoverHome() {
-  const { data } = useQuery({
+  const { data ,isError , isLoading} = useQuery({
     queryKey: ['discover-home-recomended-categories'],
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/recommend-categories`);
@@ -76,40 +78,58 @@ export default function DiscoverHome() {
       return response.data;
     },
   });
+
+  const [showContent, setShowContent] = useState(true);
+  useEffect(() => {
+      const timeoutId = setTimeout(() => {
+          setShowContent(false);
+      }, 800);
+      return () => clearTimeout(timeoutId);
+  });
+
   return (
-    <div>
-      <DynamicHero title="Discover Everything: Your Ultimate Hub for All Things Extraordinary!"
-        description="Unleash curiosity and explore a world where every discovery is a journey in itself" />
+    <>
+    {
+      (showContent || isLoading || discoverData.isLoading || discoverHome.isLoading) ?
+      <Loader /> 
+      : (isError || discoverHome.isError || discoverData.isError) ?
+      <Error /> 
+      : 
+      <div>
+        <DynamicHero title="Discover Everything: Your Ultimate Hub for All Things Extraordinary!"
+          description="Unleash curiosity and explore a world where every discovery is a journey in itself" />
 
-      {data?.recommendedCategories?.map((category, index) => (
-        <DiscoverSlider
-          key={index}
-          title={`Most recommended ${category.name} categories`}
-          subtitle="Winning flavors for every appetite"
-          slides={category?.subCategories?.map(subCategory => ({
-            id: subCategory.sub_id,
-            category: subCategory.sub_name,
-            image: subCategory.sub_image,
-          }))}
-        />
-      ))}
+        {data?.recommendedCategories?.map((category, index) => (
+          <DiscoverSlider
+            key={index}
+            title={`Most recommended ${category.name} categories`}
+            subtitle="Winning flavors for every appetite"
+            slides={category?.subCategories?.map(subCategory => ({
+              id: subCategory.sub_id,
+              category: subCategory.sub_name,
+              image: subCategory.sub_image,
+            }))}
+          />
+        ))}
 
-      <DiscoverAdsCateg adsFetched={discoverHome?.data?.ads?.ads_categories}/>
+        <DiscoverAdsCateg adsFetched={discoverHome?.data?.ads?.ads_categories}/>
 
-      {discoverData?.data?.recommendedSubCategories?.map((subCategory, index) => (
-        <DiscoverSlider
-          key={index}
-          title={`Most recommended ${subCategory.name} in country`}
-          subtitle="Discover the best places"
-          slides={subCategory?.discovers?.map(discover => ({
-            id: discover.discover_id,
-            category: discover.discover_name,
-            image: discover.discover_image,
-          }))}
-        />
-      ))}
-      <DiscoverAdsLocation />
-      <DiscoverAdsFilter discoversFetched={discoverHome?.data?.discoverCategories}/>
-    </div>
+        {discoverData?.data?.recommendedSubCategories?.map((subCategory, index) => (
+          <DiscoverSlider
+            key={index}
+            title={`Most recommended ${subCategory.name} in country`}
+            subtitle="Discover the best places"
+            slides={subCategory?.discovers?.map(discover => ({
+              id: discover.discover_id,
+              category: discover.discover_name,
+              image: discover.discover_image,
+            }))}
+          />
+        ))}
+        <DiscoverAdsLocation />
+        <DiscoverAdsFilter discoversFetched={discoverHome?.data?.discoverCategories}/>
+      </div>
+    }
+    </>
   )
 }

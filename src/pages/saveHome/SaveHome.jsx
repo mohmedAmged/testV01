@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './saveHome.css'
 import DynamicHero from '../../components/dynamicHeroPart/DynamicHero'
 import CouponSaveSlider from '../../components/couponSaveSlider/CouponSaveSlider'
@@ -17,6 +17,7 @@ import icon7 from '../../assets/saveHomeImg/icon7.gif'
 import SaveDifferentOffers from '../../components/saveDifferentOffers/SaveDifferentOffers'
 import FaqSave from '../../components/faqSave/FaqSave'
 import CodeSaveSlider from '../../components/codeSaveSlider/CodeSaveSlider'
+import Loader from '../../components/loader/Loader'
 const saveSlideOne = [
     { "id": 1, "tagName": "Exclusive", "couponImg": coupon1, "couponOffer": "5% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 1254 },
     { "id": 2, "tagName": "Good", "couponImg": coupon2, "couponOffer": "10% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 3254 },
@@ -37,15 +38,30 @@ const couponCardOne = [
     { "icon": icon7, "Title": "Entertainment", "couponNum": 1, "id": 8 },
 ]
 export default function SaveHome() {
+    const [showContent, setShowContent] = useState(true);
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setShowContent(false);
+        }, 800);
+        return () => clearTimeout(timeoutId);
+    });
+
     return (
         <>
-            <DynamicHero title="Secure Your Future: Discover Smart Savings Solutions!"
-                description="Unlock Thrilling Deals: Your Gateway to Exclusive Offers!" />
-            <CodeSaveSlider title="Exclusive Coupons" saveSlides={saveSlideOne} />
-            <CouponSaveSlider title="Get Your Coupon Now" saveSlides={saveSlideOne} />
-            <SavePopuCategory couponCards={couponCardOne} />
-            <SaveDifferentOffers />
-            <FaqSave />
+        {
+            (showContent) ? 
+            <Loader />
+            : 
+            <>
+                <DynamicHero title="Secure Your Future: Discover Smart Savings Solutions!"
+                    description="Unlock Thrilling Deals: Your Gateway to Exclusive Offers!" />
+                <CodeSaveSlider title="Exclusive Coupons" saveSlides={saveSlideOne} />
+                <CouponSaveSlider title="Get Your Coupon Now" saveSlides={saveSlideOne} />
+                <SavePopuCategory couponCards={couponCardOne} />
+                <SaveDifferentOffers />
+                <FaqSave />
+            </>
+        }
         </>
     )
 }

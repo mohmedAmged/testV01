@@ -12,7 +12,7 @@ export default function SingleProductPage() {
 
   const [showContent, setShowContent] = useState(true);
 
-  const { data, isError, error, isLoading } = useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: ['car-details'],
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/cars/${carId}`);

@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    position: relative;
 }
 
 .homeMainHero__handler .dynamic__hero__handler .overlay {
