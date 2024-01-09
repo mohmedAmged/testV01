@@ -264,13 +264,12 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                         <select className='select__country__style'
                                             onChange={handleSelectChange}
                                             value={currCountryCode || ''}
-
                                         >
                                             <option disabled>Select Country</option>
                                             {
                                                 countriesData?.map((country) => (
                                                     <option className='select__country__option__style'
-                                                    onClick={closeOffcanvas()}
+                                                    
                                                         key={country?.id}
                                                         value={country?.code}
                                                         title={country?.name}
