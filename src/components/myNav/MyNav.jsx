@@ -12,21 +12,21 @@ export default function MyNav({ scrollToggle, countriesData }) {
     const navigate = useNavigate();
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     // const {pathname, search} = useLocation();
-// console.log(pathname);
-// console.log(search);
-// const clearCountryFromPathName =()=>{
-//     const pathNameArr = pathname.split('/')
-//     pathNameArr.shift()
-//     pathNameArr.shift()
-//     console.log(pathNameArr.join('/'));
-//     return pathNameArr.join('/')
-// }
-// clearCountryFromPathName()
-    useEffect(()=>{
-        if(!currCountryCode){
+    // console.log(pathname);
+    // console.log(search);
+    // const clearCountryFromPathName =()=>{
+    //     const pathNameArr = pathname.split('/')
+    //     pathNameArr.shift()
+    //     pathNameArr.shift()
+    //     console.log(pathNameArr.join('/'));
+    //     return pathNameArr.join('/')
+    // }
+    // clearCountryFromPathName()
+    useEffect(() => {
+        if (!currCountryCode) {
             navigate("/")
         }
-    },[currCountryCode,navigate])
+    }, [currCountryCode, navigate])
 
 
     function handleOffcanvasToggle() {
@@ -43,7 +43,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
     const handleSelectChange = (e) => {
         // const selectedCode = e.target.value.toLowerCase();
         // setSelectedCountry(selectedCode);
-        localStorage.setItem('curr-country' , e.target.value);
+        localStorage.setItem('curr-country', e.target.value);
         navigate(`/${e.target.value}`);
         window.location.reload()
 
@@ -122,7 +122,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                             </NavLink>
                             <NavLink
                                 className="nav-link nav__link__style"
-                                >
+                            >
                                 <div className="custom-dropdown">
                                     <select className='select__country__style'
                                         // onChange={(e) => {
@@ -246,8 +246,8 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                     closeOffcanvas();
                                 }}
                                     className="nav-link nav__link__style"
-                                    to="">
-                                    <select className='select__country__style'
+                                    >
+                                    {/* <select className='select__country__style'
                                         onChange={(e) => {
                                             navigate(`/${e.target.value}`)
                                         }}
@@ -260,7 +260,39 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                                 </option>
                                             ))
                                         }
-                                    </select>
+                                    </select> */}
+                                    <div className="custom-dropdown">
+                                        <select className='select__country__style'
+                                            onChange={handleSelectChange}
+                                            value={currCountryCode || ''}
+
+                                        >
+                                            <option disabled>Select Country</option>
+                                            {
+                                                countriesData?.map((country) => (
+                                                    <option className='select__country__option__style'
+                                                        key={country?.id}
+                                                        value={country?.code}
+                                                        title={country?.name}
+                                                    >
+                                                        {country?.code}
+                                                    </option>
+                                                ))
+                                            }
+                                        </select>
+                                        {/* <div className="flag-preview">
+                                        {selectedCountry && (
+                                            <img
+                                                src={
+                                                    countriesData?.map((country)=>(
+                                                        country?.flag
+                                                    ))
+                                                }
+                                                alt="Selected Flag"
+                                            />
+                                        )}
+                                    </div> */}
+                                    </div>
                                 </NavLink>
                             </Nav>
 
