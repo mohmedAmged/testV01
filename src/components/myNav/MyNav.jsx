@@ -243,7 +243,6 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                 </NavLink>
                                 <NavLink onClick={() => {
                                     scrollToTop();
-                                    closeOffcanvas();
                                 }}
                                     className="nav-link nav__link__style"
                                     >
@@ -271,6 +270,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                             {
                                                 countriesData?.map((country) => (
                                                     <option className='select__country__option__style'
+                                                    onClick={closeOffcanvas()}
                                                         key={country?.id}
                                                         value={country?.code}
                                                         title={country?.name}
