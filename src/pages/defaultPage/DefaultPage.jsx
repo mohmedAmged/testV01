@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Loader from '../../components/loader/Loader';
 import FixedPopUp from '../../components/fixedPopUp/FixedPopUp';
 import HomeMainHero from '../../components/homeMainHero/HomeMainHero';
+import { currCountryCode } from '../../functions/BaseURL';
+import { useNavigate } from 'react-router-dom';
 
 export default function DefaultPage({countriesData}) {
     const [showContent, setShowContent] = useState(true);
@@ -15,16 +17,16 @@ export default function DefaultPage({countriesData}) {
     <>
     {
         (showContent) ?
-            <Loader />
-            : 
-                <div className='mainHome__handler position-relative'>
-                    <FixedPopUp  countriesData={countriesData}/>
-                    <HomeMainHero
-                        title="Infinite Horizons: Your Gateway to Limitless Discoveries and Opportunities!"
-                        description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" 
-                    />
-                </div>
+        <Loader />
+        : 
+        <div className='mainHome__handler position-relative'>
+            <FixedPopUp  countriesData={countriesData}/>
+            <HomeMainHero
+                title="Infinite Horizons: Your Gateway to Limitless Discoveries and Opportunities!"
+                description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" 
+            />
+        </div>
     }
-</>
+    </>
   )
 }

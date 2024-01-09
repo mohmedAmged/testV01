@@ -37,7 +37,6 @@ export default function NewCar() {
         return response.data;
     },
 });
-console.log(priceQuery)
 const carQuery = useQuery({
   queryKey: ['carsFull'],
   queryFn: async () => {

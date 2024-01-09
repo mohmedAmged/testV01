@@ -11,7 +11,7 @@ import { scrollToTop } from '../../functions/scrollToTop';
 
 export default function ShopSec({ cars, makes, bodies, priceQuery }) {
     const navigate = useNavigate();
-    const { search} = useLocation();
+    const { pathname ,search } = useLocation();
     const getCurrentLocationData = (arr) => {
         let myObj = {}
         const searchArr = [...arr];
@@ -64,6 +64,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
 
     useEffect(() => {
         if (search) {
+
             const ourDaraSearchObj = getCurrentLocationData(search);
             (async () => {
                 const searchParams = new URLSearchParams(ourDaraSearchObj);

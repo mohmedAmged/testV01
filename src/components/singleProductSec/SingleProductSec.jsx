@@ -78,7 +78,7 @@ export default function SingleProductSec({carDetails}) {
                                                     <img className='img__view' src={mainImageSrc} alt="" />
                                                 </div>
                                                 {/* img__card__badge */}
-                                                <div className={`img__card__badge ${carDetails.ad_state === 'sold' ? 'soldBadge' : (carDetails.ad_state === 'sponsered' ? 'sponsoredBadge' : '')}`}>
+                                                <div className={`img__card__badge ${carDetails?.ad_state === 'sold' ? 'soldBadge' : (carDetails.ad_state === 'sponsered' ? 'sponsoredBadge' : '')}`}>
                                                 {carDetails?.ad_state}
                                                 </div>
                                             </div>
@@ -93,13 +93,13 @@ export default function SingleProductSec({carDetails}) {
                                         modules={[FreeMode, Navigation, Thumbs]}
                                         className="mySwiper mt-3"
                                     >
-                                        {carDetails?.carImages.map((carImage) => (
+                                        {carDetails?.carImages?.map((carImage) => (
                                             <SwiperSlide key={carImage.id}>
                                                 <img
                                                     className='img__list'
-                                                    src={carImage.image}
+                                                    src={carImage?.image}
                                                     alt=""
-                                                    onClick={() => handleThumbnailClick(carImage.image)}
+                                                    onClick={() => handleThumbnailClick(carImage?.image)}
                                                 />
                                             </SwiperSlide>
                                         ))}
@@ -260,9 +260,9 @@ export default function SingleProductSec({carDetails}) {
                                                 <h4>Comfort</h4>
                                                 <ul>
                                                     {carDetails?.carFeatures?.comfort?.map((feature) => (
-                                                        <li key={feature.id}>
+                                                        <li key={feature?.id}>
                                                             <i className="bi bi-check-circle-fill"></i>
-                                                            <span>{feature.name}</span>
+                                                            <span>{feature?.name}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -273,9 +273,9 @@ export default function SingleProductSec({carDetails}) {
                                                 <h4>Entertainment</h4>
                                                 <ul>
                                                     {carDetails?.carFeatures?.entertainment?.map((feature) => (
-                                                        <li key={feature.id}>
+                                                        <li key={feature?.id}>
                                                             <i className="bi bi-check-circle-fill"></i>
-                                                            <span>{feature.name}</span>
+                                                            <span>{feature?.name}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -285,10 +285,10 @@ export default function SingleProductSec({carDetails}) {
                                             <div className="feature__box">
                                                 <h4>Safety</h4>
                                                 <ul>
-                                                     {carDetails?.carFeatures?.safety?.map((feature) => (
-                                                        <li key={feature.id}>
+                                                    {carDetails?.carFeatures?.safety?.map((feature) => (
+                                                        <li key={feature?.id}>
                                                             <i className="bi bi-check-circle-fill"></i>
-                                                            <span>{feature.name}</span>
+                                                            <span>{feature?.name}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -299,9 +299,9 @@ export default function SingleProductSec({carDetails}) {
                                                 <h4>Seats</h4>
                                                 <ul>
                                                     {carDetails?.carFeatures?.seats?.map((feature) => (
-                                                        <li key={feature.id}>
+                                                        <li key={feature?.id}>
                                                             <i className="bi bi-check-circle-fill"></i>
-                                                            <span>{feature.name}</span>
+                                                            <span>{feature?.name}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -338,7 +338,7 @@ export default function SingleProductSec({carDetails}) {
                                     <div className="dellar__contacts">
                                         <div className="dellar__contact__item phone">
                                             <i className="bi bi-telephone-fill"></i>
-                                            <span>{carDetails?.carFeatures?.dealer.phone}</span>
+                                            <span>{carDetails?.carFeatures?.dealer?.phone}</span>
                                         </div>
                                         <div className="dellar__contact__item whatsapp">
                                             <a href="https://wa.me/01005322028" target="_blank">
@@ -349,7 +349,7 @@ export default function SingleProductSec({carDetails}) {
                                             </a>
                                         </div>
                                         <div className="dellar__contact__item mail">
-                                            <a href={`mailto:${carDetails?.carFeatures?.dealer.email}`}>
+                                            <a href={`mailto:${carDetails?.carFeatures?.dealer?.email}`}>
                                                 <div className="email__btn">
                                                     <i className="bi bi-envelope-fill"></i>
                                                     <span>Message To Dealer</span>
@@ -360,7 +360,7 @@ export default function SingleProductSec({carDetails}) {
                                     <div className="dellar__location">
                                         <div className="single__location__text">
                                             <i className="bi bi-geo-alt-fill"></i>
-                                            <span>{carDetails?.carFeatures?.dealer.address}</span>
+                                            <span>{carDetails?.carFeatures?.dealer?.address}</span>
                                         </div>
                                         <div className="map__Sec">
                                             <iframe
@@ -389,17 +389,17 @@ export default function SingleProductSec({carDetails}) {
                                             <img src={avatar} alt="" />
                                         </div>
                                         <div className="user__name">
-                                            <h3>{carDetails?.carFeatures?.dealer.name}</h3>
-                                            <p>{carDetails?.carFeatures?.dealer.type} seller</p>
+                                            <h3>{carDetails?.carFeatures?.dealer?.name}</h3>
+                                            <p>{carDetails?.carFeatures?.dealer?.type} seller</p>
                                         </div>
                                     </div>
                                     <div className="dellar__contacts">
                                         <div className="dellar__contact__item phone">
                                             <i className="bi bi-telephone-fill"></i>
-                                            <span>{carDetails?.carFeatures?.dealer.phone}</span>
+                                            <span>{carDetails?.carFeatures?.dealer?.phone}</span>
                                         </div>
                                         <div className="dellar__contact__item whatsapp">
-                                            <a href={`https://wa.me/${carDetails?.carFeatures?.dealer.phone}`} target="_blank">
+                                            <a href={`https://wa.me/${carDetails?.carFeatures?.dealer?.phone}`} target="_blank">
                                                 <div className="whatsapp__btn">
                                                     <i className="bi bi-whatsapp"></i>
                                                     <span>CHAT VIA WHATSAPP</span>
@@ -447,6 +447,5 @@ export default function SingleProductSec({carDetails}) {
                 </div>
             </div>
         </>
-
     )
 }

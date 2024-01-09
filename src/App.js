@@ -30,7 +30,7 @@ function App() {
     }
   });
 
-  const { data } = useQuery({
+  const { data ,error} = useQuery({
     queryKey: ['countries'],
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/countries`);
@@ -41,10 +41,22 @@ function App() {
 
 
   useEffect(()=>{
-    if(currCountryCode) {
-      navigator(`${location?.pathname}`);
-     
-    }else {
+    if(currCountryCode === location?.pathname.split('/')[1]) {
+      navigator(`${location?.pathname}${location?.search ? location?.search : ""}`);
+    }else if(localStorage.getItem('curr-country')){
+      if(currCountryCode !== location?.pathname.split('/')[1] && location?.pathname.split('/')[1]){
+        localStorage.setItem('curr-country',location?.pathname.split('/')[1]);
+        navigator(`${location?.pathname}${location?.search ? location?.search : ""}`);
+        window.location.reload();
+      }else {
+        navigator(`/${currCountryCode}`);
+        window.location.reload();
+      }
+    }else if(!currCountryCode && location?.search){
+      localStorage.setItem('curr-country',location?.pathname.split('/')[1]);
+      navigator(`${location?.pathname}${location?.search ? location?.search : ""}`);
+      window.location.reload();
+    }else{
       navigator("/")
     }
   },[currCountryCode]);
@@ -60,14 +72,14 @@ function App() {
         {/* home for valuereach progres.. */}
         <Route path={`/${currCountryCode}/cars`} element={<CarHome />} />
         <Route path={ `/${currCountryCode}/new-cars`} element={<NewCar />} />
-        <Route path={ `/${currCountryCode}/new-cars?/:slug`} element={<NewCar />} />
+        <Route path={ `/${currCountryCode}/new-cars?:slug`} element={<NewCar />} />
         <Route path={`/${currCountryCode}/car-Info/:carId`} element={<SingleProductPage />} />
         <Route path={`/${currCountryCode}/discover`} element={<DiscoverHome />} />
         <Route path={`/${currCountryCode}/discover/category/:categoryName`} element={<DiscoverCategoryPage />} />
         <Route path={`/${currCountryCode}/save`} element={<SaveHome />} />
         <Route path={`/${currCountryCode}/save/:pageName`} element={<SaveSubPage />} />
         <Route path={`/${currCountryCode}/user/dashboard`} element={<UserDashBoard />} />
-        <Route path='*' element={<PageNotFound />} />
+        <Route path='*' element={<PageNotFound error={error ||'Page Not Found'} />} />
       </Routes>
       <MyFooter />
     </>

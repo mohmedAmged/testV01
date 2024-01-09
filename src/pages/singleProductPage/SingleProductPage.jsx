@@ -6,13 +6,14 @@ import { useQuery } from '@tanstack/react-query';
 import Loader from '../../components/loader/Loader';
 import Error from '../../components/error/Error';
 import { useParams } from 'react-router-dom';
+import PageNotFound from '../pageNotFound/PageNotFound';
 
 export default function SingleProductPage() {
   const { carId } = useParams();
 
   const [showContent, setShowContent] = useState(true);
 
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading , error } = useQuery({
     queryKey: ['car-details'],
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/${currCountryCode}/cars/${carId}`);
@@ -34,8 +35,8 @@ export default function SingleProductPage() {
     {
       (isLoading || showContent) ?
       <Loader />
-      : isError ?
-      <Error />
+      : (isError || data.length === 0) ?
+      <PageNotFound error={error || 'No Car Is Available'} />
       : 
       <>
         <SingleProductSec carDetails={data} />

@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom'
 import { scrollToTop } from '../../functions/scrollToTop';
 import { currCountryCode } from '../../functions/BaseURL';
 export default function ProductCard({carInfo}) {
-    console.log(carInfo);
     return (
         <div className="col-lg-4 col-md-6 col-sm-12">
             <div className="recent__cart__item">
