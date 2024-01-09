@@ -6,7 +6,7 @@ import BrowseMakeSec from '../../components/browseMakeSec/BrowseMakeSec';
 import EcoRideSec from '../../components/ecoRidesSec/EcoRideSec';
 import RecentSec from '../../components/recentSec/RecentSec';
 import { useQuery } from '@tanstack/react-query';
-import { baseURL } from '../../functions/BaseURL';
+import { baseURL, currCountryCode } from '../../functions/BaseURL';
 import Loader from '../../components/loader/Loader';
 import Error from '../../components/error/Error';
 
@@ -17,12 +17,27 @@ export default function MyHome() {
   const { data , isError, error, isLoading } = useQuery({
     queryKey: ['car-home'],
     queryFn: async () => {
-      const fetchData = await fetch(baseURL);
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/cars`);
       const response = await fetchData.json();
-      setCurrentData(response.data)
-      return response.data;
+      return response.data.cars;
     },
   });
+  const bodyQuery = useQuery({
+    queryKey: ['car-bodies'],
+    queryFn: async () => {
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/bodies`);
+      const response = await fetchData.json();
+      return response.data;
+    }
+  })
+  const makesQuery = useQuery({
+    queryKey: ['car-makes'],
+    queryFn: async () => {
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/makes`);
+      const response = await fetchData.json();
+      return response.data;
+    }
+  })
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -43,10 +58,10 @@ export default function MyHome() {
         <>
           <HeroSec />
           <MainTypeSec />
-          <CarInterestSec interestItems={currentData?.bodies} />
-          <BrowseMakeSec browserItems={currentData?.makes}  />
+          <CarInterestSec interestItems={bodyQuery?.data?.bodies} />
+          <BrowseMakeSec browserItems={makesQuery?.data?.makes}  />
           <EcoRideSec />
-          <RecentSec cars={currentData?.cars}  />
+          <RecentSec cars={data} />
           {/* <BriefAboutUs /> */}
         </>
       }

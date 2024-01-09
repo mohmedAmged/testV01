@@ -5,14 +5,13 @@ import { InputGroup } from "react-bootstrap";
 import ProductCard from "../productCard/ProductCard";
 import ListCardItems from "../listCardItems/ListCardItems";
 import ReactSlider from "react-slider";
-import { baseURL } from '../../functions/BaseURL';
+import { baseURL, currCountryCode } from '../../functions/BaseURL';
 import { useNavigate, useLocation } from "react-router-dom";
 import { scrollToTop } from '../../functions/scrollToTop';
 
 export default function ShopSec({ cars, makes, bodies, priceQuery }) {
     const navigate = useNavigate();
-    const { search } = useLocation();
-    // console.log(cars);
+    const { search} = useLocation();
     const getCurrentLocationData = (arr) => {
         let myObj = {}
         const searchArr = [...arr];
@@ -47,7 +46,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
             price_to: newValues[1],
         }));
         const filterParams = new URLSearchParams(filters);
-        navigate(`/new-cars?${filterParams.toString()}`);
+        navigate(`/${currCountryCode}/new-cars?${filterParams.toString()}`);
     };
 
     const handleIconClick = (view) => {
@@ -60,7 +59,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
             [filterName]: value,
         }));
         const filterParams = new URLSearchParams(filters);
-        navigate(`/new-cars?${filterParams.toString()}`);
+        navigate(`/${currCountryCode}/new-cars?${filterParams.toString()}`);
     };
 
     useEffect(() => {
@@ -68,7 +67,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
             const ourDaraSearchObj = getCurrentLocationData(search);
             (async () => {
                 const searchParams = new URLSearchParams(ourDaraSearchObj);
-                const fetchSearchedDataUrl = `${baseURL}/cars-search?${searchParams.toString()}`;
+                const fetchSearchedDataUrl = `${baseURL}/${currCountryCode}/cars-search?${searchParams.toString()}`;
                 const fetchData = await fetch(fetchSearchedDataUrl);
                 const response = await fetchData.json();
                 setCurrentCars(response.data.cars);
@@ -82,14 +81,14 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
             || filters.price_from
             || filters.price_to) {
             const filterParams = new URLSearchParams(filters);
-            navigate(`/new-cars?${filterParams.toString()}`);
+            navigate(`/${currCountryCode}/new-cars?${filterParams.toString()}`);
         }
-    }, [search, filters]);
+    }, [search, filters, navigate]);
 
     const handleResetButtonClick = () => {
         setFilters({});
         setValues([minPrice, maxPrice]);
-        navigate("/new-cars");
+        navigate(`/${currCountryCode}/new-cars`);
         window.location.reload();
     };
 
@@ -259,7 +258,9 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                                 return (
                                                     <ProductCard key={car?.id} carInfo={car} />
                                                 )
+                                                
                                             })
+                                            
                                         }
                                     </div>
                                 </div>

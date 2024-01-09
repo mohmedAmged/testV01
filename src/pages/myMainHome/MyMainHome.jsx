@@ -4,7 +4,7 @@ import MainHomeSlider from '../../components/mainHomeSlider/MainHomeSlider';
 import HomeMainHero from '../../components/homeMainHero/HomeMainHero';
 import DiscoverSlider from '../../components/discoverSlider/DiscoverSlider';
 import { useQuery } from '@tanstack/react-query';
-import { baseURL } from '../../functions/BaseURL';
+import { baseURL, currCountryCode} from '../../functions/BaseURL';
 import Loader from "../../components/loader/Loader";
 import Error from '../../components/error/Error';
 const homeSliderItems = [
@@ -15,7 +15,7 @@ const homeSliderItems = [
         "subCategory": [
             {
                 "subTitle": "new cars",
-                "subLink": "/new-cars"
+                "subLink": `/${currCountryCode}/new-cars`
             },
             {
                 "subTitle": "used cars",
@@ -99,23 +99,26 @@ const homeSliderItems = [
     },
 ]
 export default function MyMainHome() {
+
     const { data, isLoading, isError } = useQuery({
         queryKey: ['car-home'],
         queryFn: async () => {
-            const fetchData = await fetch(baseURL);
+            const fetchData = await fetch(`${baseURL}/${currCountryCode}/cars`);
             const response = await fetchData.json();
             return response.data;
         },
     });
+
     const updatedCarSlide = data?.cars?.map(car => ({
         id: car.id,
         category: car.name,
         image: car.main_image
     })) || [];
+
     const carSlide = [];
     const mergedCarSlide = [...carSlide, ...updatedCarSlide];
-
     const [showContent, setShowContent] = useState(true);
+
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setShowContent(false);

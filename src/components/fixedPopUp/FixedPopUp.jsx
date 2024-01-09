@@ -3,7 +3,7 @@ import './fixedPopUp.css'
 import { countrySchema } from '../../validation/CountryValidation';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-export default function FixedPopUp({ setFirstRender, countriesData }) {
+export default function FixedPopUp({ countriesData }) {
     const navigate = useNavigate();
     const [showErrors ,setShowErrors] = useState(false);
     const onSubmit = async (values,actions)=>{
@@ -13,7 +13,7 @@ export default function FixedPopUp({ setFirstRender, countriesData }) {
             setShowErrors(false);
             localStorage.setItem('curr-country',currentChosenCountry)
             navigate(`/${currentChosenCountry}`);
-            setFirstRender(false);
+            window.location.reload()
         }
     };
     const { values , errors , handleBlur , handleChange , handleSubmit} = useFormik({
@@ -23,8 +23,6 @@ export default function FixedPopUp({ setFirstRender, countriesData }) {
         validationSchema: countrySchema,
         onSubmit,
     });
-    console.log(errors.country)
-    console.log(showErrors)
     return (
         <div
             className="fixedPopUp__sec"

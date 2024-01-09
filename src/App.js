@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import MyNav from './components/myNav/MyNav';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import CarHome from './pages/carHome/CarHome';
 import NewCar from './pages/newCarPage/NewCar';
 import SingleProductPage from './pages/singleProductPage/SingleProductPage';
@@ -14,13 +14,14 @@ import SaveSubPage from './pages/saveSubPage/SaveSubPage';
 import UserDashBoard from './pages/userDashboard/UserDashBoard';
 import MyMainHome from './pages/myMainHome/MyMainHome';
 import { useQuery } from '@tanstack/react-query';
-import { baseURL } from './functions/BaseURL';
+import { baseURL, currCountryCode } from './functions/BaseURL';
 import DefaultPage from './pages/defaultPage/DefaultPage';
 import PageNotFound from './pages/pageNotFound/PageNotFound';
 
 function App() {
+  const location = useLocation();
   const [scrollToggle, setScrollToggle] = useState(false);
-
+  const navigator = useNavigate();
   window.addEventListener("scroll", () => {
     if (window.scrollY > 200) {
       setScrollToggle(true);
@@ -37,19 +38,29 @@ function App() {
       return response.data;
     },
   });
-  const [firstRender, setFirstRender] = useState(true)
-  const currCountryCode = localStorage.getItem('curr-country')
+
+
+  useEffect(()=>{
+    if(currCountryCode) {
+      navigator(`${location?.pathname}`);
+     
+    }else {
+      navigator("/")
+    }
+  },[currCountryCode]);
+
   return (
     <>
       <MyNav countriesData={data?.countries} scrollToggle={scrollToggle} />
       <ScrollToTopButton />
       <Routes>
         {/* home for valuereach progres.. */}
-        <Route path='/' element={<DefaultPage countriesData={data?.countries} setFirstRender={setFirstRender} />} />
+        <Route path='/' element={<DefaultPage countriesData={data?.countries} />} />
         <Route path={`/${currCountryCode}`} element={<MyMainHome />} />
         {/* home for valuereach progres.. */}
         <Route path={`/${currCountryCode}/cars`} element={<CarHome />} />
-        <Route path={`/${currCountryCode}/new-cars` || `/${currCountryCode}/new-cars?:slug`} element={<NewCar />} />
+        <Route path={ `/${currCountryCode}/new-cars`} element={<NewCar />} />
+        <Route path={ `/${currCountryCode}/new-cars?/:slug`} element={<NewCar />} />
         <Route path={`/${currCountryCode}/car-Info/:carId`} element={<SingleProductPage />} />
         <Route path={`/${currCountryCode}/discover`} element={<DiscoverHome />} />
         <Route path={`/${currCountryCode}/discover/category/:categoryName`} element={<DiscoverCategoryPage />} />

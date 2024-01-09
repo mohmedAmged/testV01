@@ -3,7 +3,7 @@ import './newCar.css';
 import DynamicHeroSec from '../../components/dynamicHeroSec/DynamicHeroSec';
 import heroBg from '../../assets/dynamicHeroImgs/Conv.png';
 import ShopSec from '../../components/shopSec/ShopSec';
-import { baseURL } from '../../functions/BaseURL';
+import { baseURL, currCountryCode } from '../../functions/BaseURL';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../components/loader/Loader';
 import Error from '../../components/error/Error';
@@ -13,10 +13,18 @@ export default function NewCar() {
 
   const [showContent, setShowContent] = useState(true);
 
-  const { data, isError, error, isLoading } = useQuery({
-    queryKey: ['cars'],
+  const bodyQuery = useQuery({
+    queryKey: ['cars-bodies'],
     queryFn: async () => {
-      const fetchData = await fetch(`${baseURL}`);
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/bodies`);
+      const response = await fetchData.json();
+      return response.data;
+    },
+  });
+  const makesQuery = useQuery({
+    queryKey: ['cars-makes'],
+    queryFn: async () => {
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/makes`);
       const response = await fetchData.json();
       return response.data;
     },
@@ -24,15 +32,16 @@ export default function NewCar() {
   const priceQuery = useQuery({
     queryKey: ['price'],
     queryFn: async () => {
-        const fetchData = await fetch(`${baseURL}/car-price`);
+        const fetchData = await fetch(`${baseURL}/${currCountryCode}/car-price`);
         const response = await fetchData.json();
         return response.data;
     },
 });
+console.log(priceQuery)
 const carQuery = useQuery({
   queryKey: ['carsFull'],
   queryFn: async () => {
-      const fetchData = await fetch(`${baseURL}/cars`);
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/cars`);
       const response = await fetchData.json();
       return response.data;
   },
@@ -56,15 +65,16 @@ const carQuery = useQuery({
   return (
     <>
     {
-      (isLoading || showContent) ? 
+      (priceQuery?.isLoading || carQuery?.isLoading || makesQuery?.isLoading || bodyQuery?.isLoading ||showContent) ? 
       <Loader />
-      : isError ? 
-      <Error error={error} />
+      :
+       (priceQuery?.isError || carQuery?.isError || makesQuery?.isError || bodyQuery?.isError) ? 
+      <Error error={priceQuery?.error || carQuery?.error || makesQuery?.error || bodyQuery?.error} />
       : 
       <>
         <DynamicHeroSec backgroundImage={heroBg} title="New Cars" content="New cars"/>
         <DynamicMapWeb links={links}  />
-        <ShopSec cars={carQuery?.data?.cars} makes={data?.makes} bodies={data?.bodies} priceQuery={priceQuery}/>
+        <ShopSec cars={carQuery?.data?.cars} makes={makesQuery?.data?.makes} bodies={bodyQuery?.data?.bodies} priceQuery={priceQuery}/>
       </>
       
     }

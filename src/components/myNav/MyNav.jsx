@@ -1,30 +1,33 @@
 /* eslint-disable no-template-curly-in-string */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './myNav.css'
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { scrollToTop } from '../../functions/scrollToTop';
 import logo2 from '../../assets/logo/weblogo copy.png'
+import { currCountryCode } from '../../functions/BaseURL';
 
 export default function MyNav({ scrollToggle, countriesData }) {
     const navigate = useNavigate();
     const [showOffcanvas, setShowOffcanvas] = useState(false);
-    const {pathname} = useLocation();
-
-    const getCurrentCountryCode = () => {
-        const locationArr = pathname.split("/");
-        // countriesData?.map(country => {
-        //     country?.code === locationArr[1] 
-        //     && localStorage.setItem('curr-country' , locationArr[1]
-        // )});
-        if(!localStorage.getItem('curr-country')){
+    // const {pathname, search} = useLocation();
+// console.log(pathname);
+// console.log(search);
+// const clearCountryFromPathName =()=>{
+//     const pathNameArr = pathname.split('/')
+//     pathNameArr.shift()
+//     pathNameArr.shift()
+//     console.log(pathNameArr.join('/'));
+//     return pathNameArr.join('/')
+// }
+// clearCountryFromPathName()
+    useEffect(()=>{
+        if(!currCountryCode){
             navigate("/")
-        } 
-    }
-    getCurrentCountryCode();
+        }
+    },[currCountryCode,navigate])
 
-    const currentCountry = localStorage.getItem('curr-country');
 
     function handleOffcanvasToggle() {
         // setShowOffcanvas(!showOffcanvas);
@@ -35,20 +38,22 @@ export default function MyNav({ scrollToggle, countriesData }) {
         setShowOffcanvas(false);
     };
 
-    const [selectedCountry, setSelectedCountry] = useState({});
+    // const [selectedCountry, setSelectedCountry] = useState({});
 
     const handleSelectChange = (e) => {
-        const selectedCode = e.target.value.toLowerCase();
-        setSelectedCountry(selectedCode);
+        // const selectedCode = e.target.value.toLowerCase();
+        // setSelectedCountry(selectedCode);
         localStorage.setItem('curr-country' , e.target.value);
-        navigate(`/${selectedCode}`);
+        navigate(`/${e.target.value}`);
+        window.location.reload()
+
     };
     return (
         <div>
             <Navbar expand="lg" className={`nav__Bg ${scrollToggle ? "nav__fixed py-3 navTransformationDown" : "nav__absolute pb-3"} align-items-center`}>
                 <Container>
                     <Navbar.Brand className='d-flex align-items-center'>
-                        <NavLink to={`/${currentCountry}`}>
+                        <NavLink to={`/${currCountryCode}`}>
                             <img className='logo__Width' src={logo2} alt="main__logo" />
                         </NavLink>
                     </Navbar.Brand>
@@ -62,7 +67,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                 }}
                                 aria-label="Close"
                                 className="nav-link  nav__link__style"
-                                to={`${currentCountry}/user/dashboard`}>
+                                to={`${currCountryCode}/user/dashboard`}>
                                 Dashboard
                             </NavLink>
                             <NavLink
@@ -71,7 +76,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                 }}
                                 aria-label="Close"
                                 className="nav-link  nav__link__style"
-                                to={`/${currentCountry}/cars`}>
+                                to={`/${currCountryCode}/cars`}>
                                 cars
                             </NavLink>
                             <NavLink
@@ -81,7 +86,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
 
                                 }
                                 className="nav-link  nav__link__style"
-                                to={`/${currentCountry}/discover`}>
+                                to={`/${currCountryCode}/discover`}>
                                 Discover
                             </NavLink>
                             <NavLink
@@ -90,7 +95,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                 }
                                 }
                                 className="nav-link  nav__link__style"
-                                to={`/${currentCountry}/save`}>
+                                to={`/${currCountryCode}/save`}>
                                 Save
                             </NavLink>
                             <NavLink
@@ -98,7 +103,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                     scrollToTop();
                                 }}
                                 className="nav-link  nav__link__style"
-                                to={`/${currentCountry}/realestate`}>
+                                to={`/${currCountryCode}/realestate`}>
                                 Raal Estate
                             </NavLink>
                         </Nav>
@@ -117,14 +122,14 @@ export default function MyNav({ scrollToggle, countriesData }) {
                             </NavLink>
                             <NavLink
                                 className="nav-link nav__link__style"
-                                to="">
+                                >
                                 <div className="custom-dropdown">
                                     <select className='select__country__style'
                                         // onChange={(e) => {
                                         //     navigate(`/${e.target.value}`)
                                         // }}
                                         onChange={handleSelectChange}
-                                        value={selectedCountry || ''}
+                                        value={currCountryCode || ''}
 
                                     >
                                         <option disabled>Select Country</option>
@@ -140,7 +145,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                             ))
                                         }
                                     </select>
-                                    <div className="flag-preview">
+                                    {/* <div className="flag-preview">
                                         {selectedCountry && (
                                             <img
                                                 src={
@@ -151,7 +156,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                                 alt="Selected Flag"
                                             />
                                         )}
-                                    </div>
+                                    </div> */}
                                 </div>
 
                             </NavLink>
@@ -166,7 +171,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                         placement="start">
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title className='offCanvas__head' id="offcanvasNavbarLabel">
-                                <NavLink to={`/${currentCountry}`} className="px-4">
+                                <NavLink to={`/${currCountryCode}`} className="px-4">
                                     <img className='logo__Width' src={logo2} alt="logo__canvas" />
                                 </NavLink>
                             </Offcanvas.Title>
@@ -180,7 +185,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                     }}
                                     aria-label="Close"
                                     className="nav-link  nav__link__style"
-                                    to={`/${currentCountry}/user/dashboard`}>
+                                    to={`/${currCountryCode}/user/dashboard`}>
                                     Dashboard
                                 </NavLink>
                                 <NavLink
@@ -190,7 +195,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                     }}
                                     aria-label="Close"
                                     className="nav-link  nav__link__style"
-                                    to={`/${currentCountry}/cars`}>
+                                    to={`/${currCountryCode}/cars`}>
                                     cars
                                 </NavLink>
                                 <NavLink
@@ -200,7 +205,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                     }
                                     }
                                     className="nav-link  nav__link__style"
-                                    to={`/${currentCountry}/discover`}
+                                    to={`/${currCountryCode}/discover`}
                                 >
                                     Discover
                                 </NavLink>
@@ -211,7 +216,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                     }
                                     }
                                     className="nav-link  nav__link__style"
-                                    to={`/${currentCountry}/save`}>
+                                    to={`/${currCountryCode}/save`}>
                                     Save
                                 </NavLink>
                                 <NavLink
@@ -220,7 +225,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                         closeOffcanvas();
                                     }}
                                     className="nav-link  nav__link__style"
-                                    to={`/${currentCountry}/realestate`}>
+                                    to={`/${currCountryCode}/realestate`}>
                                     Raal Estate
                                 </NavLink>
                                 <NavLink onClick={() => {
@@ -228,7 +233,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                     closeOffcanvas();
                                 }}
                                     className="nav-link nav__link__style"
-                                    to={`/${currentCountry}`}>
+                                    to={`/${currCountryCode}`}>
                                     <div className='btn__Car d-flex justify-content-center align-items-center'>
                                         <i className="bi bi-folder-plus fs-6"></i>
                                         <span>
@@ -246,7 +251,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                         onChange={(e) => {
                                             navigate(`/${e.target.value}`)
                                         }}
-                                        defaultValue={currentCountry}
+                                        defaultValue={currCountryCode}
                                         >
                                         {
                                             countriesData?.map((country) => (
