@@ -1,16 +1,5 @@
 import React, { useState } from 'react'
 import './discoverAdsFilter.css'
-// import resturant from '../../assets/discoverHomeImg/restaurant.jpg'
-// import resturant2 from '../../assets/discoverHomeImg/resturant2.jpg'
-// import one from '../../assets/discoverHomeImg/fashion.jpg'
-// import two from '../../assets/discoverHomeImg/electronic.jpg'
-// import food3 from '../../assets/discoverHomeImg/food3.jpg'
-// import food2 from '../../assets/discoverHomeImg/food2.jpg'
-// import food1 from '../../assets/discoverHomeImg/food1.jpg'
-// import food4 from '../../assets/discoverHomeImg/food4.jpg'
-// import health1 from '../../assets/discoverHomeImg/health1.jpg'
-// import health2 from '../../assets/discoverHomeImg/health2.jpg'
-// import food5 from '../../assets/discoverHomeImg/food5.jpg'
 import AdsCard from '../adsCard/AdsCard'
 // const restaurantDataArr = [
 //     {

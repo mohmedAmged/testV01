@@ -72,11 +72,12 @@ export default function MyNav({ scrollToggle, countriesData }) {
                             </NavLink>
                             <NavLink
                                 onClick={() => {
-                                    scrollToTop();
+                                    scrollToTop();  
                                 }}
                                 aria-label="Close"
                                 className="nav-link  nav__link__style"
-                                to={`/${currCountryCode}/cars`}>
+                                to={`/${currCountryCode}/cars`}
+                                >
                                 cars
                             </NavLink>
                             <NavLink

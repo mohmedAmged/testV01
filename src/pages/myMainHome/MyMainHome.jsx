@@ -31,7 +31,7 @@ const homeSliderItems = [
         "subCategory": [
             {
                 "subTitle": "food",
-                "subLink": "/discover/category/food"
+                "subLink": `/${currCountryCode}/discover/category/food`
             },
             {
                 "subTitle": "fashion",
@@ -129,7 +129,7 @@ export default function MyMainHome() {
     const discoverData = useQuery({
         queryKey: ['discover-home-recomended-sub-categories'],
         queryFn: async () => {
-            const fetchData = await fetch(`${baseURL}/recommend-sub-categories`);
+            const fetchData = await fetch(`${baseURL}/${currCountryCode}/recommend-sub-categories`);
             const response = await fetchData.json();
             return response.data;
         },

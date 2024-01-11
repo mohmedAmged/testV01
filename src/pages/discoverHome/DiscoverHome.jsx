@@ -5,17 +5,8 @@ import DiscoverAdsCateg from '../../components/discoverAdsCategories/DiscoverAds
 import DiscoverAdsLocation from '../../components/discoverAdsLocation/DiscoverAdsLocation'
 import DiscoverAdsFilter from '../../components/discoverAdsFilter/DiscoverAdsFilter'
 import DiscoverSlider from '../../components/discoverSlider/DiscoverSlider'
-// import foodImg from '../../assets/discoverHomeImg/food1.jpg'
-// import burger from '../../assets/discoverHomeImg/food3.jpg'
-// import cafe1 from '../../assets/discoverHomeImg/cafe1.jpg'
-// import cafe2 from '../../assets/discoverHomeImg/cafe2.jpg'
-// import cafe3 from '../../assets/discoverHomeImg/cafe3.jpg'
-// import cafe4 from '../../assets/discoverHomeImg/cafe4.jpg'
-// import gym from '../../assets/discoverHomeImg/health2.jpg'
-// import gym1 from '../../assets/discoverHomeImg/health1.jpg'
-// import gym2 from '../../assets/discoverHomeImg/health.jpg'
 import { useQuery } from '@tanstack/react-query'
-import { baseURL } from '../../functions/BaseURL'
+import { baseURL, currCountryCode } from '../../functions/BaseURL'
 import Loader from '../../components/loader/Loader'
 import Error from '../../components/error/Error'
 // const slidesOne = [
@@ -28,36 +19,13 @@ import Error from '../../components/error/Error'
 //   { "id": 7, "category": 'Seafood Delights5', "image": foodImg }
 // ];
 
-// const slidesTwo = [
-//   { "id": 1, "category": 'Fine Dining', "image": burger },
-//   { "id": 2, "category": 'Italian Cuisine', "image": burger },
-//   { "id": 3, "category": 'Seafood Delights1', "image": burger },
-//   { "id": 4, "category": 'Seafood Delights2', "image": burger },
-//   { "id": 5, "category": 'Seafood Delights3', "image": burger },
-//   { "id": 6, "category": 'Seafood Delights4', "image": burger },
-//   { "id": 7, "category": 'Seafood Delights5', "image": burger }
-// ];
-// const slidesThree = [
-//   { "id": 1, "category": 'cafe one', "image": cafe1 },
-//   { "id": 2, "category": 'cafe two', "image": cafe2 },
-//   { "id": 3, "category": 'cafe three', "image": cafe3 },
-//   { "id": 5, "category": 'cafe four', "image": cafe1 },
-//   { "id": 6, "category": 'cafe five', "image": cafe2 },
-//   { "id": 7, "category": 'cafe six', "image": cafe4 },
-// ];
-// const slidesFour = [
-//   { "id": 1, "category": 'gym one', "image": gym },
-//   { "id": 2, "category": 'gym two', "image": gym1 },
-//   { "id": 3, "category": 'gym three', "image": gym2 },
-//   { "id": 4, "category": 'gym four', "image": gym },
-//   { "id": 5, "category": 'gym five', "image": gym1 },
-//   { "id": 6, "category": 'gym six', "image": gym2 },
-// ];
+
+
 export default function DiscoverHome() {
   const { data ,isError , isLoading} = useQuery({
     queryKey: ['discover-home-recomended-categories'],
     queryFn: async () => {
-      const fetchData = await fetch(`${baseURL}/recommend-categories`);
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/recommend-categories`);
       const response = await fetchData.json();
       return response.data;
     },
@@ -65,7 +33,7 @@ export default function DiscoverHome() {
   const discoverData = useQuery({
     queryKey: ['discover-home-recomended-sub-categories'],
     queryFn: async () => {
-      const fetchData = await fetch(`${baseURL}/recommend-sub-categories`);
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/recommend-sub-categories`);
       const response = await fetchData.json();
       return response.data;
     },
@@ -73,7 +41,7 @@ export default function DiscoverHome() {
   const discoverHome = useQuery({
     queryKey: ['discover-home'],
     queryFn: async () => {
-      const fetchData = await fetch(`${baseURL}/discover`);
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/discover`);
       const response = await fetchData.json();
       return response.data;
     },
