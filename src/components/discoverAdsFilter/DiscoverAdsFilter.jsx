@@ -1,48 +1,48 @@
 import React, { useState } from 'react'
 import './discoverAdsFilter.css'
 import AdsCard from '../adsCard/AdsCard'
-// const restaurantDataArr = [
-//     {
-//         "name": 'Jordan Restaurant',
-//         "special": 'Special',
-//         "category": "latest",
-//         "votes": '1,358',
-//         "menu": 'open',
-//         "image": resturant,
-//         "imageSources": [resturant2, resturant],
-//     },
-//     {
-//         "name": 'goucy Restaurant',
-//         "special": '',
-//         "category": "food",
-//         "votes": '1,158',
-//         "menu": 'Menu',
-//         "image": resturant,
-//         "imageSources": [food3, food2, food1],
-//     },
-//     {
-//         "name": 'Food Hub',
-//         "special": 'sponsered',
-//         "category": "food",
-//         "votes": '1,158',
-//         "menu": 'Menu',
-//         "image": resturant,
-//         "imageSources": [food5, food4],
-//     },
-//     {
-//         "name": 'Fitness',
-//         "special": '',
-//         "category": "health",
-//         "votes": '1,158',
-//         "menu": 'time',
-//         "image": resturant,
-//         "imageSources": [health2, health1],
-//     }
-// ]
+    // const restaurantDataArr = [
+    //     {
+    //         "name": 'Jordan Restaurant',
+    //         "special": 'Special',
+    //         "category": "latest",
+    //         "votes": '1,358',
+    //         "menu": 'open',
+    //         "image": resturant,
+    //         "imageSources": [resturant2, resturant],
+    //     },
+    //     {
+    //         "name": 'goucy Restaurant',
+    //         "special": '',
+    //         "category": "food",
+    //         "votes": '1,158',
+    //         "menu": 'Menu',
+    //         "image": resturant,
+    //         "imageSources": [food3, food2, food1],
+    //     },
+    //     {
+    //         "name": 'Food Hub',
+    //         "special": 'sponsered',
+    //         "category": "food",
+    //         "votes": '1,158',
+    //         "menu": 'Menu',
+    //         "image": resturant,
+    //         "imageSources": [food5, food4],
+    //     },
+    //     {
+    //         "name": 'Fitness',
+    //         "special": '',
+    //         "category": "health",
+    //         "votes": '1,158',
+    //         "menu": 'time',
+    //         "image": resturant,
+    //         "imageSources": [health2, health1],
+    //     }
+    // ]
 
     ;
 export default function DiscoverAdsFilter({ discoversFetched }) {
-
+    console.log(discoversFetched);
     const [activeTab, setActiveTab] = useState('latest');
 
     const handleTabClick = (tabId) => {
@@ -53,15 +53,18 @@ export default function DiscoverAdsFilter({ discoversFetched }) {
 
     const filteredDiscoverData = () => {
         if (activeTab === 'latest') {
-            return discoversFetched?.discoverCategories;
+            // return discoversFetched?.discoverCategories;
+            return discoversFetched?.discoverCategories?.flatMap(category => category.discovers) || [];
         } else {
-            return discoversFetched?.discoverCategories?.filter((data) => data?.name?.toLowerCase() === activeTab?.toLowerCase());
+            // return discoversFetched?.discoverCategories?.filter((data) => data?.name?.toLowerCase() === activeTab?.toLowerCase());
+            const selectedCategory = discoversFetched?.discoverCategories?.find(category => category.name.toLowerCase() === activeTab.toLowerCase());
+            return selectedCategory?.discovers || [];
         }
     };
 
-    const getDiscoversByCategory = (categoryName) => {
-        return discoversFetched?.discoverCategories?.find((category) => category?.name?.toLowerCase() === categoryName?.toLowerCase())?.discovers || [];
-    };
+    // const getDiscoversByCategory = (categoryName) => {
+    //     return discoversFetched?.discoverCategories?.find((category) => category?.name?.toLowerCase() === categoryName?.toLowerCase())?.discovers || [];
+    // };
     return (
 
         <div className='discoverAdsFilter__handler my-5'>
@@ -99,7 +102,7 @@ export default function DiscoverAdsFilter({ discoversFetched }) {
                     </div>
                 </div>
                 <div className="ads__filter__cards">
-                    <div className="row">
+                    {/* <div className="row">
                         {filteredDiscoverData()?.map((discoverCategory, index) => (
                             <div key={index}>
                                 <div className="row">
@@ -108,6 +111,11 @@ export default function DiscoverAdsFilter({ discoversFetched }) {
                                     ))}
                                 </div>
                             </div>
+                        ))}
+                    </div> */}
+                    <div className="row">
+                        {filteredDiscoverData()?.map((discoverData, index) => (
+                            <AdsCard key={index} discoverData={discoverData} />
                         ))}
                     </div>
                 </div>

@@ -96,6 +96,7 @@ export default function DiscoverHome() {
         ))}
         <DiscoverAdsLocation />
         <DiscoverAdsFilter discoversFetched={discoverHome?.data?.discoverCategories}/>
+        {/* <DiscoverAdsFilter discoversFetched={discoverHome?.data?.discovers}/> */}
       </div>
     }
     </>
