@@ -37,22 +37,16 @@ const quickBtn = [
     },
 ]
 export default function DiscovercategoryList({ categoryFetched, discoversFetched, categoryName }) {
-    console.log(categoryFetched);
-    console.log(discoversFetched);
     const navigate = useNavigate()
     const location = useLocation()
-    // console.log(location.search);
-    // const [values, setValues] = useState([200, 3000]);
-
-    // const handleSliderChange = (newValues) => {
-    //     setValues(newValues);
-    // };
     const [renderData, setRenderData] = useState(discoversFetched)
+    const [activeSubCategory, setActiveSubCategory] = useState(null);
     const filterByDiscoverCategory = async ({ sub_id, sub_name }) => {
         const newFetchedData = await fetch(`${baseURL}/${currCountryCode}/discover-sub-categories/${sub_id}`)
         const response = await newFetchedData.json()
         navigate(`/${currCountryCode}/discover/${categoryName}?${sub_name}`)
         setRenderData(response.data)
+        setActiveSubCategory(sub_name); 
     }
     useEffect(() => {
         if (location.search) {
@@ -61,8 +55,7 @@ export default function DiscovercategoryList({ categoryFetched, discoversFetched
             let search = serachArr.join('')
             search = search.split('%20').join(' ')
             const filteredSubCategory = categoryFetched?.subCategories?.find((el) => el.sub_name === search)
-            filterByDiscoverCategory(filteredSubCategory)
-            // console.log(filteredSubCategory);
+            filterByDiscoverCategory(filteredSubCategory);
         }
     }, [])
     return (
@@ -77,9 +70,12 @@ export default function DiscovercategoryList({ categoryFetched, discoversFetched
                                     <li onClick={
                                         () => {
                                             setRenderData(discoversFetched)
+                                            setActiveSubCategory(null);
                                             navigate(`/${currCountryCode}/discover/${categoryName}`)
                                         }
-                                    }>
+                                    }
+                                    className={activeSubCategory === null ? 'activeDis' : ''}
+                                    >
                                         <i className="bi bi-chevron-right"></i>
                                         All category
                                     </li>
@@ -87,6 +83,7 @@ export default function DiscovercategoryList({ categoryFetched, discoversFetched
                                         categoryFetched?.subCategories?.map((el) => (
                                             <li key={el?.sub_id}
                                                 onClick={() => filterByDiscoverCategory(el)}
+                                                className={activeSubCategory === el.sub_name ? 'activeDis' : ''}
                                             >
                                                 <i className="bi bi-chevron-right"></i>
                                                 {el?.sub_name}

@@ -8,6 +8,14 @@
     font-size: 16px;
     cursor: pointer;
     /* line-height: 36px; */
+    transition: all .1s ease-in;
+}
+.discoverCategoryList__subCategories ul li:hover{
+    color: var(--primary-black);
+}
+.activeDis{
+    color: var(--primary-black);
+    font-size: 18px !important;
 }
 .discoverCategoryList__handler .search__part__handler{
     background-color: var(--primary-blue);
