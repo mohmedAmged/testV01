@@ -27,7 +27,7 @@ export default function CategoryCard({ category, imgSrc, adsCount, subcategories
                         </NavLink>
                         <p>{`${adsCount} Ads posted`}</p>
                         <ul>
-                            {subcategories.map((subcategory, index) => (
+                            {subcategories?.slice(0, 3)?.map((subcategory, index) => (
                                 <li key={index}>
                                     <NavLink className="nav-link">
                                         <i className="bi bi-chevron-right"></i>

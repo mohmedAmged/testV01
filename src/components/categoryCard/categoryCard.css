@@ -44,7 +44,7 @@
     padding: 25px 30px;
     position: relative;
     overflow: hidden;
-    height: 200px;
+    min-height: 250px;
 }
 .discover__categ__info h4{
     line-height: 18px;
