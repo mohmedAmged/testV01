@@ -37,7 +37,7 @@ export default function DiscoverCategoryPage() {
         return () => clearTimeout(timeoutId);
     });
     return (
-        <>
+        <div className='discoverCategSinglePage'>
             {
                 (showContent) ?
                     <Loader />
@@ -49,6 +49,6 @@ export default function DiscoverCategoryPage() {
                         <DiscovercategoryList  categoryName={categoryName} discoversFetched={discoversFetched} categoryFetched={catgeoryFetched} />
                     </div>
             }
-        </>
+        </div>
     )
 }

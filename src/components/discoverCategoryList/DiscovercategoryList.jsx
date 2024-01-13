@@ -69,7 +69,7 @@ export default function DiscovercategoryList({ categoryFetched, discoversFetched
         <div className='discoverCategoryList__handler mb-5'>
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-lg-3 mb-5">
                         <div className="search__part__handler">
                             <div className="search__title">Popular Filters</div>
                             <div className="discoverCategoryList__subCategories">
