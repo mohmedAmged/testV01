@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function AdsCard({ discoverData }) {
-    console.log(discoverData);
     const [activeIndicator, setActiveIndicator] = useState(0);
     const handleIndicatorHover = (index) => {
         setActiveIndicator(index);

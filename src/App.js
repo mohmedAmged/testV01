@@ -75,7 +75,7 @@ function App() {
         <Route path={ `/${currCountryCode}/new-cars?:slug`} element={<NewCar />} />
         <Route path={`/${currCountryCode}/car-Info/:carId`} element={<SingleProductPage />} />
         <Route path={`/${currCountryCode}/discover`} element={<DiscoverHome />} />
-        <Route path={`/${currCountryCode}/discover/category/:categoryName`} element={<DiscoverCategoryPage />} />
+        <Route path={`/${currCountryCode}/discover/:categoryName`} element={<DiscoverCategoryPage />} />
         <Route path={`/${currCountryCode}/save`} element={<SaveHome />} />
         <Route path={`/${currCountryCode}/save/:pageName`} element={<SaveSubPage />} />
         <Route path={`/${currCountryCode}/user/dashboard`} element={<UserDashBoard />} />

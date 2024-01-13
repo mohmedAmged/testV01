@@ -27,7 +27,7 @@ export default function SingleProductSec({carDetails}) {
     ];
     return (
         <>
-            <DynamicHeroSec backgroundImage={heroBg} title="NEW BMW 3 SERIES" content="NEW BMW 3 SERIES" />
+            <DynamicHeroSec backgroundImage={heroBg} title={`${carDetails?.name}`} content={`${carDetails?.name}`} />
             <DynamicMapWeb links={links}  />
             <div className='single__product__handler'>
                 <div className="container">

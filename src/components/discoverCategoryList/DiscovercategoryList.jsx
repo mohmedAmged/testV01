@@ -1,57 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './discoverCategoryList.css'
 import { InputGroup } from "react-bootstrap";
-
 import Form from "react-bootstrap/Form";
-import food3 from '../../assets/discoverHomeImg/food3.jpg'
-import food2 from '../../assets/discoverHomeImg/food2.jpg'
-import food1 from '../../assets/discoverHomeImg/food1.jpg'
-import food4 from '../../assets/discoverHomeImg/food4.jpg'
-import health1 from '../../assets/discoverHomeImg/health1.jpg'
-import health2 from '../../assets/discoverHomeImg/health2.jpg'
-import food5 from '../../assets/discoverHomeImg/food5.jpg'
-import resturant from '../../assets/discoverHomeImg/restaurant.jpg'
-import resturant2 from '../../assets/discoverHomeImg/resturant2.jpg'
 import AdsCard from '../adsCard/AdsCard';
 import ReactSlider from "react-slider";
-const restaurantDataArr = [
-    {
-        "name": 'Jordan Restaurant',
-        "special": 'Special',
-        "category": "latest",
-        "votes": '1,358',
-        "menu": 'open',
-        "image": resturant,
-        "imageSources": [resturant2, resturant],
-    },
-    {
-        "name": 'goucy Restaurant',
-        "special": '',
-        "category": "food",
-        "votes": '1,158',
-        "menu": 'Menu',
-        "image": resturant,
-        "imageSources": [food3, food2, food1],
-    },
-    {
-        "name": 'Food Hub',
-        "special": 'sponsered',
-        "category": "food",
-        "votes": '1,158',
-        "menu": 'Menu',
-        "image": resturant,
-        "imageSources": [food5, food4],
-    },
-    {
-        "name": 'Fitness',
-        "special": '',
-        "category": "health",
-        "votes": '1,158',
-        "menu": 'time',
-        "image": resturant,
-        "imageSources": [health2, health1],
-    }
-]
+import { baseURL, currCountryCode } from '../../functions/BaseURL';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 const quickBtn = [
     {
         "btnName": "burgers",
@@ -81,12 +36,35 @@ const quickBtn = [
         "btnName": "nodles",
     },
 ]
-export default function DiscovercategoryList() {
-    const [values, setValues] = useState([200, 3000]);
+export default function DiscovercategoryList({ categoryFetched, discoversFetched, categoryName }) {
+    console.log(categoryFetched);
+    console.log(discoversFetched);
+    const navigate = useNavigate()
+    const location = useLocation()
+    // console.log(location.search);
+    // const [values, setValues] = useState([200, 3000]);
 
-    const handleSliderChange = (newValues) => {
-        setValues(newValues);
-    };
+    // const handleSliderChange = (newValues) => {
+    //     setValues(newValues);
+    // };
+    const [renderData, setRenderData] = useState(discoversFetched)
+    const filterByDiscoverCategory = async ({ sub_id, sub_name }) => {
+        const newFetchedData = await fetch(`${baseURL}/${currCountryCode}/discover-sub-categories/${sub_id}`)
+        const response = await newFetchedData.json()
+        navigate(`/${currCountryCode}/discover/${categoryName}?${sub_name}`)
+        setRenderData(response.data)
+    }
+    useEffect(() => {
+        if (location.search) {
+            const serachArr = location.search.split('')
+            serachArr.shift()
+            let search = serachArr.join('')
+            search = search.split('%20').join(' ')
+            const filteredSubCategory = categoryFetched?.subCategories?.find((el) => el.sub_name === search)
+            filterByDiscoverCategory(filteredSubCategory)
+            // console.log(filteredSubCategory);
+        }
+    }, [])
     return (
         <div className='discoverCategoryList__handler mb-5'>
             <div className="container">
@@ -96,110 +74,60 @@ export default function DiscovercategoryList() {
                             <div className="search__title">Popular Filters</div>
                             <div className="discoverCategoryList__subCategories">
                                 <ul>
-                                    <li>
+                                    <li onClick={
+                                        () => {
+                                            setRenderData(discoversFetched)
+                                            navigate(`/${currCountryCode}/discover/${categoryName}`)
+                                        }
+                                    }>
                                         <i className="bi bi-chevron-right"></i>
-                                        sub category (0)
+                                        All category
                                     </li>
-                                    <li>
-                                        <i className="bi bi-chevron-right"></i>
-                                        sub category (0)
-                                    </li>
-                                    <li>
-                                        <i className="bi bi-chevron-right"></i>
-                                        sub category (0)
-                                    </li>
-                                    <li>
-                                        <i className="bi bi-chevron-right"></i>
-                                        sub category (0)
-                                    </li>
-                                    <li>
-                                        <i className="bi bi-chevron-right"></i>
-                                        sub category (0)
-                                    </li>
+                                    {
+                                        categoryFetched?.subCategories?.map((el) => (
+                                            <li key={el?.sub_id}
+                                                onClick={() => filterByDiscoverCategory(el)}
+                                            >
+                                                <i className="bi bi-chevron-right"></i>
+                                                {el?.sub_name}
+                                            </li>
+                                        ))
+                                    }
+
                                 </ul>
-                            </div>
-
-                        </div>
-                        <div className="price__search__part">
-                            <div className="price__search__title">
-                                Select Votes
-                            </div>
-                            <div className="price__Sec">
-                                <div className="range__item">
-                                    {/* <Form.Range /> */}
-                                    <ReactSlider
-                                        className="range-slider"
-                                        value={values}
-                                        withBars
-                                        min={200}
-                                        max={3000}
-                                        step={100}
-                                        pearling
-                                        onChange={handleSliderChange}
-                                    />
-                                </div>
-                                <div className="input__price">
-                                    <div className="row">
-                                        <div className="col-lg-6">
-                                            <div className="input__item">
-                                                <InputGroup className="mb-3">
-                                                    <Form.Control
-                                                        placeholder="min price"
-                                                        aria-label="min price"
-                                                        value={`${values[0]}`}
-                                                        aria-describedby="basic-addon1"
-                                                    />
-                                                </InputGroup>
-                                            </div>
-
-                                        </div>
-                                        <div className="col-lg-6">
-                                            <div className="input__item">
-                                                <InputGroup className="mb-3">
-                                                    <Form.Control
-                                                        placeholder="max price"
-                                                        aria-label="max price"
-                                                        value={`${values[1]}`}
-                                                        aria-describedby="basic-addon1"
-                                                    />
-                                                </InputGroup>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-lg-9">
                         <div className="discoverCategoryList__box">
                             <h3 className='mb-4 discoverCategoryList__tit'>
-                                4 most recomended place in country
+                                {categoryFetched?.discoversCount} most recomended {categoryName} in country
                             </h3>
                             <div className="ads__filter__cards">
                                 <div className="row">
                                     {
-                                        restaurantDataArr.map((restaurantDataArr) => {
+                                        renderData?.discovers?.map((discoverEl, index) => {
                                             return (
-                                                <AdsCard restaurantData={restaurantDataArr} />
+                                                <AdsCard key={index} discoverData={discoverEl} />
                                             )
                                         })
                                     }
                                 </div>
                             </div>
                         </div>
-                        <div className="discoverCategoryList__quickBtns">
+                        {/* <div className="discoverCategoryList__quickBtns">
                             <ul>
                                 {
-                                    quickBtn.map((el)=>{
-                                        return(
-                                            <li className="quickBtn">
+                                    quickBtn.map((el, index) => {
+                                        return (
+                                            <li key={index} className="quickBtn">
                                                 {el.btnName}
                                             </li>
                                         )
                                     })
                                 }
                             </ul>
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>

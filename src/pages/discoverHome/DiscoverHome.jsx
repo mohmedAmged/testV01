@@ -9,18 +9,6 @@ import { useQuery } from '@tanstack/react-query'
 import { baseURL, currCountryCode } from '../../functions/BaseURL'
 import Loader from '../../components/loader/Loader'
 import Error from '../../components/error/Error'
-// const slidesOne = [
-//   { "id": 1, "category": 'Fine Dining', "image": foodImg },
-//   { "id": 2, "category": 'Italian Cuisine', "image": foodImg },
-//   { "id": 3, "category": 'Seafood Delights1', "image": foodImg },
-//   { "id": 4, "category": 'Seafood Delights2', "image": foodImg },
-//   { "id": 5, "category": 'Seafood Delights3', "image": foodImg },
-//   { "id": 6, "category": 'Seafood Delights4', "image": foodImg },
-//   { "id": 7, "category": 'Seafood Delights5', "image": foodImg }
-// ];
-
-
-
 export default function DiscoverHome() {
   const { data ,isError , isLoading} = useQuery({
     queryKey: ['discover-home-recomended-categories'],
