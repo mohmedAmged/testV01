@@ -55,7 +55,7 @@ export default function CarInterestSec({interestItems}) {
                                 modules={[Navigation, Keyboard]}
                             >
                                 {
-                                    interestItems.map((el) => {
+                                    interestItems?.map((el) => {
                                         return (
                                             <SwiperSlide key={el?.id}>
                                                 <div className="box__Item__int__handler d-flex justify-content-center">
