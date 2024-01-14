@@ -6,6 +6,7 @@ import 'swiper/css';
 import "swiper/css/autoplay";
 import { useNavigate } from 'react-router-dom';
 import { currCountryCode } from '../../functions/BaseURL';
+import { scrollToTop } from '../../functions/scrollToTop';
 export default function DiscoverSlider({ title, subtitle, slides, titleCateg }) {
     const navigate = useNavigate()
     return (
@@ -65,6 +66,7 @@ export default function DiscoverSlider({ title, subtitle, slides, titleCateg }) 
                                                 
                                                     <h3
                                                     onClick={()=>{
+                                                        scrollToTop()
                                                         navigate(`/${currCountryCode}/discover/${titleCateg}?${slide.category}`)
                                                     }
                                                         }

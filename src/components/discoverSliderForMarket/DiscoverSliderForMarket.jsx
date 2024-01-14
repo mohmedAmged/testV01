@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import "swiper/css/autoplay";
 import { currCountryCode } from '../../functions/BaseURL';
+import { scrollToTop } from '../../functions/scrollToTop';
 export default function DiscoverSliderForMarket({ title, subtitle, slides, navigateLink, useCategoryId }) {
     const navigate = useNavigate()
 
@@ -65,6 +66,7 @@ export default function DiscoverSliderForMarket({ title, subtitle, slides, navig
 
                                                 <h3
                                                     onClick={() => {
+                                                        scrollToTop()
                                                         const path = useCategoryId
                                                             ? `${navigateLink}/${slide.id}`
                                                             : `${navigateLink}/${slide.category}`;

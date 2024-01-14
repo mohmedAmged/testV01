@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { currCountryCode } from '../../functions/BaseURL';
+import { scrollToTop } from '../../functions/scrollToTop';
 
 export default function AdsCard({ discoverData }) {
     const [activeIndicator, setActiveIndicator] = useState(0);
@@ -49,7 +50,9 @@ export default function AdsCard({ discoverData }) {
                     <div className="cart__main__titels">
                         <div className="">
                             <div className="cart__title">
-                                <NavLink to={`/${currCountryCode}/${discoverData?.discover_name}`} className="nav-link">
+                                <NavLink to={`/${currCountryCode}/${discoverData?.discover_name}`} className="nav-link" onClick={()=>{
+                                    scrollToTop()
+                                }}>
                                     {discoverData?.discover_name}
                                 </NavLink>
                             </div>
