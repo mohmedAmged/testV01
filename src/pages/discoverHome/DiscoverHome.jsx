@@ -43,7 +43,7 @@ export default function DiscoverHome() {
       }, 800);
       return () => clearTimeout(timeoutId);
   });
-
+  const navigateLinkTwo = `/${currCountryCode}`
   return (
     <>
     {
@@ -78,6 +78,8 @@ export default function DiscoverHome() {
             key={index}
             title={`Most recommended ${subCategory.name} in country`}
             subtitle="Discover the best places"
+            navigateLink={navigateLinkTwo}
+            useCategoryId={false}
             slides={subCategory?.discovers?.map(discover => ({
               id: discover.discover_id,
               category: discover.discover_name,
