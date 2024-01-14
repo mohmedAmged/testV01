@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import './discoverCategoryPage.css'
-import DynamicHero from '../../components/dynamicHeroPart/DynamicHero'
+import './singleDiscoverNamePage.css'
+import Loader from '../../components/loader/Loader';
+import DynamicHero from '../../components/dynamicHeroPart/DynamicHero';
 import { useParams } from 'react-router-dom';
 import DynamicMapWeb from '../../components/dynamicMapWeb/DynamicMapWeb';
-import DiscovercategoryList from '../../components/discoverCategoryList/DiscovercategoryList';
-import Loader from '../../components/loader/Loader';
+import DiscoverNameSec from '../../components/discoverNameSec/DiscoverNameSec';
 import { useQuery } from '@tanstack/react-query';
 import { baseURL, currCountryCode } from '../../functions/BaseURL';
-
-export default function DiscoverCategoryPage() {
-    const { categoryName } = useParams();
+export default function SingleDiscoverNamePage() {
+    const { discoverName } = useParams();
     const links = [
         { "label": 'Home', "route": '/' },
         { "label": 'Discover', "route": `/${currCountryCode}/discover` },
-        { "label": `${categoryName}`, "route": `/${currCountryCode}/discover/category/${categoryName}` },
+        { "label": `${discoverName}`, "route": `/${currCountryCode}/${discoverName}` },
     ];
-
     const discoverHome = useQuery({
         queryKey: ['discover-home'],
         queryFn: async () => {
@@ -24,20 +22,15 @@ export default function DiscoverCategoryPage() {
             return response.data;
         },
     });
-
-    const catgeoryFetched = discoverHome?.data?.ads?.ads_categories?.find((el) => el.name === categoryName)
-    const discoversFetched = discoverHome?.data?.discoverCategories?.discoverCategories?.find((el) => el.name === categoryName)
-
     const [showContent, setShowContent] = useState(true);
-    
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setShowContent(false);
         }, 800);
         return () => clearTimeout(timeoutId);
     });
-    return (
-        <div className='discoverCategSinglePage'>
+  return (
+    <div className='discoverCategSinglePage'>
             {
                 (showContent) ?
                     <Loader />
@@ -46,9 +39,10 @@ export default function DiscoverCategoryPage() {
                         <DynamicHero title="Discover Everything"
                             description="Unleash curiosity and explore a world where every discovery is a journey in itself" />
                         <DynamicMapWeb links={links} />
-                        <DiscovercategoryList  categoryName={categoryName} discoversFetched={discoversFetched} categoryFetched={catgeoryFetched} />
+                        <DiscoverNameSec discoverHome={discoverHome?.data?.discovers
+                        }/>
                     </div>
             }
         </div>
-    )
+  )
 }

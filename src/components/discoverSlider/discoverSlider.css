@@ -52,6 +52,7 @@
     font-weight: 600;
     font-size: 27px;
     text-transform: capitalize;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px){

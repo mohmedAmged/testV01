@@ -1,13 +1,13 @@
 import React from 'react'
-import './discoverSlider.css'
+import { useNavigate } from 'react-router-dom'
 import Autoplay from "../../../node_modules/swiper/modules/autoplay.mjs";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import "swiper/css/autoplay";
-import { useNavigate } from 'react-router-dom';
 import { currCountryCode } from '../../functions/BaseURL';
-export default function DiscoverSlider({ title, subtitle, slides, titleCateg }) {
+export default function DiscoverSliderForMarket({ title, subtitle, slides, navigateLink, useCategoryId }) {
     const navigate = useNavigate()
+
     return (
         <div className="discoverSlider__handler">
             <div className="container">
@@ -62,14 +62,16 @@ export default function DiscoverSlider({ title, subtitle, slides, titleCateg }) 
                                                 <img src={slide.image} alt={`food_${slide.id}`} />
                                             </div>
                                             <div className="discoverSlider__text">
-                                                
-                                                    <h3
-                                                    onClick={()=>{
-                                                        navigate(`/${currCountryCode}/discover/${titleCateg}?${slide.category}`)
-                                                    }
-                                                        }
-                                                    >{slide.category}</h3>
-                                                
+
+                                                <h3
+                                                    onClick={() => {
+                                                        const path = useCategoryId
+                                                            ? `${navigateLink}/${slide.id}`
+                                                            : `${navigateLink}/${slide.category}`;
+                                                        navigate(path);
+                                                    }}
+                                                >{slide.category}</h3>
+
                                             </div>
                                         </div>
                                     </SwiperSlide>

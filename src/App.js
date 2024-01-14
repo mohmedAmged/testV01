@@ -17,6 +17,7 @@ import { useQuery } from '@tanstack/react-query';
 import { baseURL, currCountryCode } from './functions/BaseURL';
 import DefaultPage from './pages/defaultPage/DefaultPage';
 import PageNotFound from './pages/pageNotFound/PageNotFound';
+import SingleDiscoverNamePage from './pages/singleDiscoverNamePage/SingleDiscoverNamePage';
 
 function App() {
   const location = useLocation();
@@ -76,6 +77,7 @@ function App() {
         <Route path={`/${currCountryCode}/car-Info/:carId`} element={<SingleProductPage />} />
         <Route path={`/${currCountryCode}/discover`} element={<DiscoverHome />} />
         <Route path={`/${currCountryCode}/discover/:categoryName`} element={<DiscoverCategoryPage />} />
+        <Route path={`/${currCountryCode}/:discoverName`} element={<SingleDiscoverNamePage />} />
         <Route path={`/${currCountryCode}/save`} element={<SaveHome />} />
         <Route path={`/${currCountryCode}/save/:pageName`} element={<SaveSubPage />} />
         <Route path={`/${currCountryCode}/user/dashboard`} element={<UserDashBoard />} />

@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { baseURL, currCountryCode } from '../../functions/BaseURL'
 import Loader from '../../components/loader/Loader'
 import Error from '../../components/error/Error'
+import DiscoverSliderForMarket from '../../components/discoverSliderForMarket/DiscoverSliderForMarket'
 export default function DiscoverHome() {
   const { data ,isError , isLoading} = useQuery({
     queryKey: ['discover-home-recomended-categories'],
@@ -58,6 +59,8 @@ export default function DiscoverHome() {
         {data?.recommendedCategories?.map((category, index) => (
           <DiscoverSlider
             key={index}
+            // link={`/${currCountryCode}/discover/${category.name}?${category?.subCategories?.map(subCategory=>(subCategory.sub_name))}`}
+            titleCateg={`${category.name}`}
             title={`Most recommended ${category.name} categories`}
             subtitle="Winning flavors for every appetite"
             slides={category?.subCategories?.map(subCategory => ({
@@ -71,7 +74,7 @@ export default function DiscoverHome() {
         <DiscoverAdsCateg adsFetched={discoverHome?.data?.ads?.ads_categories}/>
 
         {discoverData?.data?.recommendedSubCategories?.map((subCategory, index) => (
-          <DiscoverSlider
+          <DiscoverSliderForMarket
             key={index}
             title={`Most recommended ${subCategory.name} in country`}
             subtitle="Discover the best places"

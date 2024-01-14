@@ -7,6 +7,8 @@ import { useQuery } from '@tanstack/react-query';
 import { baseURL, currCountryCode} from '../../functions/BaseURL';
 import Loader from "../../components/loader/Loader";
 import Error from '../../components/error/Error';
+import DiscoverSliderForMarket from '../../components/discoverSliderForMarket/DiscoverSliderForMarket';
+import { useParams } from 'react-router-dom';
 const homeSliderItems = [
     {
         "title": "Warranty cars",
@@ -99,7 +101,7 @@ const homeSliderItems = [
     },
 ]
 export default function MyMainHome() {
-
+    const { carId } = useParams();
     const { data, isLoading, isError } = useQuery({
         queryKey: ['car-home'],
         queryFn: async () => {
@@ -135,6 +137,9 @@ export default function MyMainHome() {
         },
     });
 
+    const navigateLink = `/${currCountryCode}/car-Info`
+    const navigateLinkTwo = `/${currCountryCode}`
+    
     return (
         <>
             {
@@ -148,18 +153,23 @@ export default function MyMainHome() {
                                 description="Uncover the extraordinary—explore new offers, cars, votes, sponsorships, and more, all in one dynamic platform for users and business owners alike!" />
                                 <>
                                     <MainHomeSlider homeSliderItems={homeSliderItems} />
-                                    <DiscoverSlider title="Most recent cars" subtitle="warranty-valid cars" slides={mergedCarSlide} />
+                                    <DiscoverSliderForMarket title="Most recent cars" subtitle="warranty-valid cars" slides={mergedCarSlide}  
+                                    navigateLink={navigateLink} 
+                                    useCategoryId={true}
+                                    />
                                     {discoverData?.data?.recommendedSubCategories?.map((subCategory, index) => (
-                                        <DiscoverSlider
-                                            key={index}
-                                            title={`Most recommended ${subCategory.name} in country`}
-                                            subtitle="Discover the best places"
-                                            slides={subCategory?.discovers?.map(discover => ({
-                                                id: discover.discover_id,
-                                                category: discover.discover_name,
-                                                image: discover.discover_image,
-                                            }))}
-                                        />
+                                    <DiscoverSliderForMarket
+                                        key={index}
+                                        title={`Most recommended ${subCategory.name} in country`}
+                                        subtitle="Discover the best places"
+                                        navigateLink={navigateLinkTwo}
+                                        useCategoryId={false}
+                                        slides={subCategory?.discovers?.map(discover => ({
+                                        id: discover.discover_id,
+                                        category: discover.discover_name,
+                                        image: discover.discover_image,
+                                        }))}
+                                    />
                                     ))}
                                 </>
                         </div>

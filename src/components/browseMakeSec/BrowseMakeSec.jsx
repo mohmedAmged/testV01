@@ -15,7 +15,7 @@ export default function BrowseMakeSec({browserItems}) {
             </div>
             <div className="row">
                 {
-                    browserItems.map((item)=>{
+                    browserItems?.map((item)=>{
                         return( <div key={item?.id} className="col-lg-3 col-md-6 col-sm-6 mb-3 mt-3 d-flex justify-content-center align-items-center">
                                     <div className="browser__box">
                                         <div className="browser__img">
