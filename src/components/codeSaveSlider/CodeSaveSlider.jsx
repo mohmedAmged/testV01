@@ -7,6 +7,7 @@ import 'swiper/css';
 import "swiper/css/autoplay";
 import Swal from 'sweetalert2';
 import { scrollToTop } from '../../functions/scrollToTop';
+import { currCountryCode } from '../../functions/BaseURL';
 export default function CodeSaveSlider({ title, saveSlides }) {
     const copyCodeToClipboard = (code) => {
         navigator.clipboard.writeText(code);
@@ -85,7 +86,7 @@ export default function CodeSaveSlider({ title, saveSlides }) {
                             <h3>
                                 {title}
                             </h3>
-                            <NavLink to={`/save/${title}`} className="nav-link couponSlider__head__link" onClick={() => {
+                            <NavLink to={`/${currCountryCode}/save/${title}`} className="nav-link couponSlider__head__link" onClick={() => {
                                 scrollToTop();
                             }}>
                                 view more

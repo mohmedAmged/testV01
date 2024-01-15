@@ -4,10 +4,11 @@ import DynamicHero from '../../components/dynamicHeroPart/DynamicHero'
 import DynamicMapWeb from '../../components/dynamicMapWeb/DynamicMapWeb'
 import UserProfileSec from '../../components/userProfileSec/UserProfileSec';
 import Loader from '../../components/loader/Loader';
+import { currCountryCode } from '../../functions/BaseURL';
 export default function UserDashBoard() {
   const links = [
-      { "label": 'Home', "route": '/' },
-      { "label": 'Dashboard', "route": '/user/dashboard' },
+      { "label": 'Home', "route": `/${currCountryCode}` },
+      { "label": 'Dashboard', "route": `/${currCountryCode}/user/dashboard` },
   ];
 
   const [showContent, setShowContent] = useState(true);

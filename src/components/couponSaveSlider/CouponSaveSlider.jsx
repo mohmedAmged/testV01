@@ -10,8 +10,8 @@ import Swal from 'sweetalert2';
 import coupon from '../../assets/saveHomeImg/print_coupon.jpg'
 import jsPDF from 'jspdf';
 import { scrollToTop } from '../../functions/scrollToTop';
+import { currCountryCode } from '../../functions/BaseURL';
 export default function CouponSaveSlider({ title, saveSlides }) {
-
     const showCoupon = (slide) => {
         Swal.fire({
             html: `
@@ -97,7 +97,7 @@ export default function CouponSaveSlider({ title, saveSlides }) {
                             <h3>
                                 {title}
                             </h3>
-                            <NavLink to={`/save/${title}`} className="nav-link couponSlider__head__link" onClick={() => {
+                            <NavLink to={`/${currCountryCode}/save/${title}`} className="nav-link couponSlider__head__link" onClick={() => {
                                 scrollToTop();
                             }}>
                                 view more

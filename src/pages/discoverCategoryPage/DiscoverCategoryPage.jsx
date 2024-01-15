@@ -11,9 +11,9 @@ import { baseURL, currCountryCode } from '../../functions/BaseURL';
 export default function DiscoverCategoryPage() {
     const { categoryName } = useParams();
     const links = [
-        { "label": 'Home', "route": '/' },
+        { "label": 'Home', "route": `/${currCountryCode}` },
         { "label": 'Discover', "route": `/${currCountryCode}/discover` },
-        { "label": `${categoryName}`, "route": `/${currCountryCode}/discover/category/${categoryName}` },
+        { "label": `${categoryName}`, "route": `/${currCountryCode}/discover/${categoryName}` },
     ];
 
     const discoverHome = useQuery({

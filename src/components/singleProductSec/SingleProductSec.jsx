@@ -11,6 +11,7 @@ import 'swiper/css/thumbs';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import DynamicMapWeb from '../dynamicMapWeb/DynamicMapWeb';
+import { currCountryCode } from '../../functions/BaseURL';
 
 export default function SingleProductSec({carDetails}) {
 
@@ -21,9 +22,9 @@ export default function SingleProductSec({carDetails}) {
     };
 
     const links = [
-        { "label": 'Home', "route": '/' },
-        { "label": 'cars', "route": '/cars' },
-        { "label": `${carDetails?.name}`, "route": `/car-info/${carDetails?.id}` },
+        { "label": 'Home', "route": `/${currCountryCode}` },
+        { "label": 'cars', "route": `/${currCountryCode}/cars` },
+        { "label": `${carDetails?.name}`, "route": `/${currCountryCode}/car-info/${carDetails?.id}` },
     ];
     return (
         <>

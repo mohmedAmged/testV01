@@ -1,7 +1,7 @@
 import React from 'react'
 import './savePopuCategory.css'
 import { NavLink } from 'react-router-dom'
-import icon1 from '../../assets/saveHomeImg/icon1.gif'
+// import icon1 from '../../assets/saveHomeImg/icon1.gif'
 export default function SavePopuCategory({ couponCards }) {
 
   return (

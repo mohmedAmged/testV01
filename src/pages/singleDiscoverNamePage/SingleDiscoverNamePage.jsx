@@ -10,7 +10,7 @@ import { baseURL, currCountryCode } from '../../functions/BaseURL';
 export default function SingleDiscoverNamePage() {
     const { discoverName } = useParams();
     const links = [
-        { "label": 'Home', "route": '/' },
+        { "label": 'Home', "route": `/${currCountryCode}` },
         { "label": 'Discover', "route": `/${currCountryCode}/discover` },
         { "label": `${discoverName}`, "route": `/${currCountryCode}/${discoverName}` },
     ];

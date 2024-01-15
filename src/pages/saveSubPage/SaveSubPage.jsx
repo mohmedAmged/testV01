@@ -5,12 +5,14 @@ import { useParams } from 'react-router-dom';
 import DynamicMapWeb from '../../components/dynamicMapWeb/DynamicMapWeb';
 import SaveSubList from '../../components/saveSubList/SaveSubList';
 import Loader from '../../components/loader/Loader';
+import { currCountryCode } from '../../functions/BaseURL';
 export default function SaveSubPage() {
   const { pageName } = useParams();
+  console.log(pageName);
   const links = [
-    { "label": 'Home', "route": '/' },
-    { "label": 'save', "route": '/save' },
-    { "label": `${pageName}`, "route": `/save/${pageName}` },
+    { "label": 'Home', "route": `/${currCountryCode}` },
+    { "label": 'save', "route": `/${currCountryCode}/save` },
+    { "label": `${pageName}`, "route": `/${currCountryCode}/save/${pageName}` },
   ];
 
   const [showContent, setShowContent] = useState(true);
@@ -23,6 +25,7 @@ export default function SaveSubPage() {
 
   return (
     <>
+   {
     (showContent) ? 
       <Loader />
     :
@@ -31,6 +34,7 @@ export default function SaveSubPage() {
         <DynamicMapWeb links={links}/>
         <SaveSubList />
       </div>
+      }
     </>
   )
 }

@@ -57,9 +57,9 @@ const carQuery = useQuery({
   
 
   const links = [
-    { "label": 'Home', "route": '/' },
-    { "label": 'cars', "route": '/cars' },
-    { "label": 'New Cars', "route": '/new-cars' },
+    { "label": 'Home', "route": `/${currCountryCode}` },
+    { "label": 'cars', "route": `/${currCountryCode}/cars` },
+    { "label": 'New Cars', "route": `/${currCountryCode}/new-cars` },
 ];
   return (
     <>
