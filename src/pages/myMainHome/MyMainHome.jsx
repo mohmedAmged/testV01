@@ -83,47 +83,47 @@ export default function MyMainHome() {
         },
         {
             "title": "save anything",
-            "mainLink": "/save",
+            "mainLink": `/${currCountryCode}/save`,
             "cardBg": "third__Bg",
             "subCategory": [
                 {
                     "subTitle": "Tech Treats",
-                    "subLink": "/save/Get%20Your%20Coupon%20Now"
+                    "subLink": `/${currCountryCode}/save/Get%20Your%20Coupon%20Now`
                 },
                 {
                     "subTitle": "Fashion Finds",
-                    "subLink": "/save/Get%20Your%20Coupon%20Now"
+                    "subLink": `/${currCountryCode}/save/Get%20Your%20Coupon%20Now`
                 },
                 {
                     "subTitle": "Hotels & Travel",
-                    "subLink": "/save/Exclusive%20Coupons"
+                    "subLink": `/${currCountryCode}/save/Exclusive%20Coupons`
                 },
                 {
                     "subTitle": "Beauty & Spas",
-                    "subLink": "/save/Exclusive%20Coupons"
+                    "subLink": `/${currCountryCode}/save/Exclusive%20Coupons`
                 },
                 {
                     "subTitle": "Automotive",
-                    "subLink": "/save/Exclusive%20Coupons"
+                    "subLink": `/${currCountryCode}/save/Exclusive%20Coupons`
                 },
                 {
                     "subTitle": "Food & Drink",
-                    "subLink": "/save/Get%20Your%20Coupon%20Now"
+                    "subLink": `/${currCountryCode}/save/Exclusive%20Coupons`
                 },
             ],
         },
         {
             "title": "gain points",
-            "mainLink": "/user/dashboard",
+            "mainLink": `/${currCountryCode}/user/dashboard`,
             "cardBg": "forth__Bg",
             "subCategory": [
                 {
                     "subTitle": "gain",
-                    "subLink": "/user/dashboard"
+                    "subLink": `/${currCountryCode}/user/dashboard`
                 },
                 {
                     "subTitle": "donations",
-                    "subLink": "/user/dashboard"
+                    "subLink": `/${currCountryCode}/user/dashboard`
                 },
             ],
         },
