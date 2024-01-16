@@ -2,6 +2,7 @@ import React from 'react'
 import './recentSec.css'
 import { NavLink } from 'react-router-dom'
 import ProductCard from '../productCard/ProductCard'
+import { currCountryCode } from '../../functions/BaseURL'
 export default function RecentSec({cars}) {
     return (
         <div className='recent__Sec'>
@@ -25,7 +26,7 @@ export default function RecentSec({cars}) {
                         <div className="row justify-content-center">
                             <div className="col-lg-12 d-flex justify-content-center">
                                 <div className="show__handler">
-                                    <NavLink className="nav-link">
+                                    <NavLink to={`/${currCountryCode}/new-cars`} className="nav-link">
                                         Show More
                                     </NavLink>
                                 </div>

@@ -17,6 +17,7 @@
     line-height: 50px;
     font-weight: 700;
     letter-spacing: -3px;
+    text-transform: capitalize;
 
 }
 .dynamic__hero__text p{
@@ -26,6 +27,7 @@
     letter-spacing: -1px;
     line-height: 1.2;
     font-weight: 700;
+    text-transform: capitalize;
 }
 
 

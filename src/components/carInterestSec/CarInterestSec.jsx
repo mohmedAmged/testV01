@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation, Keyboard } from 'swiper/modules';
+import { NavLink } from 'react-router-dom';
+import { currCountryCode } from '../../functions/BaseURL';
 
 
 export default function CarInterestSec({interestItems}) {
@@ -63,9 +65,12 @@ export default function CarInterestSec({interestItems}) {
                                                         <div className="img__int__item">
                                                             <img src={el?.image} alt="logo__car" />
                                                         </div>
-                                                        <p className='d-flex justify-content-center'>
-                                                            {el?.name}
-                                                        </p>
+                                                        <NavLink className="nav-link" to={`/${currCountryCode}/new-cars?body=${el.id}`}>
+                                                            <p className='d-flex justify-content-center'>
+                                                                {el?.name}
+                                                            </p>
+                                                        </NavLink>
+                                                        
                                                     </div>
                                                 </div>
                                             </SwiperSlide>

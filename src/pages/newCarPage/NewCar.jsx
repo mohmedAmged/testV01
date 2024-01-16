@@ -8,11 +8,26 @@ import { useQuery } from '@tanstack/react-query';
 import Loader from '../../components/loader/Loader';
 import Error from '../../components/error/Error';
 import DynamicMapWeb from '../../components/dynamicMapWeb/DynamicMapWeb';
+import { useLocation } from 'react-router-dom';
 
 export default function NewCar() {
-
+  const location = useLocation()
+  console.log(location.search);
+const getconditionFromUrl = (arr) =>{
+  let myObj = {}
+  const searchArr = [...arr];
+  const withoutQuestionMark = searchArr.slice(1, (searchArr.length));
+  const searchArrWithoutAnyThing = withoutQuestionMark.join("").split("&")
+  searchArrWithoutAnyThing.forEach((e) => {
+      const elementArray = e.split("=");
+      myObj = ({
+          ...myObj,
+          [elementArray[0]]: elementArray[1]
+      });
+  })
+  return myObj.condition;
+}
   const [showContent, setShowContent] = useState(true);
-
   const bodyQuery = useQuery({
     queryKey: ['cars-bodies'],
     queryFn: async () => {
@@ -71,7 +86,7 @@ const carQuery = useQuery({
       <Error error={priceQuery?.error || carQuery?.error || makesQuery?.error || bodyQuery?.error} />
       : 
       <>
-        <DynamicHeroSec backgroundImage={heroBg} title="New Cars" content="New cars"/>
+        <DynamicHeroSec backgroundImage={heroBg} title={`${getconditionFromUrl(location.search)? getconditionFromUrl(location.search)+' cars' : 'all cars'}`} content={`${getconditionFromUrl(location.search)? getconditionFromUrl(location.search)+' cars' : 'all cars'}`}/>
         <DynamicMapWeb links={links}  />
         <ShopSec cars={carQuery?.data?.cars} makes={makesQuery?.data?.makes} bodies={bodyQuery?.data?.bodies} priceQuery={priceQuery}/>
       </>

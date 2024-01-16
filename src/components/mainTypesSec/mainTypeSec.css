@@ -7,7 +7,7 @@
     background: red;
     color: #ffffff;
     border-radius: 5px;
-    min-height: 300px;
+    min-height: 320px;
 }
 .box__item__type.blue__box{
     background: var(--primary-blue);

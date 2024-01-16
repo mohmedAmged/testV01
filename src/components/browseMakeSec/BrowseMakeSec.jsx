@@ -1,5 +1,7 @@
 import React from 'react'
 import './browseMake.css'
+import { NavLink } from 'react-router-dom'
+import { currCountryCode } from '../../functions/BaseURL'
 
 export default function BrowseMakeSec({browserItems}) {
   return (
@@ -22,9 +24,11 @@ export default function BrowseMakeSec({browserItems}) {
                                             <img src={item?.image} alt="" />
                                         </div>
                                         <div className="browser__text d-flex justify-content-center">
-                                            <p>
-                                                {item?.name}
-                                            </p>
+                                            <NavLink className="nav-link" to={`/${currCountryCode}/new-cars?make=${item.id}`}>
+                                                <p>
+                                                    {item?.name}
+                                                </p>
+                                            </NavLink>
                                         </div>
                         </div>
                     </div>)
