@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './myMainHome.css';
 import MainHomeSlider from '../../components/mainHomeSlider/MainHomeSlider';
 import HomeMainHero from '../../components/homeMainHero/HomeMainHero';
-import DiscoverSlider from '../../components/discoverSlider/DiscoverSlider';
 import { useQuery } from '@tanstack/react-query';
 import { baseURL, currCountryCode} from '../../functions/BaseURL';
 import Loader from "../../components/loader/Loader";
 import Error from '../../components/error/Error';
 import DiscoverSliderForMarket from '../../components/discoverSliderForMarket/DiscoverSliderForMarket';
 import { useParams } from 'react-router-dom';
-
 export default function MyMainHome() {
     const { carId } = useParams();
     const { data, isLoading, isError } = useQuery({

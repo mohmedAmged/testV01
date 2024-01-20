@@ -13,20 +13,20 @@ import { useLocation } from 'react-router-dom';
 export default function NewCar() {
   const location = useLocation()
   console.log(location.search);
-const getconditionFromUrl = (arr) =>{
-  let myObj = {}
-  const searchArr = [...arr];
-  const withoutQuestionMark = searchArr.slice(1, (searchArr.length));
-  const searchArrWithoutAnyThing = withoutQuestionMark.join("").split("&")
-  searchArrWithoutAnyThing.forEach((e) => {
+  const getconditionFromUrl = (arr) => {
+    let myObj = {}
+    const searchArr = [...arr];
+    const withoutQuestionMark = searchArr.slice(1, (searchArr.length));
+    const searchArrWithoutAnyThing = withoutQuestionMark.join("").split("&")
+    searchArrWithoutAnyThing.forEach((e) => {
       const elementArray = e.split("=");
       myObj = ({
-          ...myObj,
-          [elementArray[0]]: elementArray[1]
+        ...myObj,
+        [elementArray[0]]: elementArray[1]
       });
-  })
-  return myObj.condition;
-}
+    })
+    return myObj.condition;
+  }
   const [showContent, setShowContent] = useState(true);
   const bodyQuery = useQuery({
     queryKey: ['cars-bodies'],
@@ -47,19 +47,19 @@ const getconditionFromUrl = (arr) =>{
   const priceQuery = useQuery({
     queryKey: ['price'],
     queryFn: async () => {
-        const fetchData = await fetch(`${baseURL}/${currCountryCode}/car-price`);
-        const response = await fetchData.json();
-        return response.data;
+      const fetchData = await fetch(`${baseURL}/${currCountryCode}/car-price`);
+      const response = await fetchData.json();
+      return response.data;
     },
-});
-const carQuery = useQuery({
-  queryKey: ['carsFull'],
-  queryFn: async () => {
+  });
+  const carQuery = useQuery({
+    queryKey: ['carsFull'],
+    queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/${currCountryCode}/cars`);
       const response = await fetchData.json();
       return response.data;
-  },
-});
+    },
+  });
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -69,29 +69,27 @@ const carQuery = useQuery({
     return () => clearTimeout(timeoutId);
   }, [showContent]);
 
-  
-
   const links = [
     { "label": 'Home', "route": `/${currCountryCode}` },
     { "label": 'cars', "route": `/${currCountryCode}/cars` },
     { "label": 'New Cars', "route": `/${currCountryCode}/new-cars` },
-];
+  ];
   return (
     <>
-    {
-      (priceQuery?.isLoading || carQuery?.isLoading || makesQuery?.isLoading || bodyQuery?.isLoading ||showContent) ? 
-      <Loader />
-      :
-       (priceQuery?.isError || carQuery?.isError || makesQuery?.isError || bodyQuery?.isError) ? 
-      <Error error={priceQuery?.error || carQuery?.error || makesQuery?.error || bodyQuery?.error} />
-      : 
-      <>
-        <DynamicHeroSec backgroundImage={heroBg} title={`${getconditionFromUrl(location.search)? getconditionFromUrl(location.search)+' cars' : 'all cars'}`} content={`${getconditionFromUrl(location.search)? getconditionFromUrl(location.search)+' cars' : 'all cars'}`}/>
-        <DynamicMapWeb links={links}  />
-        <ShopSec cars={carQuery?.data?.cars} makes={makesQuery?.data?.makes} bodies={bodyQuery?.data?.bodies} priceQuery={priceQuery}/>
-      </>
-      
-    }
+      {
+        (priceQuery?.isLoading || carQuery?.isLoading || makesQuery?.isLoading || bodyQuery?.isLoading || showContent) ?
+          <Loader />
+          :
+          (priceQuery?.isError || carQuery?.isError || makesQuery?.isError || bodyQuery?.isError) ?
+            <Error error={priceQuery?.error || carQuery?.error || makesQuery?.error || bodyQuery?.error} />
+            :
+            <>
+              <DynamicHeroSec backgroundImage={heroBg} title={`${getconditionFromUrl(location.search) ? getconditionFromUrl(location.search) + ' cars' : 'all cars'}`} content={`${getconditionFromUrl(location.search) ? getconditionFromUrl(location.search) + ' cars' : 'all cars'}`} />
+              <DynamicMapWeb links={links} />
+              <ShopSec cars={carQuery?.data?.cars} makes={makesQuery?.data?.makes} bodies={bodyQuery?.data?.bodies} priceQuery={priceQuery} />
+            </>
+
+      }
     </>
   );
 };

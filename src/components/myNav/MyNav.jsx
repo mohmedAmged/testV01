@@ -113,7 +113,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                 scrollToTop();
                             }}
                                 className="nav-link nav__link__style"
-                                to="/">
+                                to={`/${currCountryCode}/register`}>
                                 <div className='btn__Car d-flex justify-content-center align-items-center'>
                                     <i className="bi bi-folder-plus fs-6"></i>
                                     <span>
@@ -234,7 +234,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                     closeOffcanvas();
                                 }}
                                     className="nav-link nav__link__style"
-                                    to={`/${currCountryCode}`}>
+                                    to={`/${currCountryCode}/register`}>
                                     <div className='btn__Car d-flex justify-content-center align-items-center'>
                                         <i className="bi bi-folder-plus fs-6"></i>
                                         <span>

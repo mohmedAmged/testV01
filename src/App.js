@@ -18,8 +18,11 @@ import { baseURL, currCountryCode } from './functions/BaseURL';
 import DefaultPage from './pages/defaultPage/DefaultPage';
 import PageNotFound from './pages/pageNotFound/PageNotFound';
 import SingleDiscoverNamePage from './pages/singleDiscoverNamePage/SingleDiscoverNamePage';
+import Register from './components/register/Register';
+import Login from './components/login/Login';
 
 function App() {
+  const currentRoute = window.location.pathname;
   const location = useLocation();
   const [scrollToggle, setScrollToggle] = useState(false);
   const navigator = useNavigate();
@@ -64,8 +67,17 @@ function App() {
 
   return (
     <>
-      <MyNav countriesData={data?.countries} scrollToggle={scrollToggle} />
-      <ScrollToTopButton />
+      {
+        !(
+          (currentRoute.toLowerCase() === `/${currCountryCode}/login`.toLowerCase())
+          ||
+          (currentRoute.toLowerCase() === `/${currCountryCode}/register`.toLowerCase())
+        ) &&
+        <>
+          <MyNav countriesData={data?.countries} scrollToggle={scrollToggle} />
+          <ScrollToTopButton />
+        </>
+      }
       <Routes>
         {/* home for valuereach progres.. */}
         <Route path='/' element={<DefaultPage countriesData={data?.countries} />} />
@@ -81,9 +93,18 @@ function App() {
         <Route path={`/${currCountryCode}/save`} element={<SaveHome />} />
         <Route path={`/${currCountryCode}/save/:pageName`} element={<SaveSubPage />} />
         <Route path={`/${currCountryCode}/user/dashboard`} element={<UserDashBoard />} />
+        <Route path={`/${currCountryCode}/register`} element={<Register />}/>
+        <Route path={`/${currCountryCode}/login`} element={<Login />}/>
         <Route path='*' element={<PageNotFound error={error ||'Page Not Found'} />} />
       </Routes>
-      <MyFooter />
+      {
+        !(
+          (currentRoute.toLowerCase() === `/${currCountryCode}/login`.toLowerCase())
+          ||
+          (currentRoute.toLowerCase() === `/${currCountryCode}/register`.toLowerCase())
+        ) &&
+        <MyFooter />
+      }
     </>
   );
 }

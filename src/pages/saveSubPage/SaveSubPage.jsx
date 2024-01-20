@@ -8,7 +8,6 @@ import Loader from '../../components/loader/Loader';
 import { currCountryCode } from '../../functions/BaseURL';
 export default function SaveSubPage() {
   const { pageName } = useParams();
-  console.log(pageName);
   const links = [
     { "label": 'Home', "route": `/${currCountryCode}` },
     { "label": 'save', "route": `/${currCountryCode}/save` },
@@ -25,15 +24,15 @@ export default function SaveSubPage() {
 
   return (
     <>
-   {
-    (showContent) ? 
-      <Loader />
-    :
-      <div className='saveSubPage__handler'>
-        <DynamicHero title={`${pageName}`}/>
-        <DynamicMapWeb links={links}/>
-        <SaveSubList />
-      </div>
+      {
+        (showContent) ?
+          <Loader />
+          :
+          <div className='saveSubPage__handler'>
+            <DynamicHero title={`${pageName}`} />
+            <DynamicMapWeb links={links} />
+            <SaveSubList />
+          </div>
       }
     </>
   )
