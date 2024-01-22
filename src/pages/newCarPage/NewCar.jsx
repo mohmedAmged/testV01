@@ -12,7 +12,6 @@ import { useLocation } from 'react-router-dom';
 
 export default function NewCar() {
   const location = useLocation()
-  console.log(location.search);
   const getconditionFromUrl = (arr) => {
     let myObj = {}
     const searchArr = [...arr];

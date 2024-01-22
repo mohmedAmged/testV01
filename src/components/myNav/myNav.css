@@ -19,7 +19,13 @@
     color: #ffffff;
     transition: all ease-in 0.3s;
 }
-
+.btn__Car.btn__Car__logOut{
+    background: #DD3E3E;
+}
+.btn__Car.btn__Car__logOut:hover{
+    background: #ffffff;
+    color: #DD3E3E;
+}
 .btn__Car i {
     margin-right: 5px;
 }

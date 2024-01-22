@@ -3,25 +3,15 @@ import React, { useEffect, useState } from 'react'
 import './myNav.css'
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { scrollToTop } from '../../functions/scrollToTop';
 import logo2 from '../../assets/logo/weblogo copy.png'
 import { currCountryCode } from '../../functions/BaseURL';
 
-export default function MyNav({ scrollToggle, countriesData }) {
+export default function MyNav({ scrollToggle, countriesData, token, handleLogout }) {
+    console.log(token);
     const navigate = useNavigate();
     const [showOffcanvas, setShowOffcanvas] = useState(false);
-    // const {pathname, search} = useLocation();
-    // console.log(pathname);
-    // console.log(search);
-    // const clearCountryFromPathName =()=>{
-    //     const pathNameArr = pathname.split('/')
-    //     pathNameArr.shift()
-    //     pathNameArr.shift()
-    //     console.log(pathNameArr.join('/'));
-    //     return pathNameArr.join('/')
-    // }
-    // clearCountryFromPathName()
     useEffect(() => {
         if (!currCountryCode) {
             navigate("/")
@@ -30,7 +20,6 @@ export default function MyNav({ scrollToggle, countriesData }) {
 
 
     function handleOffcanvasToggle() {
-        // setShowOffcanvas(!showOffcanvas);
         setShowOffcanvas((prevShowOffcanvas) => !prevShowOffcanvas);
     }
 
@@ -38,11 +27,8 @@ export default function MyNav({ scrollToggle, countriesData }) {
         setShowOffcanvas(false);
     };
 
-    // const [selectedCountry, setSelectedCountry] = useState({});
 
     const handleSelectChange = (e) => {
-        // const selectedCode = e.target.value.toLowerCase();
-        // setSelectedCountry(selectedCode);
         localStorage.setItem('curr-country', e.target.value);
         navigate(`/${e.target.value}`);
         window.location.reload()
@@ -72,12 +58,12 @@ export default function MyNav({ scrollToggle, countriesData }) {
                             </NavLink>
                             <NavLink
                                 onClick={() => {
-                                    scrollToTop();  
+                                    scrollToTop();
                                 }}
                                 aria-label="Close"
                                 className="nav-link  nav__link__style"
                                 to={`/${currCountryCode}/cars`}
-                                >
+                            >
                                 cars
                             </NavLink>
                             <NavLink
@@ -111,24 +97,35 @@ export default function MyNav({ scrollToggle, countriesData }) {
                         <Nav>
                             <NavLink onClick={() => {
                                 scrollToTop();
+                                if (token) {
+                                    handleLogout();
+                                }
                             }}
                                 className="nav-link nav__link__style"
-                                to={`/${currCountryCode}/register`}>
-                                <div className='btn__Car d-flex justify-content-center align-items-center'>
-                                    <i className="bi bi-folder-plus fs-6"></i>
-                                    <span>
-                                        Sign Up
-                                    </span>
-                                </div>
+                                to={token ? `/${currCountryCode}` : `/${currCountryCode}/register`}>
+                                {
+                                    token ? (
+                                        <div className='btn__Car btn__Car__logOut d-flex justify-content-center align-items-center'>
+                                            <i className="bi bi-box-arrow-left fs-6"></i>
+                                            <span>
+                                                Log Out
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        <div className='btn__Car d-flex justify-content-center align-items-center'>
+                                            <i className="bi bi-person-add fs-6"></i>
+                                            <span>
+                                                Sign up
+                                            </span>
+                                        </div>
+                                    )
+                                }
                             </NavLink>
                             <NavLink
                                 className="nav-link nav__link__style"
                             >
                                 <div className="custom-dropdown">
                                     <select className='select__country__style'
-                                        // onChange={(e) => {
-                                        //     navigate(`/${e.target.value}`)
-                                        // }}
                                         onChange={handleSelectChange}
                                         value={currCountryCode || ''}
 
@@ -146,18 +143,6 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                             ))
                                         }
                                     </select>
-                                    {/* <div className="flag-preview">
-                                        {selectedCountry && (
-                                            <img
-                                                src={
-                                                    countriesData?.map((country)=>(
-                                                        country?.flag
-                                                    ))
-                                                }
-                                                alt="Selected Flag"
-                                            />
-                                        )}
-                                    </div> */}
                                 </div>
 
                             </NavLink>
@@ -232,35 +217,35 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                 <NavLink onClick={() => {
                                     scrollToTop();
                                     closeOffcanvas();
+                                    if (token) {
+                                        handleLogout();
+                                    }
                                 }}
                                     className="nav-link nav__link__style"
-                                    to={`/${currCountryCode}/register`}>
-                                    <div className='btn__Car d-flex justify-content-center align-items-center'>
-                                        <i className="bi bi-folder-plus fs-6"></i>
-                                        <span>
-                                            Sign Up
-                                        </span>
-                                    </div>
+                                    to={token ? `/${currCountryCode}` : `/${currCountryCode}/register`}>
+                                    {
+                                    token ? (
+                                        <div className='btn__Car btn__Car__logOut d-flex justify-content-center align-items-center'>
+                                            <i className="bi bi-box-arrow-left fs-6"></i>
+                                            <span>
+                                                Log Out
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        <div className='btn__Car d-flex justify-content-center align-items-center'>
+                                            <i className="bi bi-person-add fs-6"></i>
+                                            <span>
+                                                Sign up
+                                            </span>
+                                        </div>
+                                    )
+                                }
                                 </NavLink>
                                 <NavLink onClick={() => {
                                     scrollToTop();
                                 }}
                                     className="nav-link nav__link__style"
-                                    >
-                                    {/* <select className='select__country__style'
-                                        onChange={(e) => {
-                                            navigate(`/${e.target.value}`)
-                                        }}
-                                        defaultValue={currCountryCode}
-                                        >
-                                        {
-                                            countriesData?.map((country) => (
-                                                <option className='select__country__option__style' key={country?.id} value={country?.code} title={country?.name}>
-                                                    {country?.code}
-                                                </option>
-                                            ))
-                                        }
-                                    </select> */}
+                                >
                                     <div className="custom-dropdown">
                                         <select className='select__country__style'
                                             onChange={handleSelectChange}
@@ -270,7 +255,7 @@ export default function MyNav({ scrollToggle, countriesData }) {
                                             {
                                                 countriesData?.map((country) => (
                                                     <option className='select__country__option__style'
-                                                    
+
                                                         key={country?.id}
                                                         value={country?.code}
                                                         title={country?.name}

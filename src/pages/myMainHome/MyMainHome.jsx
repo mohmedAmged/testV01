@@ -52,9 +52,7 @@ export default function MyMainHome() {
             return response.data;
         },
     });
-    // console.log(discoversubData.data.discoverCategories);
     const discoverFetchedCategs = discoversubData?.data?.discoverCategories?.map((el)=>el?.name)
-    // console.log(discoverFetchedCategs);
     const homeSliderItems = [
         {
             "title": "Warranty cars",

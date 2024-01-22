@@ -22,46 +22,46 @@ export default function CodeSaveSlider({ title, saveSlides }) {
     const showModal = (slide) => {
         Swal.fire({
             html: `
-            <div class="saveModalBody__handler">
-                <div class="modal__logo">
+            <div className="saveModalBody__handler">
+                <div className="modal__logo">
                     <img src="${slide.couponImg}" alt="" />
                 </div>
-                <p class='saveModal__title'>
+                <p className='saveModal__title'>
                     ${slide.couponOffer}
                 </p>
-                <p class='saveModal__subTit'>
+                <p className='saveModal__subTit'>
                     Copy and paste this code
                 </p>
-                <div class="saveModal__code">
+                <div className="saveModal__code">
                     <input type="text" value="${slide.couponNum}" readOnly />
                     <button id="copyButton">
-                    <i class="bi bi-copy"></i>
+                    <i className="bi bi-copy"></i>
                     </button>
                 </div>
-                <div class="saveModal__info">
-                    <p class='desc'>
+                <div className="saveModal__info">
+                    <p className='desc'>
                     Unlock unbeatable discounts with our exclusive coupon codes—don't miss out on savings!
                     </p>
                 </div>
-                <div class="saveModal__footer">
+                <div className="saveModal__footer">
                     <p>
                         Share this coupon now.
                     </p>
-                    <div class="copyRights__social">
+                    <div className="copyRights__social">
                         <ul>
                             <li>
-                                <NavLink class='nav-link copyRigths__icon__link'>
-                                    <i class="bi bi-facebook"></i>
+                                <NavLink className='nav-link copyRigths__icon__link'>
+                                    <i className="bi bi-facebook"></i>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink class='nav-link copyRigths__icon__link'>
-                                    <i class="bi bi-twitter"></i>
+                                <NavLink className='nav-link copyRigths__icon__link'>
+                                    <i className="bi bi-twitter"></i>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink class='nav-link copyRigths__icon__link'>
-                                    <i class="bi bi-linkedin"></i>
+                                <NavLink className='nav-link copyRigths__icon__link'>
+                                    <i className="bi bi-linkedin"></i>
                                 </NavLink>
                             </li>
                         </ul>
@@ -135,10 +135,10 @@ export default function CodeSaveSlider({ title, saveSlides }) {
                                             <div className="couponSlider__card__item">
                                                 <div className="couponSlider__cardHead">
                                                     <button>
-                                                        <i class="bi bi-suit-heart"></i>
+                                                        <i className="bi bi-suit-heart"></i>
                                                     </button>
                                                     <div className="tags">
-                                                        <i class="bi bi-gem"></i>
+                                                        <i className="bi bi-gem"></i>
                                                         <p>{slide.tagName}</p>
                                                     </div>
                                                 </div>

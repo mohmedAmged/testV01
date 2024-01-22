@@ -82,3 +82,26 @@
         top: 20px;
     }
 }
+
+.password__eye {
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    font-size: 27px;
+    cursor: pointer;
+}
+.password__eye-err {
+    top: 20%;
+    right: 25px;
+    transform: translateY(-27%);
+    -webkit-transform: translateY(-27%);
+    -moz-transform: translateY(-27%);
+    -ms-transform: translateY(-27%);
+    -o-transform: translateY(-27%);
+    font-size: 27px;
+    cursor: pointer;
+}

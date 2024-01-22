@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './userProfileSec.css';
 import profile from '../../assets/dashboardImgs/profile.jpeg'
 import AccordionFaqSave from '../accordionFaqSave/AccordionFaqSave';
-export default function UserProfileSec() {
+export default function UserProfileSec({userData}) {
     const [activeTab, setActiveTab] = useState('coins');
-
+const userDataArr = userData?.data?.user
     const handleTabClick = (tabId) => {
         setActiveTab(tabId);
     };
@@ -13,68 +13,68 @@ export default function UserProfileSec() {
             "id": 1,
             "icon": "bi bi-envelope-fill",
             "title": "email adress",
-            "userInfo": "example@gamil.com"
+            "userInfo": `${userDataArr?.email}`
         },
         {
             "id": 2,
             "icon": "bi bi-telephone-fill",
             "title": "Mobile Number",
-            "userInfo": "0100533229"
+            "userInfo": `${userDataArr?.phone}`
         },
         {
             "id": 3,
             "icon": "bi bi-geo-alt-fill",
             "title": "Address",
-            "userInfo": "nyc, florida"
+            "userInfo": `${userDataArr?.address}`
         },
     ]
     const formItems = [
         {
             "id": 1,
             "labelName": "first name",
-            "value": "mohamed"
+            "value": `${userDataArr?.first_name}`
         },
         {
             "id": 3,
             "labelName": "first name",
-            "value": "amged"
+            "value": `${userDataArr?.last_name}`
         },
         {
             "id": 3,
             "labelName": "E-mail Address",
-            "value": "eaxample@gmail.com"
+            "value": `${userDataArr?.email}`
         },
         {
             "id": 4,
             "labelName": "Mobile Number",
-            "value": "0100533229"
+            "value": `${userDataArr?.phone}`
         },
         {
             "id": 5,
             "labelName": "Address",
-            "value": "nyc, florida"
+            "value": `${userDataArr?.address}`
         },
         {
             "id": 6,
-            "labelName": "state",
-            "value": "florida"
+            "labelName": "Country",
+            "value": `${userDataArr?.country}`
         },
     ]
     const formItemsRows = [
         {
             "id": 1,
             "labelName": "Zip Code",
-            "value": "11865"
+            "value": `${userDataArr?.zip_code}`
         },
         {
             "id": 3,
             "labelName": "City",
-            "value": "florida"
+            "value": `${userDataArr?.city}`
         },
         {
             "id": 3,
             "labelName": "Country",
-            "value": "NYC"
+            "value": `${userDataArr?.country}`
         },
     ]
     return (
@@ -127,7 +127,7 @@ export default function UserProfileSec() {
                                         </div>
                                         <div className="gain__coins">
                                             <div className="coin__icon">
-                                                <i class="bi bi-coin fs-4"></i>
+                                                <i className="bi bi-coin fs-4"></i>
                                             </div>
                                             <div className="howGain__coin">
                                                 get more coins
@@ -161,7 +161,7 @@ export default function UserProfileSec() {
                                         <div className="profile__photo">
                                             <img src={profile} alt="profile_img" />
                                             <div className="photo__upload">
-                                                <i class="bi bi-card-image"></i>
+                                                <i className="bi bi-card-image"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -209,8 +209,8 @@ export default function UserProfileSec() {
                                             </div>
                                             <div className="row mb-2">
                                                 {
-                                                    formItemsRows.map((item) => (
-                                                        <div className="col-sm-4">
+                                                    formItemsRows?.map((item) => (
+                                                        <div key={item?.id} className="col-sm-4">
                                                             <div className="form__item">
                                                                 <label htmlFor="" className='label'>
                                                                     {item.labelName}
@@ -226,7 +226,7 @@ export default function UserProfileSec() {
                                             </div>
                                             <div className="row mt-4">
                                                 <div className="col-sm-12">
-                                                    <button type="submit" class="btn profile__btn__submit w-100">
+                                                    <button type="submit" className="btn profile__btn__submit w-100">
                                                         Submit
                                                     </button>
                                                 </div>

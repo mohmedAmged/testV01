@@ -4,8 +4,10 @@ import DynamicHero from '../../components/dynamicHeroPart/DynamicHero'
 import DynamicMapWeb from '../../components/dynamicMapWeb/DynamicMapWeb'
 import UserProfileSec from '../../components/userProfileSec/UserProfileSec';
 import Loader from '../../components/loader/Loader';
-import { currCountryCode } from '../../functions/BaseURL';
-export default function UserDashBoard() {
+import { currCountryCode, getUserData } from '../../functions/BaseURL';
+export default function UserDashBoard({token}) {
+  console.log(token);
+  const [userData, setUserData] = useState([])
   const links = [
       { "label": 'Home', "route": `/${currCountryCode}` },
       { "label": 'Dashboard', "route": `/${currCountryCode}/user/dashboard` },
@@ -19,6 +21,27 @@ export default function UserDashBoard() {
     return () => clearTimeout(timeoutId);
   }, [showContent]);
 
+  useEffect(() => {
+    const fetchUserData = () => {
+      if (!token) {
+        console.error('Token is missing');
+        return;
+      }
+      getUserData(token)
+        .then((response) => {
+          setUserData(response); 
+        })
+        .catch((error) => {
+          console.error('Error fetching user data:', error);
+        });
+    };
+
+    if (token) {
+      fetchUserData();
+    }
+  }, [token]);
+
+  console.log(userData);
   return (
     <>
     {
@@ -28,7 +51,7 @@ export default function UserDashBoard() {
         <div className='userDashBoard__handler'>
           <DynamicHero title="Dashbord"/>
           <DynamicMapWeb links={links}/>
-          <UserProfileSec />
+          <UserProfileSec userData={userData}/>
         </div>
     }
     </>

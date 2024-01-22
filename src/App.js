@@ -20,12 +20,14 @@ import PageNotFound from './pages/pageNotFound/PageNotFound';
 import SingleDiscoverNamePage from './pages/singleDiscoverNamePage/SingleDiscoverNamePage';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
+import Cookies from 'js-cookie';
 
 function App() {
-  const currentRoute = window.location.pathname;
   const location = useLocation();
+  const currentRoute = location.pathname;
   const [scrollToggle, setScrollToggle] = useState(false);
   const navigator = useNavigate();
+
   window.addEventListener("scroll", () => {
     if (window.scrollY > 200) {
       setScrollToggle(true);
@@ -42,7 +44,6 @@ function App() {
       return response.data;
     },
   });
-
 
   useEffect(()=>{
     if(currCountryCode === location?.pathname.split('/')[1]) {
@@ -61,9 +62,28 @@ function App() {
       navigator(`${location?.pathname}${location?.search ? location?.search : ""}`);
       window.location.reload();
     }else{
-      navigator("/")
+      navigator("/");
     }
   },[currCountryCode]);
+
+  const [token,setToken] = useState('');
+  const handleLoginOrRegister = (tok) => {
+    const userToken = tok;
+    const expirationDate = new Date();
+    expirationDate.setFullYear(expirationDate.getFullYear() + 1); // Example: Set expiration to 1 year from now
+    Cookies.set('userToken', userToken, { httpOnly: true, sameSite: 'None', expires: 7 })
+    setToken(userToken);
+  };
+  useEffect(() => {
+    const storedToken = Cookies.get('userToken');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+  const handleLogout = () => {
+    Cookies.remove('userToken');
+    setToken('');
+  };
 
   return (
     <>
@@ -74,7 +94,7 @@ function App() {
           (currentRoute.toLowerCase() === `/${currCountryCode}/register`.toLowerCase())
         ) &&
         <>
-          <MyNav countriesData={data?.countries} scrollToggle={scrollToggle} />
+          <MyNav token={token} handleLogout={handleLogout} countriesData={data?.countries} scrollToggle={scrollToggle} />
           <ScrollToTopButton />
         </>
       }
@@ -92,9 +112,15 @@ function App() {
         <Route path={`/${currCountryCode}/:discoverName`} element={<SingleDiscoverNamePage />} />
         <Route path={`/${currCountryCode}/save`} element={<SaveHome />} />
         <Route path={`/${currCountryCode}/save/:pageName`} element={<SaveSubPage />} />
-        <Route path={`/${currCountryCode}/user/dashboard`} element={<UserDashBoard />} />
-        <Route path={`/${currCountryCode}/register`} element={<Register />}/>
-        <Route path={`/${currCountryCode}/login`} element={<Login />}/>
+        <Route path={`/${currCountryCode}/user/dashboard`} element={<UserDashBoard  token={token}/>} />
+        <Route 
+        path={`/${currCountryCode}/register`} 
+        element={<Register handleLoginOrRegister={handleLoginOrRegister} countriesData={data?.countries} />}
+        />
+        <Route 
+        path={`/${currCountryCode}/login`} 
+        element={<Login handleLoginOrRegister={handleLoginOrRegister} />}
+        />
         <Route path='*' element={<PageNotFound error={error ||'Page Not Found'} />} />
       </Routes>
       {

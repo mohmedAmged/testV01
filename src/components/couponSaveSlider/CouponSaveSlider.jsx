@@ -15,48 +15,48 @@ export default function CouponSaveSlider({ title, saveSlides }) {
     const showCoupon = (slide) => {
         Swal.fire({
             html: `
-            <div class="saveModalBody__handler">
-                <div class="modal__logo">
+            <div className="saveModalBody__handler">
+                <div className="modal__logo">
                     <img src="${slide.couponImg}" alt="" />
                 </div>
-                <p class='saveModal__title'>
+                <p className='saveModal__title'>
                     ${slide.couponOffer}
                 </p>
-                <div class='saveModal__subTit'>
+                <div className='saveModal__subTit'>
                     <img src="${coupon}" alt="" id="couponImage"/>
                 </div>
-                <div class="saveModal__code">
-                        <div id="saveButton" class="getCode viewCoupon">
+                <div className="saveModal__code">
+                        <div id="saveButton" className="getCode viewCoupon">
                             save as PDF
                         </div>
-                        <p id="downloadButton" class='viewCoupon__download'>
+                        <p id="downloadButton" className='viewCoupon__download'>
                             or download as image
                         </p>
                 </div>
-                <div class="saveModal__info">
-                    <p class='desc'>
+                <div className="saveModal__info">
+                    <p className='desc'>
                     Unlock unbeatable discounts with our exclusive coupon codes—don't miss out on savings!
                     </p>
                 </div>
-                <div class="saveModal__footer">
+                <div className="saveModal__footer">
                     <p>
                         Share this coupon now.
                     </p>
-                    <div class="copyRights__social">
+                    <div className="copyRights__social">
                     <ul>
                         <li>
-                            <NavLink class='nav-link copyRigths__icon__link'>
-                                <i class="bi bi-facebook"></i>
+                            <NavLink className='nav-link copyRigths__icon__link'>
+                                <i className="bi bi-facebook"></i>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink class='nav-link copyRigths__icon__link'>
-                                <i class="bi bi-twitter"></i>
+                            <NavLink className='nav-link copyRigths__icon__link'>
+                                <i className="bi bi-twitter"></i>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink class='nav-link copyRigths__icon__link'>
-                                <i class="bi bi-linkedin"></i>
+                            <NavLink className='nav-link copyRigths__icon__link'>
+                                <i className="bi bi-linkedin"></i>
                             </NavLink>
                         </li>
                     </ul>
@@ -146,10 +146,10 @@ export default function CouponSaveSlider({ title, saveSlides }) {
                                             <div className="couponSlider__card__item">
                                                 <div className="couponSlider__cardHead">
                                                     <button>
-                                                        <i class="bi bi-suit-heart"></i>
+                                                        <i className="bi bi-suit-heart"></i>
                                                     </button>
                                                     <div className="tags">
-                                                        <i class="bi bi-gem"></i>
+                                                        <i className="bi bi-gem"></i>
                                                         <p>{slide.tagName}</p>
                                                     </div>
                                                 </div>

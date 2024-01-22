@@ -22,7 +22,7 @@ export default function SavePopuCategory({ couponCards }) {
         <div className="row gy-4 ">
           {
             couponCards.map((couponCard) => (
-              <div className="col-lg-3 col-md-6 col-sm-6">
+              <div key={couponCard?.id} className="col-lg-3 col-md-6 col-sm-6">
                 <div className="couponCategoryCard">
                   <div className="couponCategoryCard__img">
                     <img src={couponCard.icon} alt="icon__one" />

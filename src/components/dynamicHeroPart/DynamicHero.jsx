@@ -21,8 +21,8 @@ export default function DynamicHero({ title, description}) {
                                 <form action="">
                                     <div className="discover__form row">
                                         <div className="dicover__form__location col-lg-3 col-md-12 col-sm-12 px-1">
-                                            <select className='discover__form__item' name="" id="">
-                                                <option value selected disabled>Country</option>
+                                            <select defaultValue='' className='discover__form__item' name="" id="">
+                                                <option value='' disabled>Country</option>
                                                 <option value="egypt">egypt</option>
                                                 <option value="egypt">egypt</option>
                                                 <option value="egypt">egypt</option>
@@ -30,16 +30,16 @@ export default function DynamicHero({ title, description}) {
                                             </select>
                                         </div>
                                         <div className="dicover__form__category col-lg-3 col-md-12 col-sm-12 px-1">
-                                            <select className='discover__form__item' name="" id="">
-                                                <option value selected disabled>Category</option>
+                                            <select defaultValue='' className='discover__form__item' name="" id="">
+                                                <option value='' disabled>Category</option>
                                                 <option value="egypt">one</option>
                                                 <option value="egypt">two</option>
                                                 <option value="egypt">three</option>
                                             </select>
                                         </div>
                                         <div className="dicover__form__sub__category col-lg-3 col-md-12 col-sm-12 px-1">
-                                            <select className='discover__form__item' name="" id="">
-                                                <option value selected disabled>Sub-Category</option>
+                                            <select defaultValue='' className='discover__form__item' name="" id="">
+                                                <option value='' disabled>Sub-Category</option>
                                                 <option value="egypt">one</option>
                                                 <option value="egypt">two</option>
                                                 <option value="egypt">three</option>

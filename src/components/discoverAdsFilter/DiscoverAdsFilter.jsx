@@ -42,7 +42,6 @@ import AdsCard from '../adsCard/AdsCard'
 
     ;
 export default function DiscoverAdsFilter({ discoversFetched }) {
-    console.log(discoversFetched);
     const [activeTab, setActiveTab] = useState('latest');
 
     const handleTabClick = (tabId) => {
