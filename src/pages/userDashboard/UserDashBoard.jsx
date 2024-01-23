@@ -5,8 +5,7 @@ import DynamicMapWeb from '../../components/dynamicMapWeb/DynamicMapWeb'
 import UserProfileSec from '../../components/userProfileSec/UserProfileSec';
 import Loader from '../../components/loader/Loader';
 import { currCountryCode, getUserData } from '../../functions/BaseURL';
-export default function UserDashBoard({token}) {
-  console.log(token);
+export default function UserDashBoard({token, countriesData}) {
   const [userData, setUserData] = useState([])
   const links = [
       { "label": 'Home', "route": `/${currCountryCode}` },
@@ -41,7 +40,6 @@ export default function UserDashBoard({token}) {
     }
   }, [token]);
 
-  console.log(userData);
   return (
     <>
     {
@@ -51,7 +49,7 @@ export default function UserDashBoard({token}) {
         <div className='userDashBoard__handler'>
           <DynamicHero title="Dashbord"/>
           <DynamicMapWeb links={links}/>
-          <UserProfileSec userData={userData}/>
+          <UserProfileSec countriesData={countriesData} userData={userData}/>
         </div>
     }
     </>

@@ -101,7 +101,9 @@
     text-transform: capitalize !important;
     transition: all 0.3s linear;
 }
-
+.nav__link__style__tok{
+    padding: 14px !important;
+}
 .nav__link__style:hover {
     color: var(--nav-link-color) !important;
     font-weight: 700 !important;

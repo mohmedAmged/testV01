@@ -20,13 +20,14 @@ import PageNotFound from './pages/pageNotFound/PageNotFound';
 import SingleDiscoverNamePage from './pages/singleDiscoverNamePage/SingleDiscoverNamePage';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
-import Cookies from 'js-cookie';
+import Cookies from 'universal-cookie';
 
 function App() {
   const location = useLocation();
   const currentRoute = location.pathname;
   const [scrollToggle, setScrollToggle] = useState(false);
   const navigator = useNavigate();
+  const cookies = new Cookies();
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 200) {
@@ -36,7 +37,7 @@ function App() {
     }
   });
 
-  const { data ,error} = useQuery({
+  const { data, error } = useQuery({
     queryKey: ['countries'],
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/countries`);
@@ -45,43 +46,46 @@ function App() {
     },
   });
 
-  useEffect(()=>{
-    if(currCountryCode === location?.pathname.split('/')[1]) {
+  useEffect(() => {
+    if (currCountryCode === location?.pathname.split('/')[1]) {
       navigator(`${location?.pathname}${location?.search ? location?.search : ""}`);
-    }else if(localStorage.getItem('curr-country')){
-      if(currCountryCode !== location?.pathname.split('/')[1] && location?.pathname.split('/')[1]){
-        localStorage.setItem('curr-country',location?.pathname.split('/')[1]);
+    } else if (localStorage.getItem('curr-country')) {
+      if (currCountryCode !== location?.pathname.split('/')[1] && location?.pathname.split('/')[1]) {
+        localStorage.setItem('curr-country', location?.pathname.split('/')[1]);
         navigator(`${location?.pathname}${location?.search ? location?.search : ""}`);
         window.location.reload();
-      }else {
+      } else {
         navigator(`/${currCountryCode}`);
         window.location.reload();
       }
-    }else if(!currCountryCode && location?.search){
-      localStorage.setItem('curr-country',location?.pathname.split('/')[1]);
+    } else if (!currCountryCode && location?.search) {
+      localStorage.setItem('curr-country', location?.pathname.split('/')[1]);
       navigator(`${location?.pathname}${location?.search ? location?.search : ""}`);
       window.location.reload();
-    }else{
+    } else {
       navigator("/");
     }
-  },[currCountryCode]);
+  }, [currCountryCode]);
 
-  const [token,setToken] = useState('');
+  const [token, setToken] = useState('');
   const handleLoginOrRegister = (tok) => {
-    const userToken = tok;
+    // Example: Set expiration to 1 year from now
     const expirationDate = new Date();
-    expirationDate.setFullYear(expirationDate.getFullYear() + 1); // Example: Set expiration to 1 year from now
-    Cookies.set('userToken', userToken, { httpOnly: true, sameSite: 'None', expires: 7 })
+    expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+
+    const userToken = tok;
+    cookies.set('userToken', userToken, { path: '/', maxAge: expirationDate });
     setToken(userToken);
   };
   useEffect(() => {
-    const storedToken = Cookies.get('userToken');
+    const storedToken = cookies.get('userToken');
+    console.log(storedToken);
     if (storedToken) {
       setToken(storedToken);
-    }
+    };
   }, []);
   const handleLogout = () => {
-    Cookies.remove('userToken');
+    cookies.remove('userToken');
     setToken('');
   };
 
@@ -104,24 +108,26 @@ function App() {
         <Route path={`/${currCountryCode}`} element={<MyMainHome />} />
         {/* home for valuereach progres.. */}
         <Route path={`/${currCountryCode}/cars`} element={<CarHome />} />
-        <Route path={ `/${currCountryCode}/new-cars`} element={<NewCar />} />
-        <Route path={ `/${currCountryCode}/new-cars?:slug`} element={<NewCar />} />
+        <Route path={`/${currCountryCode}/new-cars`} element={<NewCar />} />
+        <Route path={`/${currCountryCode}/new-cars?:slug`} element={<NewCar />} />
         <Route path={`/${currCountryCode}/car-Info/:carId`} element={<SingleProductPage />} />
         <Route path={`/${currCountryCode}/discover`} element={<DiscoverHome />} />
         <Route path={`/${currCountryCode}/discover/:categoryName`} element={<DiscoverCategoryPage />} />
         <Route path={`/${currCountryCode}/:discoverName`} element={<SingleDiscoverNamePage />} />
         <Route path={`/${currCountryCode}/save`} element={<SaveHome />} />
         <Route path={`/${currCountryCode}/save/:pageName`} element={<SaveSubPage />} />
-        <Route path={`/${currCountryCode}/user/dashboard`} element={<UserDashBoard  token={token}/>} />
-        <Route 
-        path={`/${currCountryCode}/register`} 
-        element={<Register handleLoginOrRegister={handleLoginOrRegister} countriesData={data?.countries} />}
+        {
+          token && <Route path={`/${currCountryCode}/user/dashboard`} element={<UserDashBoard countriesData={data?.countries} token={token} />} />
+        }
+        <Route
+          path={`/${currCountryCode}/register`}
+          element={<Register handleLoginOrRegister={handleLoginOrRegister} countriesData={data?.countries} />}
         />
-        <Route 
-        path={`/${currCountryCode}/login`} 
-        element={<Login handleLoginOrRegister={handleLoginOrRegister} />}
+        <Route
+          path={`/${currCountryCode}/login`}
+          element={<Login handleLoginOrRegister={handleLoginOrRegister} />}
         />
-        <Route path='*' element={<PageNotFound error={error ||'Page Not Found'} />} />
+        <Route path='*' element={<PageNotFound error={error || 'Page Not Found'} />} />
       </Routes>
       {
         !(

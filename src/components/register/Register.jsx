@@ -35,7 +35,6 @@ export default function Register({handleLoginOrRegister,countriesData}) {
                 body: JSON.stringify(values)
             });
             const response = await res.json();
-            console.log(response)
             if(response.status === 200){
                 setBackEndErrors(null);
                 setCurrChosenCity('');
@@ -98,7 +97,6 @@ export default function Register({handleLoginOrRegister,countriesData}) {
             country_id: "",
             city_id: "",
             state: "",
-            image: ""
         },
         validationSchema: RegisterSchema,
         onSubmit,

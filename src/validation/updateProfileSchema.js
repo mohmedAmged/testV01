@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const RegisterSchema = yup.object().shape({
+export const UpdateProfileSchema = yup.object().shape({
     "first_name": yup
     .string(),
     "last_name": yup
@@ -11,9 +11,12 @@ export const RegisterSchema = yup.object().shape({
     .string(),
     "email": yup
     .string(),
-    "password": yup
+    "country_id": yup
     .string(),
-    "country_id": yup.string(),
-    "city_id": yup.string(),
-    "state": yup.string(),
+    "city_id": yup
+    .string(),
+    "state": yup
+    .string(),
+    "image": yup
+    .string(),
 });

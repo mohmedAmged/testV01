@@ -9,7 +9,6 @@ import logo2 from '../../assets/logo/weblogo copy.png'
 import { currCountryCode } from '../../functions/BaseURL';
 
 export default function MyNav({ scrollToggle, countriesData, token, handleLogout }) {
-    console.log(token);
     const navigate = useNavigate();
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     useEffect(() => {
@@ -47,21 +46,24 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                     {/* start navbar min-width 992px */}
                     <Navbar.Collapse id="navbar-nav" className='Navbar__Collapse__none__on__med'>
                         <Nav className="mx-auto" >
+                            {
+                                token &&  
+                                <NavLink
+                                    onClick={() => {
+                                        scrollToTop();
+                                    }}
+                                    aria-label="Close"
+                                    className={`nav-link nav__link__style ${!token && 'nav__link__style__tok'}`}
+                                    to={`${currCountryCode}/user/dashboard`}>
+                                    profile
+                                </NavLink>
+                            }
                             <NavLink
                                 onClick={() => {
                                     scrollToTop();
                                 }}
                                 aria-label="Close"
-                                className="nav-link  nav__link__style"
-                                to={`${currCountryCode}/user/dashboard`}>
-                                Dashboard
-                            </NavLink>
-                            <NavLink
-                                onClick={() => {
-                                    scrollToTop();
-                                }}
-                                aria-label="Close"
-                                className="nav-link  nav__link__style"
+                                className={`nav-link nav__link__style ${!token && 'nav__link__style__tok'}`}
                                 to={`/${currCountryCode}/cars`}
                             >
                                 cars
@@ -72,7 +74,7 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                 }
 
                                 }
-                                className="nav-link  nav__link__style"
+                                className={`nav-link nav__link__style ${!token && 'nav__link__style__tok'}`}
                                 to={`/${currCountryCode}/discover`}>
                                 Discover
                             </NavLink>
@@ -81,7 +83,7 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                     scrollToTop();
                                 }
                                 }
-                                className="nav-link  nav__link__style"
+                                className={`nav-link nav__link__style ${!token && 'nav__link__style__tok'}`}
                                 to={`/${currCountryCode}/save`}>
                                 Save
                             </NavLink>
@@ -89,7 +91,7 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                 onClick={() => {
                                     scrollToTop();
                                 }}
-                                className="nav-link  nav__link__style"
+                                className={`nav-link nav__link__style ${!token && 'nav__link__style__tok'}`}
                                 to={`/${currCountryCode}/realestate`}>
                                 Raal Estate
                             </NavLink>
@@ -99,7 +101,7 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                 scrollToTop();
                                 if (token) {
                                     handleLogout();
-                                }
+                                };
                             }}
                                 className="nav-link nav__link__style"
                                 to={token ? `/${currCountryCode}` : `/${currCountryCode}/register`}>
@@ -164,23 +166,27 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="mx-auto" >
-                                <NavLink
+                                {
+                                    token && 
+                                    <NavLink
                                     onClick={() => {
                                         scrollToTop();
                                         closeOffcanvas();
                                     }}
                                     aria-label="Close"
-                                    className="nav-link  nav__link__style"
+                                    className={`nav-link nav__link__style`}
                                     to={`/${currCountryCode}/user/dashboard`}>
-                                    Dashboard
-                                </NavLink>
+                                    profile
+                                    </NavLink>
+                                }
+                                
                                 <NavLink
                                     onClick={() => {
                                         scrollToTop();
                                         closeOffcanvas();
                                     }}
                                     aria-label="Close"
-                                    className="nav-link  nav__link__style"
+                                    className={`nav-link nav__link__style`}
                                     to={`/${currCountryCode}/cars`}>
                                     cars
                                 </NavLink>
@@ -190,7 +196,7 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                         closeOffcanvas();
                                     }
                                     }
-                                    className="nav-link  nav__link__style"
+                                    className={`nav-link nav__link__style`}
                                     to={`/${currCountryCode}/discover`}
                                 >
                                     Discover
@@ -201,7 +207,7 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                         closeOffcanvas();
                                     }
                                     }
-                                    className="nav-link  nav__link__style"
+                                    className={`nav-link nav__link__style`}
                                     to={`/${currCountryCode}/save`}>
                                     Save
                                 </NavLink>
@@ -210,7 +216,7 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                         scrollToTop();
                                         closeOffcanvas();
                                     }}
-                                    className="nav-link  nav__link__style"
+                                    className={`nav-link nav__link__style`}
                                     to={`/${currCountryCode}/realestate`}>
                                     Raal Estate
                                 </NavLink>

@@ -125,9 +125,18 @@
     font-size: 17px;
     border: 1px solid var(--primary-blue) !important;
 }
+
 .profile__btn__submit:hover{
     background-color: #ffffff;
     color:  var(--primary-blue);
+}
+.profile__btn__submit.profile__btn__update{
+    background-color: var(--primary-black);
+    border: 1px solid var(--primary-black) !important;
+}
+.profile__btn__submit.profile__btn__update:hover{
+    background-color: #ffffff;
+    color:  var(--primary-black);
 }
 .coin__score__card{
     background: radial-gradient(502px at 2.7% 23.7%, rgb(142, 5, 254) 0%, rgb(33, 250, 214) 99.6%);
@@ -189,6 +198,24 @@
 .ticketsSec__handler .dash__title{
     font-size: 30px;
     margin-bottom: 20px;
+}
+.purple{
+border: 4px solid purple;
+}
+.sliver{
+    border: 4px solid silver;
+
+}
+.gold{
+    border: 4px solid gold;
+}
+.platinum{
+    border: 4px solid #E5E4E2;
+
+}
+.diamond{
+    border: 4px solid #b9f2ff;
+
 }
 @media screen and (max-width: 992px) {
     .dashboardSec__left{
