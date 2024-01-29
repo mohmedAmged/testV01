@@ -8,6 +8,7 @@ import Loader from '../loader/Loader';
 import Swal from 'sweetalert2';
 
 export default function Login({handleLoginOrRegister}) {
+    const [showPassword,setShowPassword] = useState(true);
     const [showContent, setShowContent] = useState(true);
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -25,7 +26,8 @@ export default function Login({handleLoginOrRegister}) {
             const res = await fetch(`${baseURL}/login`, {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(values)
             });
@@ -112,21 +114,30 @@ export default function Login({handleLoginOrRegister}) {
                                     <p className='error-text mb-3'>{errors.email || backEndErrors?.email[0]}</p>
                                     }
                                 </div>
-                                <div className={`${((errors?.password && touched.password) || backEndErrors?.password)  ? "mb-2" : "mb-4"} col-12 mb-4`}>
+                                <div 
+                                className={`${((errors?.password && touched.password) || backEndErrors?.password) ? "mb-2" : "mb-3"} 
+                                col-md-12 mb-4 position-relative`}>
                                     <input
-                                        type="password"
+                                        value={values?.password.trim()}
+                                        onChange={handleChange}
+                                        type={showPassword ? 'password' : 'text'}
                                         name="password"
                                         id="password"
                                         placeholder='Password'
-                                        onChange={handleChange}
-                                        value={values.password.trim()}
-                                        className={`loginForm__password w-100 ${((errors?.password && touched.password) || backEndErrors?.password)  ? "input-error" : ""}`}
+                                        className={`registeration__form__password w-100 
+                                        ${((errors?.password && touched.password) || backEndErrors?.password) ? 'input-error' : '' }`}
                                     />
                                     {
-                                    ((errors?.password && touched.password) || backEndErrors?.password)  
-                                    && 
-                                    <p className='mb-3 error-text'>{errors.password || backEndErrors?.password[0]}</p>
+                                        showPassword ? 
+                                            <i className={`bi bi-eye 
+                                            ${((errors?.password && touched.password) || backEndErrors?.password) ? 'password__eye-err' :'password__eye'} pas-on position-absolute`} onClick={()=> setShowPassword(!showPassword)}></i>
+                                            :
+                                            <i className={`bi bi-eye-slash 
+                                            ${((errors?.password && touched.password) || backEndErrors?.password) ? 'password__eye-err' :'password__eye'} pas-on position-absolute`} onClick={()=> setShowPassword(!showPassword)}></i>
                                     }
+                                    {((errors?.password && touched.password) || backEndErrors?.password) 
+                                    && 
+                                    <p className='error-text'>{errors?.password || backEndErrors?.password}</p>}
                                 </div>
 
 

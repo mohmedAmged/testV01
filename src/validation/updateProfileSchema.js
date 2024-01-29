@@ -17,6 +17,4 @@ export const UpdateProfileSchema = yup.object().shape({
     .string(),
     "state": yup
     .string(),
-    "image": yup
-    .string(),
 });

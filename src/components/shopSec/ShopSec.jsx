@@ -110,7 +110,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                             }}
                                         >
                                             <option value="condition" disabled>Condition</option>
-                                            {uniqueConditions.map(condition => (
+                                            {uniqueConditions?.map(condition => (
                                                 <option key={condition} value={condition}>
                                                     {condition}
                                                 </option>
@@ -121,7 +121,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                         <Form.Select defaultValue="make" onChange={(e) => handleFilterChange('make', e.target.value.toLowerCase())}>
                                             <option value="make" disabled>Make</option>
                                             {
-                                                makes.map((make) => (
+                                                makes?.map((make) => (
                                                     <option key={make.id} value={make?.id}>{make.name}</option>
                                                 ))
                                             }
@@ -131,7 +131,7 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
                                         <Form.Select defaultValue="body" onChange={(e) => handleFilterChange('body', e.target.value.toLowerCase())}>
                                             <option value="body" disabled>body</option>
                                             {
-                                                bodies.map((body) => (
+                                                bodies?.map((body) => (
                                                     <option key={body.id} value={body?.id}>
                                                         {body.name}</option>
                                                 ))
@@ -285,4 +285,4 @@ export default function ShopSec({ cars, makes, bodies, priceQuery }) {
             </div>
         </div>
     );
-}
+};

@@ -100,7 +100,8 @@
 .profile__update{
     padding: 20px 20px;
 }
-.form__item input{
+.form__item input ,
+.form__item select {
     font-weight: 500;
     outline: none;
     width: 100%;
@@ -110,11 +111,16 @@
     border: 1px solid hsl(0 0% 0%/0.06);
     color: hsl(228 67% 12%) !important;
     line-height: 1;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
 }
-.form__item input:focus{
+.form__item input:focus ,
+.form__item select:focus {
     box-shadow: none;
-    border-color: hsl(300 100% 25%);
-    background-color: hsl(0 0% 100%);
+    border-color: hsl(300 100% 25%) !important;
+    background-color: hsl(0 0% 100%) !important;
 }
 .profile__btn__submit{
     background-color: var(--primary-blue);

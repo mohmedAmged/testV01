@@ -71,19 +71,20 @@ function App() {
   const handleLoginOrRegister = (tok) => {
     // Example: Set expiration to 1 year from now
     const expirationDate = new Date();
-    expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+    expirationDate.setFullYear(expirationDate.getFullYear() + 10000);
 
     const userToken = tok;
     cookies.set('userToken', userToken, { path: '/', maxAge: expirationDate });
     setToken(userToken);
   };
+
   useEffect(() => {
     const storedToken = cookies.get('userToken');
-    console.log(storedToken);
     if (storedToken) {
       setToken(storedToken);
     };
   }, []);
+
   const handleLogout = () => {
     cookies.remove('userToken');
     setToken('');

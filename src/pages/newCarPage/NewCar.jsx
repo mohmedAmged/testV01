@@ -32,7 +32,7 @@ export default function NewCar() {
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/${currCountryCode}/bodies`);
       const response = await fetchData.json();
-      return response.data;
+      return response?.data;
     },
   });
   const makesQuery = useQuery({
@@ -40,7 +40,7 @@ export default function NewCar() {
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/${currCountryCode}/makes`);
       const response = await fetchData.json();
-      return response.data;
+      return response?.data;
     },
   });
   const priceQuery = useQuery({
@@ -48,7 +48,7 @@ export default function NewCar() {
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/${currCountryCode}/car-price`);
       const response = await fetchData.json();
-      return response.data;
+      return response?.data;
     },
   });
   const carQuery = useQuery({
@@ -56,7 +56,7 @@ export default function NewCar() {
     queryFn: async () => {
       const fetchData = await fetch(`${baseURL}/${currCountryCode}/cars`);
       const response = await fetchData.json();
-      return response.data;
+      return response?.data;
     },
   });
 

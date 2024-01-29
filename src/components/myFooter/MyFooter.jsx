@@ -79,5 +79,5 @@ export default function MyFooter() {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

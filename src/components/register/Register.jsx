@@ -30,7 +30,8 @@ export default function Register({handleLoginOrRegister,countriesData}) {
             const res = await fetch(`${baseURL}/register`, {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(values)
             });

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './myNav.css'
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { scrollToTop } from '../../functions/scrollToTop';
 import logo2 from '../../assets/logo/weblogo copy.png'
 import { currCountryCode } from '../../functions/BaseURL';
