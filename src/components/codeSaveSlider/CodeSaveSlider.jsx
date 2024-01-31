@@ -22,46 +22,46 @@ export default function CodeSaveSlider({ title, saveSlides }) {
     const showModal = (slide) => {
         Swal.fire({
             html: `
-            <div className="saveModalBody__handler">
-                <div className="modal__logo">
+            <div class="saveModalBody__handler">
+                <div class="modal__logo">
                     <img src="${slide.couponImg}" alt="" />
                 </div>
-                <p className='saveModal__title'>
+                <p class='saveModal__title'>
                     ${slide.couponOffer}
                 </p>
-                <p className='saveModal__subTit'>
+                <p class='saveModal__subTit'>
                     Copy and paste this code
                 </p>
-                <div className="saveModal__code">
+                <div class="saveModal__code">
                     <input type="text" value="${slide.couponNum}" readOnly />
                     <button id="copyButton">
-                    <i className="bi bi-copy"></i>
+                    <i class="bi bi-copy"></i>
                     </button>
                 </div>
-                <div className="saveModal__info">
-                    <p className='desc'>
+                <div class="saveModal__info">
+                    <p class='desc'>
                     Unlock unbeatable discounts with our exclusive coupon codes—don't miss out on savings!
                     </p>
                 </div>
-                <div className="saveModal__footer">
+                <div class="saveModal__footer">
                     <p>
                         Share this coupon now.
                     </p>
-                    <div className="copyRights__social">
+                    <div class="copyRights__social">
                         <ul>
                             <li>
-                                <NavLink className='nav-link copyRigths__icon__link'>
-                                    <i className="bi bi-facebook"></i>
+                                <NavLink class='nav-link copyRigths__icon__link'>
+                                    <i class="bi bi-facebook"></i>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink className='nav-link copyRigths__icon__link'>
-                                    <i className="bi bi-twitter"></i>
+                                <NavLink class='nav-link copyRigths__icon__link'>
+                                    <i class="bi bi-twitter"></i>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink className='nav-link copyRigths__icon__link'>
-                                    <i className="bi bi-linkedin"></i>
+                                <NavLink class='nav-link copyRigths__icon__link'>
+                                    <i class="bi bi-linkedin"></i>
                                 </NavLink>
                             </li>
                         </ul>

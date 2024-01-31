@@ -29,8 +29,8 @@ export default function SingleDiscoverNamePage() {
         }, 800);
         return () => clearTimeout(timeoutId);
     });
-  return (
-    <div className='discoverCategSinglePage'>
+    return (
+        <div className='discoverCategSinglePage'>
             {
                 (showContent) ?
                     <Loader />
@@ -40,9 +40,9 @@ export default function SingleDiscoverNamePage() {
                             description="Unleash curiosity and explore a world where every discovery is a journey in itself" />
                         <DynamicMapWeb links={links} />
                         <DiscoverNameSec discoverHome={discoverHome?.data?.discovers
-                        }/>
+                        } />
                     </div>
             }
         </div>
-  )
+    )
 }

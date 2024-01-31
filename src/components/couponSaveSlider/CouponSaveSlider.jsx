@@ -1,5 +1,4 @@
 import React from 'react'
-import './couponSaveSlider.css'
 import { NavLink } from 'react-router-dom'
 import Autoplay from "../../../node_modules/swiper/modules/autoplay.mjs";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,52 +10,53 @@ import coupon from '../../assets/saveHomeImg/print_coupon.jpg'
 import jsPDF from 'jspdf';
 import { scrollToTop } from '../../functions/scrollToTop';
 import { currCountryCode } from '../../functions/BaseURL';
+import './couponSaveSlider.css'
 export default function CouponSaveSlider({ title, saveSlides }) {
     const showCoupon = (slide) => {
         Swal.fire({
             html: `
-            <div className="saveModalBody__handler">
-                <div className="modal__logo">
+            <div class="saveModalBody__handler">
+                <div class="modal__logo">
                     <img src="${slide.couponImg}" alt="" />
                 </div>
-                <p className='saveModal__title'>
+                <p class='saveModal__title'>
                     ${slide.couponOffer}
                 </p>
-                <div className='saveModal__subTit'>
+                <div class='saveModal__subTit'>
                     <img src="${coupon}" alt="" id="couponImage"/>
                 </div>
-                <div className="saveModal__code">
-                        <div id="saveButton" className="getCode viewCoupon">
+                <div class="saveModal__code">
+                        <div id="saveButton" class="getCode viewCoupon">
                             save as PDF
                         </div>
-                        <p id="downloadButton" className='viewCoupon__download'>
+                        <p id="downloadButton" class='viewCoupon__download'>
                             or download as image
                         </p>
                 </div>
-                <div className="saveModal__info">
-                    <p className='desc'>
+                <div class="saveModal__info">
+                    <p class='desc'>
                     Unlock unbeatable discounts with our exclusive coupon codes—don't miss out on savings!
                     </p>
                 </div>
-                <div className="saveModal__footer">
+                <div class="saveModal__footer">
                     <p>
                         Share this coupon now.
                     </p>
-                    <div className="copyRights__social">
+                    <div class="copyRights__social">
                     <ul>
                         <li>
-                            <NavLink className='nav-link copyRigths__icon__link'>
-                                <i className="bi bi-facebook"></i>
+                            <NavLink class='nav-link copyRigths__icon__link'>
+                                <i class="bi bi-facebook"></i>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className='nav-link copyRigths__icon__link'>
-                                <i className="bi bi-twitter"></i>
+                            <NavLink class='nav-link copyRigths__icon__link'>
+                                <i class="bi bi-twitter"></i>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className='nav-link copyRigths__icon__link'>
-                                <i className="bi bi-linkedin"></i>
+                            <NavLink class='nav-link copyRigths__icon__link'>
+                                <i class="bi bi-linkedin"></i>
                             </NavLink>
                         </li>
                     </ul>
