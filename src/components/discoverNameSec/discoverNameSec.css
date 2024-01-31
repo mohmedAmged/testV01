@@ -130,6 +130,7 @@
     text-transform: capitalize;
     margin: 10px 0;
     cursor: pointer;
+    font-size: 14px;
 }
 .vote__text__reminder span{
     margin-left: 2px;
@@ -182,7 +183,10 @@
     .give__review {
         width: 100%;
     }
-
+    .btn__vote__submit{
+        font-size: 16px;
+        padding: 10px 15px;
+    }
     .discoverNameSec__handler h2 {
         font-size: 28px;
     }
