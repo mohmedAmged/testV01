@@ -18,15 +18,9 @@ import SaveDifferentOffers from '../../components/saveDifferentOffers/SaveDiffer
 import FaqSave from '../../components/faqSave/FaqSave'
 import CodeSaveSlider from '../../components/codeSaveSlider/CodeSaveSlider'
 import Loader from '../../components/loader/Loader'
-const saveSlideOne = [
-    { "id": 1, "tagName": "Exclusive", "couponImg": coupon1, "couponOffer": "5% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 1254 },
-    { "id": 2, "tagName": "Good", "couponImg": coupon2, "couponOffer": "10% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 3254 },
-    { "id": 3, "tagName": "Exclusive", "couponImg": coupon3, "couponOffer": "30% Off Your Entire Cart", "expDate": "06-10-2025", "couponNum": 1264 },
-    { "id": 4, "tagName": "Sponsered", "couponImg": coupon4, "couponOffer": "70% Off Your Entire Cart", "expDate": "07-05-2025", "couponNum": 1854 },
-    { "id": 5, "tagName": "Exclusive", "couponImg": coupon1, "couponOffer": "5% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 9054 },
-    { "id": 6, "tagName": "Sponsered", "couponImg": coupon4, "couponOffer": "70% Off Your Entire Cart", "expDate": "07-05-2025", "couponNum": 1854 },
-    { "id": 7, "tagName": "Exclusive", "couponImg": coupon3, "couponOffer": "30% Off Your Entire Cart", "expDate": "06-10-2025", "couponNum": 1264 },
-]
+import { useQuery } from '@tanstack/react-query'
+import { baseURL, currCountryCode } from '../../functions/BaseURL'
+
 const couponCardOne = [
     { "icon": icon1, "Title": "Tech Treats", "couponNum": 1, "id": 1 },
     { "icon": icon2, "Title": "Fashion Finds", "couponNum": 2, "id": 2 },
@@ -45,23 +39,50 @@ export default function SaveHome() {
         }, 800);
         return () => clearTimeout(timeoutId);
     });
-
+    // const discoverHome = useQuery({
+    //     queryKey: ['discover-home'],
+    //     queryFn: async () => {
+    //         const fetchData = await fetch(`${baseURL}/${currCountryCode}/discover`);
+    //         const response = await fetchData.json();
+    //         return response.data;
+    //     },
+    // });
+    // console.log(discoverHome?.data?.discovers?.all_discovers);
+    // const discoverData = discoverHome?.data?.discovers?.all_discovers;
+    // const saveSlideOne = discoverData?.map(discover => ({
+    //     id: discover?.id,
+    //     tagName: "Exclusive",
+    //     couponImg: discover?.image,
+    //     couponOffer: "Your Offer Text",
+    //     expDate: "06-05-2025",
+    //     couponNum: Math.floor(Math.random() * 10000) + 1,
+    // }));
+    const saveSlideOne = [
+        { "id": 1, "tagName": "Exclusive", "couponImg": coupon1, "couponOffer": "5% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 1254 },
+        { "id": 2, "tagName": "Good", "couponImg": coupon2, "couponOffer": "10% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 3254 },
+        { "id": 3, "tagName": "Exclusive", "couponImg": coupon3, "couponOffer": "30% Off Your Entire Cart", "expDate": "06-10-2025", "couponNum": 1264 },
+        { "id": 4, "tagName": "Sponsered", "couponImg": coupon4, "couponOffer": "70% Off Your Entire Cart", "expDate": "07-05-2025", "couponNum": 1854 },
+        { "id": 5, "tagName": "Exclusive", "couponImg": coupon1, "couponOffer": "5% Off Your Entire Cart", "expDate": "06-05-2025", "couponNum": 9054 },
+        { "id": 6, "tagName": "Sponsered", "couponImg": coupon4, "couponOffer": "70% Off Your Entire Cart", "expDate": "07-05-2025", "couponNum": 1854 },
+        { "id": 7, "tagName": "Exclusive", "couponImg": coupon3, "couponOffer": "30% Off Your Entire Cart", "expDate": "06-10-2025", "couponNum": 1264 },
+    ]
     return (
+
         <>
-        {
-            (showContent) ? 
-            <Loader />
-            : 
-            <>
-                <DynamicHero title="Secure Your Future: Discover Smart Savings Solutions!"
-                    description="Unlock Thrilling Deals: Your Gateway to Exclusive Offers!" />
-                <CodeSaveSlider title="Exclusive Coupons" saveSlides={saveSlideOne} />
-                <CouponSaveSlider title="Get Your Coupon Now" saveSlides={saveSlideOne} />
-                <SavePopuCategory couponCards={couponCardOne} />
-                <SaveDifferentOffers />
-                <FaqSave />
-            </>
-        }
+            {
+                (showContent) ?
+                    <Loader />
+                    :
+                    <>
+                        <DynamicHero title="Secure Your Future: Discover Smart Savings Solutions!"
+                            description="Unlock Thrilling Deals: Your Gateway to Exclusive Offers!" />
+                        <CodeSaveSlider title="Exclusive Coupons" saveSlides={saveSlideOne} />
+                        <CouponSaveSlider title="Get Your Coupon Now" saveSlides={saveSlideOne} />
+                        <SavePopuCategory couponCards={couponCardOne} />
+                        <SaveDifferentOffers />
+                        <FaqSave />
+                    </>
+            }
         </>
     )
 }

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './discoverCategoryList.css'
-import { InputGroup } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
 import AdsCard from '../adsCard/AdsCard';
-import ReactSlider from "react-slider";
 import { baseURL, currCountryCode } from '../../functions/BaseURL';
 import { useLocation, useNavigate } from 'react-router-dom';
 

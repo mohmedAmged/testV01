@@ -82,6 +82,8 @@
 }
 .couponSlider__img img{
     max-width: 100%;
+    /* width: 200px;
+    height: 200px; */
     height: auto;
     vertical-align: middle;
     object-fit: cover;

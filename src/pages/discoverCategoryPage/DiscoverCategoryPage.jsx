@@ -27,7 +27,6 @@ export default function DiscoverCategoryPage() {
 
     const catgeoryFetched = discoverHome?.data?.ads?.ads_categories?.find((el) => el.name === categoryName)
     const discoversFetched = discoverHome?.data?.discoverCategories?.discoverCategories?.find((el) => el.name === categoryName)
-
     const [showContent, setShowContent] = useState(true);
     
     useEffect(() => {

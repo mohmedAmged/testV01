@@ -131,11 +131,30 @@
     margin: 10px 0;
     cursor: pointer;
     font-size: 14px;
+    font-weight: 600;
 }
-.vote__text__reminder span{
-    margin-left: 2px;
+.vote__text__reminder i{
+    font-size: 20px;
+    color: var(--primary-black);
+    margin-right: 5px;
 }
 .vote__text__reminder:hover{
+    color: var(--primary-black);
+}
+.remider__for__signUp__handler p{
+    color: var(--primary-blue);
+    text-transform: capitalize;
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all ease-in .2s;
+}
+.remider__for__signUp__handler p i{
+    font-size: 20px;
+    color: var(--primary-black);
+    margin-right: 5px;
+}
+.remider__for__signUp__handler p:hover{
     color: var(--primary-black);
 }
 .voteModal__hadnler{

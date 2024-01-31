@@ -1,46 +1,6 @@
 import React, { useState } from 'react'
 import './discoverAdsFilter.css'
 import AdsCard from '../adsCard/AdsCard'
-    // const restaurantDataArr = [
-    //     {
-    //         "name": 'Jordan Restaurant',
-    //         "special": 'Special',
-    //         "category": "latest",
-    //         "votes": '1,358',
-    //         "menu": 'open',
-    //         "image": resturant,
-    //         "imageSources": [resturant2, resturant],
-    //     },
-    //     {
-    //         "name": 'goucy Restaurant',
-    //         "special": '',
-    //         "category": "food",
-    //         "votes": '1,158',
-    //         "menu": 'Menu',
-    //         "image": resturant,
-    //         "imageSources": [food3, food2, food1],
-    //     },
-    //     {
-    //         "name": 'Food Hub',
-    //         "special": 'sponsered',
-    //         "category": "food",
-    //         "votes": '1,158',
-    //         "menu": 'Menu',
-    //         "image": resturant,
-    //         "imageSources": [food5, food4],
-    //     },
-    //     {
-    //         "name": 'Fitness',
-    //         "special": '',
-    //         "category": "health",
-    //         "votes": '1,158',
-    //         "menu": 'time',
-    //         "image": resturant,
-    //         "imageSources": [health2, health1],
-    //     }
-    // ]
-
-    ;
 export default function DiscoverAdsFilter({ discoversFetched }) {
     const [activeTab, setActiveTab] = useState('latest');
 
@@ -52,7 +12,6 @@ export default function DiscoverAdsFilter({ discoversFetched }) {
 
     const filteredDiscoverData = () => {
         if (activeTab === 'latest') {
-            // return discoversFetched?.discoverCategories;
             return discoversFetched?.discoverCategories?.flatMap(category => category.discovers) || [];
         } else {
             // return discoversFetched?.discoverCategories?.filter((data) => data?.name?.toLowerCase() === activeTab?.toLowerCase());
@@ -101,17 +60,6 @@ export default function DiscoverAdsFilter({ discoversFetched }) {
                     </div>
                 </div>
                 <div className="ads__filter__cards">
-                    {/* <div className="row">
-                        {filteredDiscoverData()?.map((discoverCategory, index) => (
-                            <div key={index}>
-                                <div className="row">
-                                    {getDiscoversByCategory(discoverCategory?.name)?.map((discoverData, discoverIndex) => (
-                                        <AdsCard key={discoverIndex} discoverData={discoverData} />
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div> */}
                     <div className="row">
                         {filteredDiscoverData()?.map((discoverData, index) => (
                             <AdsCard key={index} discoverData={discoverData} />
@@ -122,7 +70,7 @@ export default function DiscoverAdsFilter({ discoversFetched }) {
         </div>
     )
 }
-// <div className='discoverAdsFilter__handler my-5'>
+
 //     <div className="container">
 //         <div className="ads__filter__heading">
 //             <div className="row justify-content-center">

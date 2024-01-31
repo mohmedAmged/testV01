@@ -7,7 +7,7 @@ import DynamicMapWeb from '../../components/dynamicMapWeb/DynamicMapWeb';
 import DiscoverNameSec from '../../components/discoverNameSec/DiscoverNameSec';
 import { useQuery } from '@tanstack/react-query';
 import { baseURL, currCountryCode } from '../../functions/BaseURL';
-export default function SingleDiscoverNamePage() {
+export default function SingleDiscoverNamePage({token}) {
     const { discoverName } = useParams();
     const links = [
         { "label": 'Home', "route": `/${currCountryCode}` },
@@ -39,7 +39,7 @@ export default function SingleDiscoverNamePage() {
                         <DynamicHero title="Discover Everything"
                             description="Unleash curiosity and explore a world where every discovery is a journey in itself" />
                         <DynamicMapWeb links={links} />
-                        <DiscoverNameSec discoverHome={discoverHome?.data?.discovers
+                        <DiscoverNameSec token={token} discoverHome={discoverHome?.data?.discovers
                         } />
                     </div>
             }

@@ -1,8 +1,9 @@
 import React from 'react'
 import './discoverNameSec.css'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-export default function DiscoverNameSec({ discoverHome }) {
+import { currCountryCode } from '../../functions/BaseURL';
+export default function DiscoverNameSec({ discoverHome,token }) {
     const { discoverName } = useParams();
     const discoversFetched = discoverHome?.all_discovers?.find((el) => el.name === discoverName)
 
@@ -44,7 +45,7 @@ export default function DiscoverNameSec({ discoverHome }) {
                             </label>
                         </div>
                         <div class="vote__text__reminder">
-                            <i class="bi bi-arrow-right"></i> 
+                            <i class="bi bi-patch-exclamation"></i>
                             <span>
                             give your vote for two more to get your coins for more future discount
                             </span>
@@ -60,6 +61,7 @@ export default function DiscoverNameSec({ discoverHome }) {
             showConfirmButton: false,
         });
     }
+    const navigate = useNavigate()
     return (
         <div className='discoverNameSec__handler'>
             <div className="container">
@@ -118,20 +120,38 @@ export default function DiscoverNameSec({ discoverHome }) {
                             </div>
                         </div>
                     </div>
-                    <div className='give__review' onClick={() => showModal()}>
-                        <span className='vote__icon'>
-                            <i class="bi bi-hand-thumbs-up"></i>
-                        </span>
-                        <span className='vote__text'>
-                            give your vote
-                        </span>
-                    </div>
-                    <div className="vote__text__reminder">
-                        <i class="bi bi-arrow-right"></i> 
-                        <span>
-                        give your vote and get 10 coins for more future discount
-                        </span>
-                    </div>
+                    {
+                        token ? 
+                        <>
+                            <div className='give__review' onClick={() => showModal()}>
+                                <span className='vote__icon'>
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                </span>
+                                <span className='vote__text'>
+                                    give your vote
+                                </span>
+                            </div>
+                            <div className="vote__text__reminder d-flex align-items-center">
+                                <i class="bi bi-patch-exclamation"></i>
+                                <span>
+                                give your vote and get 10 coins for more future discount
+                                </span>
+                            </div>
+                        </>:
+                        <>
+                        <div className="remider__for__signUp__handler" 
+                        onClick={()=>navigate(`/${currCountryCode}/register`)}>
+                            <p className='d-flex align-items-center'>
+                                <i class="bi bi-person-exclamation"></i>
+                                <span>
+                                    sign up for voting to get more coins for future discount 
+                                </span>
+                            </p>
+                        </div>
+                        </>
+                    }
+
+                    
 
                 </div>
 

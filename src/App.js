@@ -114,7 +114,7 @@ function App() {
         <Route path={`/${currCountryCode}/car-Info/:carId`} element={<SingleProductPage />} />
         <Route path={`/${currCountryCode}/discover`} element={<DiscoverHome />} />
         <Route path={`/${currCountryCode}/discover/:categoryName`} element={<DiscoverCategoryPage />} />
-        <Route path={`/${currCountryCode}/:discoverName`} element={<SingleDiscoverNamePage />} />
+        <Route path={`/${currCountryCode}/:discoverName`} element={<SingleDiscoverNamePage token={token}/>} />
         <Route path={`/${currCountryCode}/save`} element={<SaveHome />} />
         <Route path={`/${currCountryCode}/save/:pageName`} element={<SaveSubPage />} />
         {
