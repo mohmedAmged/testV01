@@ -230,7 +230,7 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                     }
                                 }}
                                     className="nav-link nav__link__style"
-                                    to={token ? `/${currCountryCode}` : `/${currCountryCode}/register`}>
+                                    to={token ? `${location?.pathname}` : `/${currCountryCode}/register`}>
                                     {
                                     token ? (
                                         <div className='btn__Car btn__Car__logOut d-flex justify-content-center align-items-center'>
