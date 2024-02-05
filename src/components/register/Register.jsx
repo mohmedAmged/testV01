@@ -36,7 +36,7 @@ export default function Register({handleLoginOrRegister,countriesData}) {
                 body: JSON.stringify(values)
             });
             const response = await res.json();
-            if(response.status === 200){
+            if(response?.status === 200){
                 setBackEndErrors(null);
                 setCurrChosenCity('');
                 setCurrCountryCities([]);
@@ -49,7 +49,7 @@ export default function Register({handleLoginOrRegister,countriesData}) {
                     showConfirmButton: false,
                     timer: 2000
                 });
-                handleLoginOrRegister(response.data.token);
+                handleLoginOrRegister(response?.data?.token);
                 navigate(`/${currCountryCode}/user/dashboard`)
             }else {
                 setBackEndErrors(response.errors);

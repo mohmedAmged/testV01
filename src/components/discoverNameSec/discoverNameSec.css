@@ -53,7 +53,17 @@
     height: 300px;
     border-radius: 10px;
 }
-
+/* .review__handler{
+    display: flex;
+    align-items: center;
+} */
+.vote__number{
+    font-size: 42px;
+    font-weight: 600;
+    margin-right: 3px;
+    color: var(--primary-black);
+    text-align: center;
+}
 .review__handler h2 {
     font-size: 42px;
     font-weight: 700;
@@ -63,67 +73,42 @@
 .review__handler h2 span {
     color: var(--primary-blue);
 }
-
-.review__rate {
-    padding: 30px 0;
+.voteAndRecommendHandler{
+    margin-bottom: 40px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
 }
-
-.review__rate .rate__box {
-    background-color: rgb(131, 131, 131);
-    color: #fff;
-    border-radius: 3px;
-    padding: 4px;
-    margin-right: 10px;
-    font-weight: 500;
-    line-height: 20px;
-}
-
-.review__rate .star__box i {
-    font-size: 17px;
-    color: var(--primary-black);
-}
-
 .give__review {
-    display: inline-flex;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    /* margin-bottom: 30px; */
-    border-radius: 25px;
-    overflow: hidden;
+    padding: 10px 0;
+    width: 100%;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 18px;
     font-weight: 600;
-    width: 30%;
-}
-
-.vote__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--primary-blue);
     color: #fff;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
     transition: all ease-in .2s;
+}
+
+.give__review.recomend{
+    background-color: var(--primary-orange);
+
+}
+.give__review:hover{
+    background-color: var(--primary-black);
 }
 .vote__icon i{
     font-size: 22px;
+    margin-right: 6px;
 }
 
-.vote__text {
-    padding: 7px;
-    background-color: var(--primary-blue);
-    color: #fff;
-    border-radius: 4px;
-    margin-left: -13px;
-    transition: all ease-in .2s;
-    text-transform: capitalize;
-}
-
-.give__review:hover .vote__icon,
-.give__review:hover .vote__text {
-    background-color: var(--primary-black);
-}
 .vote__text__reminder{
     text-decoration: underline;
     color: var(--primary-blue);
@@ -142,17 +127,20 @@
     color: var(--primary-black);
 }
 .remider__for__signUp__handler p{
-    color: var(--primary-blue);
+    color: #FF5959;
     text-transform: capitalize;
     text-decoration: underline;
     font-weight: 600;
     cursor: pointer;
     transition: all ease-in .2s;
+    text-align: center;
 }
-.remider__for__signUp__handler p i{
-    font-size: 20px;
-    color: var(--primary-black);
-    margin-right: 5px;
+.remider__for__signUp__icon{
+ display: flex;
+ justify-content: center;
+}
+.remider__for__signUp__icon i{
+    color: #FF5959;
 }
 .remider__for__signUp__handler p:hover{
     color: var(--primary-black);
@@ -165,21 +153,29 @@
     gap: 20px !important;
     padding: 30px !important;
 }
-.voteModal__hadnler h2{
+.modal-title h2{
     text-transform: capitalize;
-    font-size: 26px;
-    font-weight: 600;
-    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
     color: var(--primary-blue);
 
 }
-.voteModal__hadnler .form-check input{
+.modal-body h4{
+    text-transform: capitalize;
+    color: var(--primary-blue);
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+ .form-check input{
     cursor: pointer;
 }
-.voteModal__hadnler .form-check label{
+ .form-check label{
     text-transform: capitalize;
-    margin-left: 4px;
-    font-weight: 500;
+    margin-left: 10px;
+    font-weight: 600;
+    color: var(--primary-black);
+    font-size: 20px;
 }
 .btn__vote__submit{
     font-size: 18px;
@@ -198,6 +194,25 @@
     background-color: var(--primary-black);
     border: 1px solid var(--primary-black);
 }
+.input__form__handler{
+    text-align: left;
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+.form-check-input{
+    border-color: var(--primary-black);
+}
+.form-check-input:checked {
+    background-color: var(--primary-black); 
+    box-shadow: 0 0 5px var(--primary-black); 
+    border-color: var(--primary-black);
+}
+.form-check-input:focus {
+    outline: none; 
+    border: 2px solid var(--primary-black); 
+    box-shadow: 0 0 5px var(--primary-black);
+}
 @media screen and (max-width: 992px) {
     .give__review {
         width: 100%;
@@ -214,5 +229,11 @@
         width: 100%;
         height: 40vh;
         border-radius: 20px;
+    }
+    .marginTopInResponsive{
+        margin-top: 20px;
+    }
+    .vote__number{
+        text-align: left;
     }
 }
