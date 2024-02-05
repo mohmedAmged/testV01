@@ -84,7 +84,7 @@ export default function DiscoverNameSec({ discoverHome, token }) {
                                 <div className="col-lg-6 d-flex justify-content-lg-start">
                                     <div className="review__handler">
                                         <h2 className='title'>
-                                            <span>voted for {discoversFetched?.name}</span> Reviews
+                                        voted for<span> {discoversFetched?.name}</span>
                                         </h2>
                                         <div class="vote__text__reminder">
                                             <i class="bi bi-patch-exclamation"></i>
