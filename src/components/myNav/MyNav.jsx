@@ -11,6 +11,7 @@ import { currCountryCode } from '../../functions/BaseURL';
 export default function MyNav({ scrollToggle, countriesData, token, handleLogout }) {
     const navigate = useNavigate();
     const location = useLocation();
+    console.log(location.pathname);
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     useEffect(() => {
         if (!currCountryCode) {

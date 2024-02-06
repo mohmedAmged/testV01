@@ -58,11 +58,24 @@
     align-items: center;
 } */
 .vote__number{
-    font-size: 42px;
     font-weight: 600;
-    margin-right: 3px;
-    color: var(--primary-black);
+    color: var(--primary-orange);
     text-align: center;
+}
+.vote__number i{
+    font-size: 80px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+.number__inside__star{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 26px; 
+    padding: 0 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .review__handler h2 {
     font-size: 42px;
@@ -233,7 +246,7 @@
     .marginTopInResponsive{
         margin-top: 20px;
     }
-    .vote__number{
+    /* .vote__number{
         text-align: left;
-    }
+    } */
 }

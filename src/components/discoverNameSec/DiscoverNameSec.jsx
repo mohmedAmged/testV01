@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './discoverNameSec.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import { baseURL, currCountryCode } from '../../functions/BaseURL';
@@ -72,15 +72,19 @@ export default function DiscoverNameSec({ discoverHome, token }) {
                     <div className="col-lg-12">
                         <div className="voteAndRecommendHandler">
                             <div className="row align-items-center">
-                                <div className="col-lg-2">
-                                    <div className='vote__number'>
-                                        33
+                                <div className="col-lg-2 vote__number__handler position-relative">
+                                    <div className={`vote__number`}>
+                                        <i class="bi bi-star-fill position-relative ">
+                                            <span className='number__inside__star'>
+                                                33
+                                            </span>
+                                        </i>
                                     </div>
                                 </div>
                                 <div className="col-lg-6 d-flex justify-content-lg-start">
                                     <div className="review__handler">
                                         <h2 className='title'>
-                                        voted for<span> {discoversFetched?.name}</span>
+                                            voted for<span> {discoversFetched?.name}</span>
                                         </h2>
                                         <div class="vote__text__reminder">
                                             <i class="bi bi-patch-exclamation"></i>
@@ -100,10 +104,10 @@ export default function DiscoverNameSec({ discoverHome, token }) {
                                                         <i class="bi bi-hand-thumbs-up"></i>
                                                     </span>
                                                     give your vote
-                                                
+
                                                 </div>
                                                 <>
-                                                <VoteModal show={show} setShow={setShow} handleClose={handleClose} discoversSubCategData={discoversSubCategData} discoverSubCategName={discoverSubCategName}/>
+                                                    <VoteModal show={show} setShow={setShow} handleClose={handleClose} discoversSubCategData={discoversSubCategData} discoverSubCategName={discoverSubCategName} />
                                                 </>
                                                 <div className='give__review recomend'
                                                     onClick={handleShowRecommend}>
@@ -111,22 +115,22 @@ export default function DiscoverNameSec({ discoverHome, token }) {
                                                         <i class="bi bi-bookmark-plus"></i>
                                                     </span>
                                                     recommend {discoversFetched?.sub_category_name} places
-                                                    
+
                                                 </div>
                                                 <>
-                                                <RecommendUsModal 
-                                                token={token}
-                                                showRecommend={showRecommend} handleCloseRecommend={handleCloseRecommend} discoversSubCategData={discoversSubCategData} discoverSubCategName={discoverSubCategName}/>
+                                                    <RecommendUsModal
+                                                        token={token}
+                                                        showRecommend={showRecommend} handleCloseRecommend={handleCloseRecommend} discoversSubCategData={discoversSubCategData} discoverSubCategName={discoverSubCategName} />
                                                 </>
                                             </> :
                                             <>
                                                 <div className="remider__for__signUp__handler"
                                                     onClick={() => navigate(`/${currCountryCode}/register`)}>
-                                                        <div className="remider__for__signUp__icon">
+                                                    <div className="remider__for__signUp__icon">
                                                         <i className="bi bi-exclamation-triangle-fill fs-1"></i>
-                                                        </div>
+                                                    </div>
                                                     <p className='d-flex align-items-center justify-content-center'>
-                                                            sign up for voting to get more coins for future discount
+                                                        sign up for voting to get more coins for future discount
                                                     </p>
                                                 </div>
                                             </>
