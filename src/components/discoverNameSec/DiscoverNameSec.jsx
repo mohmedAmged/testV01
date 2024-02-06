@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import './discoverNameSec.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import { baseURL, currCountryCode } from '../../functions/BaseURL';
 import { useQuery } from '@tanstack/react-query';
-import { useFormik } from 'formik';
-import Form from 'react-bootstrap/Form';
-import { RecommendUsSchema } from '../../validation/RecommendUsSchema';
+import VoteModal from '../voteModal/VoteModal';
+import RecommendUsModal from '../recommendUsModal/RecommendUsModal';
 export default function DiscoverNameSec({ discoverHome, token }) {
     const { discoverName } = useParams();
     const discoversFetched = discoverHome?.all_discovers?.find((el) => el.name === discoverName)
@@ -107,41 +103,7 @@ export default function DiscoverNameSec({ discoverHome, token }) {
                                                 
                                                 </div>
                                                 <>
-                                                    <Modal show={show} onHide={handleClose} animation={true} centered>
-                                                        <>
-                                                            <Modal.Header closeButton>
-                                                                <Modal.Title>
-                                                                    <h2>
-                                                                        give your vote
-                                                                    </h2>
-                                                                </Modal.Title>
-                                                            </Modal.Header>
-                                                            <Modal.Body>
-                                                                <h4>check your best {discoverSubCategName} places</h4>
-                                                                <form >
-                                                                    <div class="form-check form__check__handler" id="formCheck">
-                                                                        {
-                                                                            discoversSubCategData?.map((el) => (
-                                                                                <div class="input__form__handler">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-                                                                                    <label class="form-check-label" htmlFor="flexCheckChecked">
-                                                                                        {el?.discover_name}
-                                                                                    </label>
-                                                                                </div>
-                                                                            ))
-                                                                        }
-
-                                                                    </div>
-                                                                    <div class="form__vote__submit d-flex justify-content-center">
-                                                                        <button onClick={handleClose} class='btn__vote__submit'>
-                                                                            submit your vote <i class="bi bi-hand-thumbs-up"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </form>
-                                                            </Modal.Body>
-                                                        </>
-
-                                                    </Modal>
+                                                <VoteModal show={show} setShow={setShow} handleClose={handleClose} discoversSubCategData={discoversSubCategData} discoverSubCategName={discoverSubCategName}/>
                                                 </>
                                                 <div className='give__review recomend'
                                                     onClick={handleShowRecommend}>
@@ -152,42 +114,10 @@ export default function DiscoverNameSec({ discoverHome, token }) {
                                                     
                                                 </div>
                                                 <>
-                                                <Modal show={showRecommend} onHide={handleCloseRecommend} animation={true} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <h2>
-                Recommend a {discoverSubCategName} place
-            </h2>
-            </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="name"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-            
-            >
-              <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-            <div class="form__vote__submit">
-                    <button class='btn__vote__submit'>
-                        Submit your recommend
-                        <i class="bi bi-hand-thumbs-up"></i>
-                    </button>
-                </div>
-          </Form>
-        </Modal.Body>
-                                                </Modal>
+                                                <RecommendUsModal 
+                                                token={token}
+                                                showRecommend={showRecommend} handleCloseRecommend={handleCloseRecommend} discoversSubCategData={discoversSubCategData} discoverSubCategName={discoverSubCategName}/>
                                                 </>
-                                        
                                             </> :
                                             <>
                                                 <div className="remider__for__signUp__handler"

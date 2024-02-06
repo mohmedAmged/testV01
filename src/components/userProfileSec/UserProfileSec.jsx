@@ -144,7 +144,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
         initialValues: {
             first_name: userDataArr?.first_name,
             last_name: userDataArr?.last_name,
-            zip_code: userDataArr?.zip_code.toString(),
+            // zip_code: userDataArr?.zip_code.toString(),
             email: userDataArr?.email,
             phone: userDataArr?.phone,
             country_id: userDataArr?.country,

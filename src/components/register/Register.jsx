@@ -91,7 +91,7 @@ export default function Register({handleLoginOrRegister,countriesData}) {
         initialValues: {
             first_name: "",
             last_name: "",
-            zip_code: "",
+            // zip_code: "",
             email: "",
             phone: "",
             password: "",
@@ -245,7 +245,7 @@ export default function Register({handleLoginOrRegister,countriesData}) {
 
                                 <div 
                                 className={`${((errors?.phone && touched.phone) || backEndErrors?.phone) ? "mb-2" : "mb-3"} 
-                                col-md-6 mb-4`}>
+                                col-md-12 mb-4`}>
                                     <input
                                         type="text"
                                         name="phone"
@@ -261,7 +261,7 @@ export default function Register({handleLoginOrRegister,countriesData}) {
                                     <p className='error-text'>{errors?.phone || backEndErrors?.phone[0]}</p>}
                                 </div>
 
-                                <div 
+                                {/* <div 
                                 className={`${((errors?.zip_code && touched.zip_code) || backEndErrors?.zip_code) ? "mb-2" : "mb-3"} 
                                 col-md-6 mb-4`}>
                                     <input
@@ -277,7 +277,7 @@ export default function Register({handleLoginOrRegister,countriesData}) {
                                     {((errors?.zip_code && touched.zip_code) || backEndErrors?.zip_code) 
                                     && 
                                     <p className='error-text'>{errors?.zip_code || backEndErrors?.zip_code[0]}</p>}
-                                </div>
+                                </div> */}
 
                                 <div 
                                 className={`${((errors?.email && touched.email) || backEndErrors?.email) ? "mb-2" : "mb-3"} 

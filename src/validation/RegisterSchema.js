@@ -7,8 +7,8 @@ export const RegisterSchema = yup.object().shape({
     .string(),
     "phone": yup
     .number(),
-    "zip_code": yup 
-    .string(),
+    // "zip_code": yup 
+    // .string(),
     "email": yup
     .string(),
     "password": yup
