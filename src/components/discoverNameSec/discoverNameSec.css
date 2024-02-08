@@ -131,6 +131,19 @@
     font-size: 14px;
     font-weight: 600;
 }
+.vote__text__numbers{
+    text-decoration: underline;
+    color: #FF5959;
+    text-transform: capitalize;
+    margin: 10px 0;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .vote__text__reminder i{
     font-size: 20px;
     color: var(--primary-black);

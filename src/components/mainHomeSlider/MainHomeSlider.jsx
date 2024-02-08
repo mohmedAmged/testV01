@@ -22,12 +22,12 @@ export default function MainHomeSlider({ homeSliderItems }) {
                                             <ul>
                                                 {
                                                     item.subCategory.map((el) => (
-                                                        <li key={el.subTitle}>
+                                                        <li className='px-4 pb-2' key={el.subTitle}>
                                                             <NavLink to={el.subLink}
                                                                 onClick={() => {
                                                                     scrollToTop();
                                                                 }} className="nav-link">
-                                                                <i className="bi bi-emoji-wink-fill "></i>
+                                                                {/* <i className="bi bi-emoji-wink-fill "></i> */}
                                                                 <span>{el.subTitle}</span>
                                                             </NavLink>
                                                         </li>

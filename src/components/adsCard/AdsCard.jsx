@@ -8,15 +8,15 @@ export default function AdsCard({ discoverData }) {
     const handleIndicatorHover = (index) => {
         setActiveIndicator(index);
     };
-
+    // console.log(discoverData);
 
     useEffect(() => {
         const interval = setInterval(() => {
-          setActiveIndicator((prev) => (prev + 1) % discoverData?.discover_images.length);
+            setActiveIndicator((prev) => (prev + 1) % discoverData?.discover_images.length);
         }, 4000); // Change image every 3 seconds (adjust as needed)
-    
+
         return () => clearInterval(interval); // Cleanup on component unmount
-      }, [discoverData]);
+    }, [discoverData]);
 
     const getImageSource = () => {
         return discoverData?.discover_images[activeIndicator]?.image;
@@ -33,7 +33,7 @@ export default function AdsCard({ discoverData }) {
                     )} */}
                     <div className="cart__camera">
                         <div className="cart__Camera__content d-flex justify-content-center">
-                        <i className="bi bi-suit-heart-fill"></i>
+                            <i className="bi bi-suit-heart-fill"></i>
                         </div>
                     </div>
                     <div className="cart__indicator">
@@ -50,13 +50,13 @@ export default function AdsCard({ discoverData }) {
                     <div className="cart__main__titels">
                         <div className="">
                             <div className="cart__title">
-                                <NavLink to={`/${currCountryCode}/${discoverData?.discover_name}`} className="nav-link" onClick={()=>{
+                                <NavLink to={`/${currCountryCode}/${discoverData?.discover_name}`} className="nav-link" onClick={() => {
                                     scrollToTop()
                                 }}>
                                     {discoverData?.discover_name}
                                 </NavLink>
                             </div>
-                            {/* <div className="cart__subTit">{discoverData.votes} votes</div> */}
+                            {/* <div className="cart__subTit"> votes</div> */}
                             {/* <div className="cart__attach">
                                 {restaurantData.menu}
                                 <i className="bi bi-arrow-right-short"></i>

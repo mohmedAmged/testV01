@@ -11,7 +11,6 @@ import { currCountryCode } from '../../functions/BaseURL';
 export default function MyNav({ scrollToggle, countriesData, token, handleLogout }) {
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(location.pathname);
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     useEffect(() => {
         if (!currCountryCode) {
@@ -89,14 +88,14 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                 to={`/${currCountryCode}/save`}>
                                 Save
                             </NavLink>
-                            <NavLink
+                            {/* <NavLink
                                 onClick={() => {
                                     scrollToTop();
                                 }}
                                 className={`nav-link nav__link__style ${!token && 'nav__link__style__tok'}`}
                                 to={`/${currCountryCode}/realestate`}>
-                                Raal Estate
-                            </NavLink>
+                                Real Estate
+                            </NavLink> */}
                         </Nav>
                         <Nav>
                             <NavLink onClick={() => {
@@ -213,15 +212,15 @@ export default function MyNav({ scrollToggle, countriesData, token, handleLogout
                                     to={`/${currCountryCode}/save`}>
                                     Save
                                 </NavLink>
-                                <NavLink
+                                {/* <NavLink
                                     onClick={() => {
                                         scrollToTop();
                                         closeOffcanvas();
                                     }}
                                     className={`nav-link nav__link__style`}
                                     to={`/${currCountryCode}/realestate`}>
-                                    Raal Estate
-                                </NavLink>
+                                    Real Estate
+                                </NavLink> */}
                                 <NavLink onClick={() => {
                                     scrollToTop();
                                     closeOffcanvas();

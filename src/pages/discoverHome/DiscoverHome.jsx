@@ -55,11 +55,12 @@ export default function DiscoverHome() {
       <div>
         <DynamicHero title="Discover Everything: Your Ultimate Hub for All Things Extraordinary!"
           description="Unleash curiosity and explore a world where every discovery is a journey in itself" />
+          
+        <DiscoverAdsCateg adsFetched={discoverHome?.data?.ads?.ads_categories}/>
 
         {data?.recommendedCategories?.map((category, index) => (
           <DiscoverSlider
             key={index}
-            // link={`/${currCountryCode}/discover/${category.name}?${category?.subCategories?.map(subCategory=>(subCategory.sub_name))}`}
             titleCateg={`${category.name}`}
             title={`Most recommended ${category.name} categories`}
             subtitle="Winning flavors for every appetite"
@@ -70,8 +71,6 @@ export default function DiscoverHome() {
             }))}
           />
         ))}
-
-        <DiscoverAdsCateg adsFetched={discoverHome?.data?.ads?.ads_categories}/>
 
         {discoverData?.data?.recommendedSubCategories?.map((subCategory, index) => (
           <DiscoverSliderForMarket
@@ -87,9 +86,8 @@ export default function DiscoverHome() {
             }))}
           />
         ))}
-        <DiscoverAdsLocation />
+        {/* <DiscoverAdsLocation /> */}
         <DiscoverAdsFilter discoversFetched={discoverHome?.data?.discoverCategories}/>
-        {/* <DiscoverAdsFilter discoversFetched={discoverHome?.data?.discovers}/> */}
       </div>
     }
     </>

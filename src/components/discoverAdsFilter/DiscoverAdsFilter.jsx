@@ -9,7 +9,7 @@ export default function DiscoverAdsFilter({ discoversFetched }) {
     };
 
     const categoryNames = discoversFetched?.discoverCategories?.map((category) => category?.name);
-
+    console.log(discoversFetched);
     const filteredDiscoverData = () => {
         if (activeTab === 'latest') {
             return discoversFetched?.discoverCategories?.flatMap(category => category.discovers) || [];
@@ -46,7 +46,7 @@ export default function DiscoverAdsFilter({ discoversFetched }) {
                                 >
                                     Latest
                                 </li>
-                                {categoryNames?.map((categoryName) => (
+                                {categoryNames?.slice(0,2)?.map((categoryName) => (
                                     <li
                                         key={categoryName}
                                         className={`ads__tab ${activeTab === categoryName?.toLowerCase() ? 'active' : ''}`}

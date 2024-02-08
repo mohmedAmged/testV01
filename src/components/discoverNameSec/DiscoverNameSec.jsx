@@ -76,7 +76,7 @@ export default function DiscoverNameSec({ discoverHome, token }) {
                                     <div className={`vote__number`}>
                                         <i class="bi bi-star-fill position-relative ">
                                             <span className='number__inside__star'>
-                                                33
+                                                {discoversFetched?.votes}
                                             </span>
                                         </i>
                                     </div>
@@ -107,7 +107,7 @@ export default function DiscoverNameSec({ discoverHome, token }) {
 
                                                 </div>
                                                 <>
-                                                    <VoteModal show={show} setShow={setShow} handleClose={handleClose} discoversSubCategData={discoversSubCategData} discoverSubCategName={discoverSubCategName} />
+                                                    <VoteModal sub_categ_ID={sub_categ_ID} token={token} show={show} setShow={setShow} handleClose={handleClose} discoversSubCategData={discoversSubCategData} discoverSubCategName={discoverSubCategName} />
                                                 </>
                                                 <div className='give__review recomend'
                                                     onClick={handleShowRecommend}>

@@ -49,7 +49,7 @@ export default function HomeMainHero({ title, description }) {
                                                 </select>
                                             </div>
                                             <div className="discover__form__btn col-lg-2 col-md-12 col-sm-12 px-1">
-                                                <button className='discover__form__item' type="submit" name="search" value="Search">Search</button>
+                                                <button className='discover__form__item' type="submit" name="search" value="Search">Go</button>
                                             </div>
                                         </div>
                                     </form>

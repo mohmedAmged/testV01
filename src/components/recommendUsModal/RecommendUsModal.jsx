@@ -20,7 +20,7 @@ export default function RecommendUsModal({showRecommend, handleCloseRecommend, d
                 body: JSON.stringify(values)
             });
             const response = await res.json();
-            console.log(response);
+            // console.log(response);
             if(response?.status === 200){
                 setBackEndErrors(null);
                 actions.resetForm();
