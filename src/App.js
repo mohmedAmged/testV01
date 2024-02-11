@@ -20,14 +20,14 @@ import PageNotFound from './pages/pageNotFound/PageNotFound';
 import SingleDiscoverNamePage from './pages/singleDiscoverNamePage/SingleDiscoverNamePage';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
-import Cookies from 'universal-cookie';
+// import { useCookies } from 'react-cookie';
 
 function App() {
   const location = useLocation();
   const currentRoute = location.pathname;
   const [scrollToggle, setScrollToggle] = useState(false);
   const navigator = useNavigate();
-  const cookies = new Cookies();
+  // const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 200) {
@@ -67,26 +67,28 @@ function App() {
     }
   }, [currCountryCode]);
 
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(localStorage.getItem('userToken') || '');
   const handleLoginOrRegister = (tok) => {
-    // Example: Set expiration to 1 year from now
-    const expirationDate = new Date();
-    expirationDate.setFullYear(expirationDate.getFullYear() + 10000);
-
+    // const expirationDate = new Date();
+    // expirationDate.setFullYear(expirationDate.getFullYear() + 1000);
     const userToken = tok;
-    cookies.set('userToken', userToken, { path: '/', maxAge: expirationDate });
+    localStorage.setItem('userToken',userToken);
+    // setCookie('userToken', userToken , {path: `/` ,maxAge: expirationDate });
     setToken(userToken);
   };
 
   useEffect(() => {
-    const storedToken = cookies.get('userToken');
+    const storedToken = localStorage.getItem('userToken');
     if (storedToken) {
       setToken(storedToken);
-    };
-  }, []);
+      navigator(`${location.pathname}${location.search? location.search : ''}`);
+    }else {
+      navigator(`/${currCountryCode}`);
+    }
+  }, [localStorage.getItem('userToken')]);
 
   const handleLogout = () => {
-    cookies.remove('userToken');
+    localStorage.removeItem('userToken');
     setToken('');
   };
 
@@ -104,10 +106,8 @@ function App() {
         </>
       }
       <Routes>
-        {/* home for valuereach progres.. */}
         <Route path='/' element={<DefaultPage countriesData={data?.countries} />} />
         <Route path={`/${currCountryCode}`} element={<MyMainHome />} />
-        {/* home for valuereach progres.. */}
         <Route path={`/${currCountryCode}/cars`} element={<CarHome />} />
         <Route path={`/${currCountryCode}/new-cars`} element={<NewCar />} />
         <Route path={`/${currCountryCode}/new-cars?:slug`} element={<NewCar />} />

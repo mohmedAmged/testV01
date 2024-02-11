@@ -9,7 +9,6 @@ export default function DiscoverAdsFilter({ discoversFetched }) {
     };
 
     const categoryNames = discoversFetched?.discoverCategories?.map((category) => category?.name);
-    console.log(discoversFetched);
     const filteredDiscoverData = () => {
         if (activeTab === 'latest') {
             return discoversFetched?.discoverCategories?.flatMap(category => category.discovers) || [];

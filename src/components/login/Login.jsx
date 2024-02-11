@@ -42,7 +42,7 @@ export default function Login({handleLoginOrRegister}) {
                     showConfirmButton: false,
                     timer: 2000
                 });
-                handleLoginOrRegister(response.data.token);
+                handleLoginOrRegister(response?.data?.token);
                 navigate(`/${currCountryCode}/user/dashboard`)
             }else {
                 setBackEndErrors(response.errors)

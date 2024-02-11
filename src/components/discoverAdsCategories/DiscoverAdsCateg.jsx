@@ -19,7 +19,7 @@ export default function DiscoverAdsCateg({adsFetched}) {
           {
           adsFetched?.map((el)=>{
           return(
-          <CategoryCard  category={el.name}
+          <CategoryCard  key={el?.id} category={el.name}
           imgSrc={el.image}
           adsCount={el.discoversCount}
           subcategories={el.subCategories}

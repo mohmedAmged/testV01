@@ -18,6 +18,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
     }, [showContent]);
 
     const userDataArr = userData?.data?.user;
+    console.log(userDataArr)
 
     const [selectedImage, setSelectedImage] = useState(userDataArr?.image);
 
@@ -62,34 +63,33 @@ export default function UserProfileSec({token, userData, countriesData }) {
         },
     ]
 
-    const selectedCountryCode = countriesData?.find((country)=>country?.name === userDataArr?.country);
-    const getCities = async (selectedCountry)=>{
-        const fetchData = await fetch(`${baseURL}/get-cities/${selectedCountry.code}`);
+    const selectedCountryObj = countriesData?.find((country) => country?.name === userDataArr?.country);
+    const getCities = async (selectedCountry) => {
+        const fetchData = await fetch(`${baseURL}/get-cities/${selectedCountry?.code}`);
         const res = await fetchData.json();
         setCurrCountryCities(res?.data?.cities);
-    }
+    };
     const [currCountryCities, setCurrCountryCities] = useState([]);
-    const [currChosenCity , setCurrChosenCity] = useState('');
+    const [currChosenCityId , setCurrChosenCityId] = useState('');
     const [backEndErrors, setBackEndErrors] = useState(null);
-    const [selectedCountry, setSelectedCountry] = useState(selectedCountryCode?.code);
+    const [selectedCountry, setSelectedCountry] = useState(selectedCountryObj);
 
     const handleCountryChange = (e) => {
-        setSelectedCountry(e.target.value);
-        setCurrChosenCity('');
-        const currCountrySelected = countriesData?.find(country => country?.code === e.target.value);
+        setCurrChosenCityId('');
+        const currCountrySelected = countriesData?.find(country => +country?.id === +e.target.value);
+        setSelectedCountry(currCountrySelected);
         values.country_id = currCountrySelected?.id;
         getCities(currCountrySelected);
     };
 
     const handleCityChange = (e) => {
-        const selectedCity = currCountryCities?.find(city => city?.name === e?.target?.value);
-        setCurrChosenCity(selectedCity.name);
+        const selectedCity = currCountryCities?.find(city => +city?.id === +e?.target?.value);
+        setCurrChosenCityId(selectedCity?.id);
         values.city_id = selectedCity?.id;
     };
 
     const onSubmit = async (values, actions) => {
         const isValid = await UpdateProfileSchema.validate(values);
-        console.log(values);
         if(isValid){
             const formData = new FormData();
             Object.keys(values).forEach((key) => {
@@ -101,15 +101,12 @@ export default function UserProfileSec({token, userData, countriesData }) {
             const res = await fetch(`${baseURL}/update-profile`, {
                 method: 'POST',
                 headers: {
-                    // 'content-type': 'multipart/form-data',
                     'Accept': 'application/json',
                     Authorization: `Bearer ${token}`
                 },
-                // body: JSON.stringify(values)
                 body: formData
             });
             const response = await res.json();
-            console.log(response);
             if(response.status === 200){
                 setBackEndErrors(null);
                 actions.resetForm();
@@ -127,27 +124,27 @@ export default function UserProfileSec({token, userData, countriesData }) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Something went wrong!'
+                    text: 'Something went wrong! ,Please try again.'
                 });
 
-            }
+            };
         }else {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Something went wrong!'
+                text: 'Something went wrong! ,Please try again.'
             });
-        }
-    }
+        };
+    };
 
     const { values, touched, errors, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: {
             first_name: userDataArr?.first_name,
             last_name: userDataArr?.last_name,
-            // zip_code: userDataArr?.zip_code.toString(),
+            zip_code: userDataArr?.zip_code.toString(),
             email: userDataArr?.email,
             phone: userDataArr?.phone,
-            country_id: userDataArr?.country,
+            country_id: selectedCountry?.id,
             city_id: userDataArr?.city,
             state: userDataArr?.state,
         },
@@ -162,38 +159,38 @@ export default function UserProfileSec({token, userData, countriesData }) {
                     <div className="row">
                         <div className="col-lg-8">
                             <ul>
-                                <li id='coins' className={`mb-2 ads__tab ${activeTab === 'coins' ? 'active' : ''}`}
+                                <li id='coins' className={`mb-2 ads__tab ${activeTab === 'my coins' ? 'active' : ''}`}
                                     onClick={() => {
                                         setShowContent(true);
-                                        handleTabClick('coins');
+                                        handleTabClick('my coins');
                                         if(token){
-                                            localStorage.setItem('currDashBoardToggle','coins');
+                                            localStorage.setItem('currDashBoardToggle','my coins');
                                         }
                                     }}
                                 >
-                                    Coins
+                                    My Coins
                                 </li>
-                                <li id='dashboard' className={`mb-2 ads__tab ${activeTab === 'dashboard' ? 'active' : ''}`}
+                                <li id='dashboard' className={`mb-2 ads__tab ${activeTab === 'my profile' ? 'active' : ''}`}
                                     onClick={() =>{
                                         setShowContent(true);
-                                        handleTabClick('dashboard');
+                                        handleTabClick('my profile');
                                         if(token){
-                                            localStorage.setItem('currDashBoardToggle','dashboard');
+                                            localStorage.setItem('currDashBoardToggle','my profile');
                                         }
                                     }}
                                 >
-                                    Dashboard
+                                    My Profile
                                 </li>
-                                <li id='wishlist' className={`mb-2 ads__tab ${activeTab === 'wishlist' ? 'active' : ''}`}
+                                <li id='wishlist' className={`mb-2 ads__tab ${activeTab === 'my wishlist' ? 'active' : ''}`}
                                     onClick={() =>{
                                         setShowContent(true);
-                                        handleTabClick('wishlist');
+                                        handleTabClick('my wishlist');
                                         if(token){
-                                            localStorage.setItem('currDashBoardToggle','wishlist');
+                                            localStorage.setItem('currDashBoardToggle','my wishlist');
                                         }
                                     }}
                                 >
-                                    Wishlist
+                                    My Wishlist
                                 </li>
                             </ul>
                         </div>
@@ -206,7 +203,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
 
     function renderSection(tabId) {
         switch (tabId) {
-            case 'coins':
+            case 'my coins':
                 return (
                     <>
                     {
@@ -253,7 +250,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
                     }
                     </>
                 );
-            case 'dashboard':
+            case 'my profile':
                 return (
                     <>
                     {
@@ -273,7 +270,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
                                                 </div>
                                             </div>
                                             <div className="dashboardProfile__contact">
-                                                <h3 className='dash__title'>personal information</h3>
+                                                <h3 className='dash__title'>{userDataArr?.full_name}</h3>
                                                 {
                                                     contactInfo.map((info) => (
                                                         <div className=
@@ -293,7 +290,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
                 <div className="col-lg-8">
                     <div className="profile__update">
                         <h3 className='dash__title'>
-                            update profile
+                            Profile Details
                         </h3>
                         <div className="user__profile__update">
                             <form onSubmit={handleSubmit} onBlur={handleBlur}>
@@ -468,14 +465,14 @@ export default function UserProfileSec({token, userData, countriesData }) {
                                                             aria-label="Default select example"
                                                             id='registeration__form__country'
                                                             name='country_id'
-                                                            value={selectedCountry}
+                                                            value={selectedCountry?.id}
                                                             onChange={handleCountryChange}
                                                         >
                                                             <option disabled value=''>Select Your Country</option>
                                                             {
                                                                 countriesData?.map(country => {
                                                                     return (
-                                                                        <option key={country?.id} id={country?.code} value={country?.code}>
+                                                                        <option key={country?.id} id={country?.code} value={country?.id}>
                                                                             {country?.name}
                                                                         </option>
                                                                     )
@@ -492,7 +489,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
                                                         type="text"
                                                         name="country_id"
                                                         className='form-control'
-                                                        value={values?.country_id}
+                                                        value={selectedCountryObj?.name}
                                                     />
                                             }
                                         </div>
@@ -542,14 +539,14 @@ export default function UserProfileSec({token, userData, countriesData }) {
                                                         ${((errors?.city_id && touched.city_id) || backEndErrors?.city_id) ? 'input-error' : '' }`}
                                                         aria-label="Default select example"
                                                         name='city_id'
-                                                        value={currChosenCity}
+                                                        value={currChosenCityId}
                                                         onChange={handleCityChange}
                                                     >
                                                         <option disabled value=''>Select Your City</option>
                                                         {
                                                             currCountryCities?.map(city=>{
                                                                 return (
-                                                                    <option key={city?.id} value={city?.name}>
+                                                                    <option key={city?.id} value={city?.id}>
                                                                         {
                                                                             city?.name
                                                                         }
@@ -567,7 +564,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
                                                         disabled
                                                         name='city_id'
                                                         type="text" className='form-control'
-                                                        value={values?.city_id}
+                                                        value={values.city_id}
                                                     />
                                             }
                                         </div>
@@ -612,7 +609,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
                                                     {
                                                         () => {
                                                             setUpdateUser(!updateUser);
-                                                            getCities(selectedCountryCode);
+                                                            getCities(selectedCountryObj);
                                                         }
                                                     }
                                                     className="btn profile__btn__submit w-100 profile__btn__update">
@@ -630,7 +627,7 @@ export default function UserProfileSec({token, userData, countriesData }) {
                     }
                     </>
                 );
-            case 'wishlist':
+            case 'my wishlist':
                 return (
                     <>
                     {
